@@ -16,11 +16,14 @@
 
 class CHexFile : public CStdioFile
 {
+#ifndef __GNUC__
 	DECLARE_DYNAMIC(CHexFile)
+#endif
 public:
 	CHexFile();
-
+#ifndef __GNUC__
 	virtual BOOL Open(LPCTSTR lpszFileName, UINT nOpenFlags = CFile::modeRead|CFile::typeText, CFileException* pError = NULL);
+#endif
 	BOOL ReadLine();
 
 	inline int GetNumber()	{	return m_iNumber;	}

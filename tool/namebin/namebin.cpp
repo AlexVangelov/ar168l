@@ -1,10 +1,17 @@
 // namebin.cpp : Defines the entry point for the console application.
 //
 
+#ifndef __GNUC__
 #include "stdafx.h"
 #include "..\\..\\include\\ar168.h"
 
 #include "..\\common\\common.h"
+#else
+#include <sys/stat.h>
+#include "../common/mfc2std.h"
+#include "../../include/ar168.h"
+#include "../common/common.h"
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,8 +30,9 @@ void _SetFile(char * p, CString strVer, CString strCall, CString strRes, CString
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
+#endif
 
 using namespace std;
 
@@ -37,7 +45,7 @@ void PrintHelp()
 	printf("%s\n", "[country]\tPhone's language");
 	printf("%s\n", "[oem]\t\tOEM. use 'size' to report code size, use 'zip' to zip output .bin file");
 }
-
+#ifndef __GNUC__
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
 	int nRetCode = 0;
@@ -51,7 +59,13 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	}
 	else
 	{
-		printf("Palmmicro AR1688 namebin.exe utility 0.59.028\n");
+#else
+int main(int argc, char *argv[])
+{
+   int nRetCode = 0;
+   {
+#endif
+		printf("Palmmicro AR1688 namebin utility 0.59.028\n");
 		if (argc < 2)
 		{
 			PrintHelp();
@@ -93,16 +107,28 @@ CString _GetVersion(CString strCurDir)
 	CString strIn;
 	CString str;
 	BOOL bStart;
-
+#ifndef __GNUC__
 	if (!in.Open(strCurDir.Left(strCurDir.GetLength() - 4) + _T("include\\version.h"), CFile::modeRead|CFile::typeText))
+#else
+	if (!in.Open(strCurDir.Left(strCurDir.GetLength() - 4) + _T("include/version.h"), CFile::modeRead|CFile::typeText))
+#endif
 	{
 		goto End;
-	}
+	} 
 
 	strVersion = "";
 	bStart = FALSE;
+#ifndef __GNUC__
 	while (in.ReadString(strIn))
 	{
+#else
+   while (!in.eof())
+   {
+      CString strIn;
+      std::getline(in, strIn);
+      
+      if (*strIn.rbegin()== '\r') strIn.erase(strIn.length() - 1);
+#endif
 		if (strIn.Left(10) == _T("/*########"))
 		{
 			bStart = TRUE;
@@ -152,7 +178,6 @@ CString _GetVersion(CString strCurDir)
 			}
 		}
 	}
-
 	in.Close();
 
 End:
@@ -165,7 +190,11 @@ void _SetFlag(char * p, CString strVal, int iMax)
 	int iLen;
 
 	iLen = strVal.GetLength();
+#ifndef __GNUC__
 	WideCharToMultiByte(CP_ACP, 0, strVal, -1, p, iMax, NULL, NULL); 
+#else
+   memcpy(p, strVal.c_str(), iLen);
+#endif
 //	memcpy(p, strVal, iLen);
 /*	for (i = 0; i < iLen; i ++)
 	{
@@ -218,7 +247,11 @@ BOOL _WriteHttpPage(char * p, CStringList & listSrcName)
 
 	iIndex = 0;
 	iAddr = 64;
+#ifndef __GNUC__
 	for (pos = listSrcName.GetHeadPosition(); pos != NULL;)
+#else
+   for (pos=listSrcName.begin(); pos != listSrcName.end(); ++pos)
+#endif
 	{
 		strSrcName = listSrcName.GetNext(pos);
 		if (!in.Open(strSrcName, CFile::modeRead))
@@ -261,16 +294,28 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 	char * pCur;
 	CString strTempFile;
 	CString strTempVer;
+#ifndef __GNUC__
 	CFileStatus status;
+#else
+   struct stat status;
+#endif
 	
 	if (!in.Open(strSrcName, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		wprintf(_T("\nUnable to open %s"), strSrcName);
+#else
+      printf(_T("\nUnable to open %s"), strSrcName.c_str());
+#endif
 		return FALSE;
 	}
 	if (!out.Open(strDstName, CFile::modeCreate|CFile::modeWrite))
 	{
+#ifndef __GNUC__
 		wprintf(_T("\nUnable to create %s"), strDstName);
+#else
+      printf(_T("\nUnable to create %s"), strDstName.c_str());
+#endif
 		in.Close();
 		return FALSE;
 	}
@@ -291,7 +336,11 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 	if (iLength > FILE_FULL_PAGE_SIZE)
 	{	
 		// add http data for main upgrade binary file
+#ifndef __GNUC__
 		strResDir = strCurDir + _T("res\\");
+#else
+      strResDir = strCurDir + _T("res/");
+#endif
 		strTempVer = strVer;
 		strTempVer.MakeLower();
 		if (strOem == _T("bt2008") || strTempVer == _T("bt2008") || strTempVer == _T("bt2008n"))
@@ -300,22 +349,44 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 		}
 		else if (strOem == _T("innomedia"))
 		{
+#ifndef __GNUC__
 			strResDir += _T("innomedia\\");
+#else
+         strResDir += _T("innomedia/");
+#endif
 		}
 		else if (strOem == _T("ip20"))
 		{
+#ifndef __GNUC__
 			strResDir += _T("ip20\\");
+#else
+         strResDir += _T("ip20/");
+#endif
 		}
 		else if (strOem ==  _T("roip"))
 		{
+#ifndef __GNUC__s
 			strResDir += _T("roip\\");
+#else
+			strResDir += _T("roip/");
+#endif
 		}
+#ifndef __GNUC__s
 		strResDir += strRes + _T("\\");
+#else
+		strResDir += strRes + _T("/");
+#endif
 
 		strTempFile = strResDir + _T("login.htm"); 
+#ifndef __GNUC__
 		if (!CFile::GetStatus(strTempFile, status))
 		{	// use us http page if speical language not found
 			strResDir = strCurDir + _T("res\\us\\");
+#else
+      if (stat(strTempFile.c_str(),&status)) 
+		{	// use us http page if speical language not found
+			strResDir = strCurDir + _T("res/us/");
+#endif
 		}
 
 		listSrcName.AddTail(strResDir + _T("login.htm"));
@@ -356,7 +427,11 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 		iOffset = 0;
 		for (i = 0; i < DSP_FILE_NUM; i ++)
 		{
+#ifndef __GNUC__
 			strFileName = strCurDir + _T("\\res\\") + _cDspFiles[i];
+#else
+			strFileName = strCurDir + _T("/res/") + _cDspFiles[i];
+#endif
 			if (!in.Open(strFileName, CFile::modeRead))
 			{
 				free(p);
@@ -410,7 +485,11 @@ BOOLEAN _WriteFile(CFile& out, CString strFileName, int iLength)
 	memset(p, 0, iLength);
 	if (!in.Open(strFileName, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		wprintf(_T("Unable to open %s\n"), strFileName);
+#else
+      printf(_T("Unable to open %s\n"), strFileName.c_str());
+#endif
 		return FALSE;
 	}
 	in.Read(p, iLength);
@@ -424,7 +503,11 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 {
 	CString strDstName, strCurDir, strSrcName;
 	CString strAllName, strSettingName, strDigitmapName, strPhonebookName, strPage0Name, strVersion, strRingtoneName, strHoldmusicName, strFontName, strUpgradeName;
+#ifndef __GNUC__
 	CFileStatus status;
+#else
+   struct stat status;
+#endif
 	CFile out;
 	CFile in;
 	int i, iLength;
@@ -433,22 +516,36 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	CString strCmdLine, strSettingsFile, strDigitmapFile;
 
 	GetCurrentDirectory(128, szCurDir);
+#ifndef __GNUC__
 	strSrcName.Format(_T("%s\\%s"), szCurDir, strFileName);
 	strCurDir.Format(_T("%s\\"), szCurDir);
+#else
+   {
+      char buff[511];
+      sprintf(buff, "%s/%s", szCurDir, strFileName.c_str());
+      strSrcName = buff;
+      sprintf(buff, "%s/", szCurDir);
+      strCurDir = buff;
+   }
+#endif
 
 	strDstName = strCurDir + strVer + _T("_") + strCall + _T("_") + strRes + _T("_");
 	if (_IsOem(strOem))
 	{
 		strDstName += strOem + _T("_");
 	}
+
 	strVersion = _GetVersion(strCurDir);
 	strDstName += strVersion;
 
 	strAllName = strDstName;
 	strAllName += _T("_all.bin");
 	strDstName += _T(".bin");
-	
+#ifndef __GNUC__	
 	if (CFile::GetStatus(strDstName, status))
+#else
+   if (stat(strDstName.c_str(),&status))
+#endif
 	{
 		CFile::Remove(strDstName);
 	}
@@ -493,26 +590,49 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	free(p);
 
 	// write settings_sip.dat or settings_iax2.dat
+#ifndef __GNUC__
 	strSettingsFile = strCurDir + _T("\\settings\\") + strVer + _T("_") + strCall + _T("_") + strRes;
+#else
+	strSettingsFile = strCurDir + _T("/settings/") + strVer + _T("_") + strCall + _T("_") + strRes;
+#endif
 	if (_IsOem(strOem))
 	{
 		strSettingsFile +=  _T("_") + strOem + _T(".txt");
 	}
 	else
 		strSettingsFile += _T(".txt");
-
+#ifndef __GNUC__	
 	if (!CFile::GetStatus(strSettingsFile, status))
-	{	// use default settings if speical .txt not found
+   {	// use default settings if speical .txt not found
 		strSettingsFile = strCurDir + _T("\\settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
 	}
-
-	strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
+   strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
+#else
+   if (stat(strSettingsFile.c_str(),&status))
+	{	// use default settings if speical .txt not found
+		strSettingsFile = strCurDir + _T("/settings/") + _T("default") + _T("_") + strCall + _T(".txt");
+	}
+   {
+      char buff[511];
+      sprintf(buff, "../bin/convert -c -f %s settings.dat", strSettingsFile.c_str());
+      strCmdLine = buff;
+   }
+#endif
+#ifndef __GNUC__
 	_tsystem(strCmdLine);
+#else
+   printf("Executing comamnd: \"%s\"", strCmdLine.c_str());
+   if (!system(strCmdLine)) printf("Error executing comamnd: \"%s\"", strCmdLine.c_str());
+#endif
 
 	strSettingName = strCurDir + _T("settings.dat");
 	if (!in.Open(strSettingName, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		wprintf(_T("Unable to open %s\n"), strSettingName);
+#else
+      printf(_T("Unable to open %s\n"), strSettingName.c_str());
+#endif
 		goto Error;
 	}
 	iLength = (int)in.GetLength();
@@ -537,13 +657,26 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	free(p);
 
 	// write default settings
+#ifndef __GNUC__
 	strSettingsFile = strCurDir + _T("\\settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
 	strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
+#else
+   strSettingsFile = strCurDir + _T("/settings/") + _T("default") + _T("_") + strCall + _T(".txt");
+   {
+      char buff[511];
+      sprintf(buff, "../bin/convert -c -f %s settings.dat", strSettingsFile.c_str());
+      strCmdLine = buff;
+   }
+#endif
 	_tsystem(strCmdLine);
 	strSettingName = strCurDir + _T("settings.dat");
 	if (!in.Open(strSettingName, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		wprintf(_T("Unable to open %s\n"), strSettingName);
+#else
+      printf(_T("Unable to open %s\n"), strSettingName.c_str());
+#endif
 		goto Error;
 	}
 	iLength = (int)in.GetLength();
@@ -568,21 +701,33 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	free(p);
 
 	// Write phonebook.dat
+#ifndef __GNUC__
 	strPhonebookName = strCurDir + _T("\\res\\") + _T("phonebook.dat");
+#else
+	strPhonebookName = strCurDir + _T("/res/") + _T("phonebook.dat");
+#endif
 	if (!_WriteFile(out, strPhonebookName, PHONEBOOK_FILE_SIZE))
 	{
 		goto Error;
 	}
 
 	// write ringtone.dat
+#ifndef __GNUC__
 	strRingtoneName = strCurDir + _T("\\res\\") + _T("ringtone.dat");
+#else
+	strRingtoneName = strCurDir + _T("/res/") + _T("ringtone.dat");
+#endif
 	if (!_WriteFile(out, strRingtoneName, SYSTEM_RINGTONE_PAGE_NUM * FILE_FULL_PAGE_SIZE))
 	{
 		goto Error;
 	}
 
 	// write ringtone_hold.dat
+#ifndef __GNUC__
 	strHoldmusicName = strCurDir + _T("\\res\\") + _T("holdmusic.dat");
+#else
+	strHoldmusicName = strCurDir + _T("/res/") + _T("holdmusic.dat");
+#endif
 	if (!_WriteFile(out, strHoldmusicName, SYSTEM_HOLDMUSIC_PAGE_NUM * FILE_FULL_PAGE_SIZE))
 	{
 		goto Error;
@@ -591,11 +736,19 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	// write font.dat or ivr_xx.dat
 	if (strOem == _T("ivr"))
 	{
+#ifndef __GNUC__
 		strFontName = strCurDir + _T("\\res\\") + _T("ivr_") + strRes + _T(".dat");
+#else
+	   strFontName = strCurDir + _T("/res/") + _T("ivr_") + strRes + _T(".dat");
+#endif
 	}
 	else
 	{
+#ifndef __GNUC__
 		strFontName = strCurDir + _T("\\res\\") + _T("font.dat");
+#else
+		strFontName = strCurDir + _T("/res/") + _T("font.dat");
+#endif
 	}
 	if (!_WriteFile(out, strFontName, SYSTEM_FONT_PAGE_NUM * FILE_FULL_PAGE_SIZE))
 	{
@@ -637,12 +790,24 @@ void ReportCodeSize()
 	}
 
 // _CODE7                 00008000    000052FC =       21244. bytes (REL,CON)
+#ifndef __GNUC__
 	while (f.ReadString(str))
 	{
+#else
+   while (!f.eof())
+   {
+      CString str = "";
+      std::getline(f, str);
+      if (*str.rbegin() == '\r') str.erase(str.length() - 1);
+#endif
 		if ((str.Left(5) == _T("_CODE")) && (str.Right(9) == _T("(REL,CON)")))
 		{
 			bFound = false;
-			for (pos = list.GetHeadPosition(); pos != NULL;)
+#ifndef __GNUC__
+         for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+         for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 			{
 				if (str == list.GetNext(pos))
 				{
@@ -658,7 +823,11 @@ void ReportCodeSize()
 	}
 
 	iTotal = 0;
+#ifndef __GNUC__
 	for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+   for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 	{
 		str = list.GetNext(pos);
 //		wprintf(_T("%s\n"), str);
@@ -679,7 +848,9 @@ void ZipBin(CString strDstName)
 	strZipName = strDstName.Left(strDstName.GetLength() - 3)  + _T("zip");
 
 	// zip .bin file
+#ifndef __GNUC__
 	strCmdLine.Format(_T("..\\bin\\7z a %s %s"), strZipName, strDstName);
 	_tsystem(strCmdLine);
+#endif
 }
 

@@ -1,18 +1,33 @@
+#ifndef __GNUC__
 #include <stdafx.h>
+#else
+#include <sys/stat.h>
+#include "../common/mfc2std.h"
+#endif
 
 BOOL PromptOverwriteFile(CString strFileName, BOOL bForce)
 {
 	char pAnswer[80];
 	CString strAnswer;
+#ifndef __GNUC__
 	CFileStatus status;
 
 	if (bForce)									return TRUE;
 	if (!CFile::GetStatus(strFileName, status))	return TRUE;
+#else
+	struct stat status;
 
+	if (bForce)									return TRUE;
+   if (stat(strFileName.c_str(),&status)) return TRUE;
+#endif
 	while (1)
 	{
 		printf("The destination file exists. Overwrite the file?(Yes/No):");
+#ifndef __GNUC__
 		gets(pAnswer);
+#else
+      fgets( pAnswer, sizeof(pAnswer), stdin );
+#endif
 		strAnswer = pAnswer;
 		if (!strAnswer.CompareNoCase(_T("no")) || !strAnswer.CompareNoCase(_T("n")))
 		{

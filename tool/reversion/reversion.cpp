@@ -1,9 +1,13 @@
 // reversion.cpp : Defines the entry point for the console application.
 //
 
+#ifndef __GNUC__
 #include "stdafx.h"
-
 #include "..\\common\\common.h"
+#else
+#include "../common/mfc2std.h"
+#include "../common/common.h"
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -15,7 +19,7 @@ void _RewriteVersion(CString strFileName, CString strVer, CString strCall, CStri
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
 
 using namespace std;
@@ -42,7 +46,19 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 	return nRetCode;
 }
+#else
+int main(int argc, char *argv[])
+{
+	int nRetCode = 0;
 
+		CString strFileName, strVer, strCall, strRes, strOem;
+		
+		printf("Palmmicro reversion utility 0.55.011\n");
+		CommandLineDefault(argc, argv, strFileName, strVer, strCall, strRes, strOem);
+		_RewriteVersion(strFileName, strVer, strCall, strRes, strOem);
+	return nRetCode;
+}
+#endif
 BOOL _MatchString(CString str, CString strCmp)
 {
 	int iLen, iVal;
@@ -104,8 +120,15 @@ void _RewriteVersion(CString strFileName, CString strVer, CString strCall, CStri
 	BOOL bChanged;
 
 	GetCurrentDirectory(128, szCurDir);
+#ifndef __GNUC__
 	strName.Format(_T("%s\\%s"), szCurDir, strFileName);
-
+#else
+   {
+      char buff[511];
+      sprintf(buff, "%s/%s", szCurDir, strFileName.c_str());
+      strName = buff;
+   }
+#endif
 	strCmpVer = _T("VER_") + strVer;
 	strCmpVer.MakeUpper();
 
@@ -121,18 +144,34 @@ void _RewriteVersion(CString strFileName, CString strVer, CString strCall, CStri
 	// read first
 	if (!file.Open(strName, CFile::modeRead|CFile::typeText))
 	{
+#ifndef __GNUC__
 		wprintf(_T("Can not open file %s for read\n"), strName);
+#else
+      printf(_T("Can not open file %s for read\n"), strName.c_str());
+#endif
 		return;
 	}
+#ifndef __GNUC__
 	while (file.ReadString(str))
 	{
+#else
+   while (!file.eof())
+   {
+      CString str = "";
+      std::getline(file, str);
+      if (*str.rbegin() == '\r') str.erase(str.length() - 1);
+#endif
 		list.AddTail(str);
 	}
 	file.Close();
 
 	// process
 	bChanged = FALSE;
+#ifndef __GNUC__
 	for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+   for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 	{
 		old = pos;
 		str = list.GetNext(pos);
@@ -151,10 +190,17 @@ void _RewriteVersion(CString strFileName, CString strVer, CString strCall, CStri
 
 	// write
 	file.Open(strName, CFile::modeCreate|CFile::modeWrite|CFile::typeText);
+#ifndef __GNUC__
 	while (!list.IsEmpty())
 	{
 		str = list.RemoveHead();
 		str += _T("\n");
+#else
+   for(pos=list.begin(); pos!=list.end(); pos++)
+   {
+      str = *pos;
+      str += _T("\r\n");
+#endif
 		file.WriteString(str);
 	}
 	file.Close();

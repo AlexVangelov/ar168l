@@ -1,7 +1,10 @@
 // HexFile.cpp : implementation file
 //
-
+#ifndef __GNUC__
 #include "stdafx.h"
+#else
+#include "../common/mfc2std.h"
+#endif
 #include "HexFile.h"
 
 #ifdef _DEBUG
@@ -13,25 +16,39 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CHexFile
 
+#ifndef __GNUC__
 IMPLEMENT_DYNAMIC(CHexFile, CStdioFile)
-
+#endif
 CHexFile::CHexFile() : CStdioFile()
 {
 }
 
+#ifndef __GNUC__
 BOOL CHexFile::Open(LPCTSTR lpszFileName, UINT nOpenFlags, CFileException* pError)
 {
 	return CStdioFile::Open(lpszFileName, nOpenFlags, pError);
 }
+#endif
 
 BOOL CHexFile::ReadLine()
 {
+#ifndef __GNUC__
 	if (!ReadString(m_strLine))		return FALSE;
+#else
+   char buff[512];
+   if (!getline(buff,511)) return FALSE;
+   if (bad()) return FALSE;
+   m_strLine = buff;
+#endif
 
 	int i, iVal, iCheckSum = 0;
 //	const char * p = LPCTSTR(m_strLine);
 	char p[1024];
+#ifndef __GNUC__
 	WideCharToMultiByte(CP_ACP, 0, m_strLine, -1, p, 1024, NULL, NULL); 
+#else
+   memcpy(p, m_strLine.c_str(), m_strLine.length());
+#endif
 	
 	if (p[0] != ':' || p[7] != '0' || p[8] != '0')	return FALSE;
 

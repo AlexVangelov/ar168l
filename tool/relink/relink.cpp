@@ -1,11 +1,15 @@
 // relink.cpp : Defines the entry point for the console application.
 //
 
+#ifndef __GNUC__
 #include "stdafx.h"
-
 #include "..\\common\\common.h"
-
 #include "..\\..\\include\\version.h"
+#else
+#include "../common/mfc2std.h"
+#include "../common/common.h"
+#include "../../include/version.h"
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -17,7 +21,7 @@ void _RewriteLinkFile(CString strFileName, CString strVer, CString strCall, CStr
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
 
 using namespace std;
@@ -45,11 +49,22 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 	return nRetCode;
 }
+#else
+int main(int argc, char *argv[])
+{
+	int nRetCode = 0;
+
+		CString strFileName, strVer, strCall, strRes, strOem;
+		printf("Palmmicro AR1688 relink utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
+		CommandLineDefault(argc, argv, strFileName, strVer, strCall, strRes, strOem);
+		_RewriteLinkFile(strFileName, strVer, strCall, strRes, strOem);
+	return nRetCode;
+}
+#endif
 
 BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strRes, CString strOem)
 {
 	CString strNew;
-
 	if (str.Left(7) != _T("..\\lib\\"))		return FALSE;
 
 	if (str.Right(7) == _T("arp.rel"))
@@ -203,28 +218,50 @@ void _RewriteLinkFile(CString strFileName, CString strVer, CString strCall, CStr
 	BOOL bChanged;
 
 	GetCurrentDirectory(128, szCurDir);
+#ifndef __GNUC__
 	strName.Format(_T("%s\\%s"), szCurDir, strFileName);
-
+#else
+   {
+      char buff[511];
+	   sprintf(buff, "%s/%s", szCurDir, strFileName.c_str());
+      strName = buff;
+   }
+#endif
 	strVer.MakeLower();
 	strCall.MakeLower();
 	strRes.MakeLower();
 	strOem.MakeLower();
-
 	// read first
 	if (!file.Open(strName, CFile::modeRead|CFile::typeText))
 	{
+#ifndef __GNUC__
 		wprintf(_T("Can not open file %s for read\n"), strName);
+#else
+      printf(_T("Can not open file %s for read\n"), strName.c_str());
+#endif
 		return;
 	}
+#ifndef __GNUC__
 	while (file.ReadString(str))
 	{
+#else
+   while (!file.eof())
+   {
+      CString str = "";
+      std::getline(file, str);
+      if (*str.rbegin() == '\r') str.erase(str.length() - 1);
+#endif
 		list.AddTail(str);
 	}
 	file.Close();
 
 	// process
 	bChanged = FALSE;
+#ifndef __GNUC__
 	for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+   for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 	{
 		old = pos;
 		str = list.GetNext(pos);
@@ -234,15 +271,22 @@ void _RewriteLinkFile(CString strFileName, CString strVer, CString strCall, CStr
 			bChanged = TRUE;
 		}
 	}
-
+#ifndef __GNUC__
 	if (!bChanged)	return;		// no need to rewrite
-
 	// write
 	file.Open(strName, CFile::modeCreate|CFile::modeWrite|CFile::typeText);
 	while (!list.IsEmpty())
 	{
 		str = list.RemoveHead();
 		str += _T("\n");
+#else
+	file.Open(strName.Left(strName.length()-4)+"_unix.lnk",std::fstream::out|std::fstream::trunc);
+   for(pos=list.begin(); pos!=list.end(); pos++)
+   {
+      str = *pos;
+      str.FindAndReplace("\\","/");
+      str += _T("\r\n");
+#endif
 		file.WriteString(str);
 	}
 	file.Close();

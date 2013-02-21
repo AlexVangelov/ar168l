@@ -1,9 +1,12 @@
 // hex2bin.cpp : Defines the entry point for the console application.
 //
-
+#ifndef __GNUC__
 #include "stdafx.h"
+#else
+#include "../common/mfc2std.h"
+#endif
 
-#include "Hexfile.h"
+#include "HexFile.h"
 
 #include "../../include/ar168.h"
 
@@ -17,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
 
 using namespace std;
@@ -35,6 +38,12 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	}
 	else
 	{
+#else
+int main(int argc, char *argv[])
+{
+   int nRetCode = 0;
+   {
+#endif
 		// TODO: code your application's behavior here.
 		if (argc < 3)
 		{
@@ -67,7 +76,11 @@ void MainProcess(int argc, TCHAR* argv[])
 	{
 		if (argv[i][0] == _T('-'))
 		{
+#ifndef __GNUC__
 			WideCharToMultiByte(CP_ACP, 0, argv[i], -1, pArgv, 128, NULL, NULL); 
+#else
+         memcpy(pArgv, argv[i], 128);
+#endif
 			switch (argv[i][1])
 			{
 			case _T('f'):
@@ -102,7 +115,12 @@ void MainProcess(int argc, TCHAR* argv[])
 			memset(p, iFillChar, HEXFILE_SIZE);
 			bCommonBank = FALSE;
 			bError = FALSE;
+#ifndef __GNUC__
 			if (hex.Open(argv[i]))
+#else
+         CString tmp = argv[i];
+         if (hex.Open(tmp, std::fstream::in))
+#endif
 			{
 				while (hex.ReadLine())
 				{
