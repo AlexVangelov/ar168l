@@ -1,0 +1,97 @@
+<html>
+<head>
+<style type=text/css>
+td {
+FONT-FAMILY: verdana;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function load_value()
+{
+document.forms[0].upgrade_file.focus();
+document.forms[0].upgrade_type[0].checked = true;
+}
+function submit_confirm()
+{
+if (document.forms[0].upgrade_file.value == "")
+{
+alert("Veuillez choisir un fichier valide !");
+return false;
+}
+else
+{
+return true;
+}
+}
+</script>
+</head>
+<body bgproperties=fixed leftmargin=0 topmargin=0 OnLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr><td width=780 height=105 align=left valign=top><img src=image.jpg></td>
+<td align=left valign=top></td></tr>
+</table>
+<table width=780 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=120 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=50 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+<form action="/upgrade" enctype="multipart/form-data" method=POST OnSubmit=submit_confirm()>
+<table>
+<tr><td class=THead width=500><B>Mise à jour du téléphone</B></TD></TR>
+<tr>
+<td>
+<br><br>
+<INPUT name=upgrade_type value=0 TYPE=RADIO>Logiciel<BR><br>
+<INPUT name=upgrade_type value=1 TYPE=RADIO>Configuration<BR><br>
+<INPUT name=upgrade_type value=2 TYPE=RADIO>Annuaire<BR><br>
+<INPUT name=upgrade_type value=3 TYPE=RADIO>Sonnerie<BR><br>
+<INPUT name=upgrade_type value=4 TYPE=RADIO>Musique d'attente<BR><br>
+</td>
+</tr>
+<tr>
+<td>
+Fichier :&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=upgrade_file type=file size=30>
+</td>
+</tr>
+<tr>
+<td><br>
+<INPUT name=upgrade_start type=submit value="   Démarrer la mise à jour   "><br><br><br><br>
+</td>
+</tr>
+<TR>
+<TD  class=THead11><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Attention ! La mise à jour ne doit pas être interrompue ! <BR>
+
+La mise à jour du logiciel peut être longue, n'éteignez surtout pas le téléphone.</B></TD>
+</TR>
+</table>
+</form>
+</td>
+</table>
+</body>
+</html>

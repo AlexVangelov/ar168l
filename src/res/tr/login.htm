@@ -1,0 +1,70 @@
+<html>
+<head>
+<style type=text/css>
+td {
+FONT-FAMILY: verdana;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function load_value()
+{
+document.forms[0].auth.focus();
+document.forms[0].nextpage[0].checked = true;
+}
+</script>
+</head>
+<body bgproperties=fixed leftmargin=0 topmargin=0 style="overflow:hidden" OnLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr><td width="100%" height="100%" align=left valign=top bgcolor="#04A8EC">
+<img src=image.jpg width="800" height="105"></td>
+<td align=left valign=top></td></tr>
+</table>
+<table width=817 height=418 border=0 cellpadding=0 cellspacing=0>
+<td width=20 valign=top bgcolor=#FFFFFF height="418">&nbsp;<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+<td width=4 valign=top bgcolor=#000000 height="418">&nbsp;</td>
+<td width=4 valign=top bgcolor=#C0C0C0 height="418">&nbsp;</td>
+<td width=125 valign=top bgcolor=#FFFFFF height="418">&nbsp;</td>
+<td width=4 valign=top bgcolor=#ffffff height="418">&nbsp;</td>
+<td valign=top width="611" height="418">
+<form action="/login" method=post>
+<table width="654">
+<tr><td class=THead width=648 style="background-color: #01A9EC">Hoþgeldiniz</TD></TR>
+<tr>
+<td width="648">
+<br><br>
+<INPUT name=nextpage value=settings TYPE=RADIO>Ayarlar<BR><br>
+<INPUT name=nextpage value=phonebook TYPE=RADIO>Telefon Rehberi<BR><br>
+<INPUT name=nextpage value=digitmap TYPE=RADIO>Digit Map<BR><br>
+<INPUT name=nextpage value=upgrade TYPE=RADIO>Güncelleme<BR><br>
+</td>
+</tr>
+<tr>
+<td width="648"><br>
+&nbsp;Þifre&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT name=auth maxLength=31 size=16 type=password>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT name=login type=submit value="  Giriþ  ">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</table>
+</body>
+</html>

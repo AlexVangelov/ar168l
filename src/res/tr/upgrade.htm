@@ -1,0 +1,100 @@
+<html>
+<head>
+<style type=text/css>
+td {
+FONT-FAMILY: verdana;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function load_value()
+{
+document.forms[0].upgrade_file.focus();
+document.forms[0].upgrade_type[0].checked = true;
+}
+function submit_confirm()
+{
+if (document.forms[0].upgrade_file.value == "")
+{
+alert("Please give a valid upgrade file name!");
+return false;
+}
+else
+{
+return true;
+}
+}
+</script>
+</head>
+<body bgproperties=fixed leftmargin=0 topmargin=0 OnLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr><td width="100%" height="100%" align=left valign=top bgcolor="#02A9EC">
+<img src=image.jpg width="800" height="105"></td>
+<td align=left valign=top></td></tr>
+</table>
+<table width=824 height=418 border=0 cellpadding=0 cellspacing=0>
+<td width=20 valign=top bgcolor=#FFFFFF height="418" background="image_5.jpg">&nbsp;</td>
+<td width=4 valign=top bgcolor=#000000 height="418">&nbsp;</td>
+<td width=4 valign=top bgcolor=#C0C0C0 height="418">&nbsp;</td>
+<td width=113 valign=top bgcolor=#FFFFFF height="418" background="back_1.jpg">&nbsp;</td>
+<td width=2 valign=top bgcolor=#ffffff height="418">&nbsp;</td>
+<td valign=top width="649" height="418">
+<form action="/upgrade" enctype="multipart/form-data" method=POST OnSubmit=submit_confirm()>
+<table width="661">
+<tr><td class=THead width=655 style="background-color: #02A9EC">Güncelleme</TD></TR>
+<tr>
+<td width="655">
+<br><br>
+<INPUT name=upgrade_type value=0 TYPE=RADIO>Firmware<BR><br>
+<INPUT name=upgrade_type value=1 TYPE=RADIO>Ayarlar<BR><br>
+<INPUT name=upgrade_type value=2 TYPE=RADIO>Telefon Rehberi<BR><br>
+<INPUT name=upgrade_type value=3 TYPE=RADIO>Zil Sesi<BR><br>
+<INPUT name=upgrade_type value=4 TYPE=RADIO>Bekleme Sesi<BR><br>
+</td>
+</tr>
+<tr>
+<td width="655">
+&nbsp;Dosya :&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=upgrade_file type=file size=30>
+</td>
+</tr>
+<tr>
+<td width="655"><br>
+<INPUT name=upgrade_start type=submit value="   Baþla   "><br><br><br><br>
+</td>
+</tr>
+<TR>
+<TD  class=THead11 width="655"><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+Uyarý : Güncelleme yarýda býrakýlmamalýdýr ! <BR>
+
+Not: Firmware güncellemesi birkaç dakika sürebilir. Lütfen güncelleme sonuna 
+kadar bekleyiniz.</B></TD>
+</TR>
+</table>
+</form>
+</td>
+</table>
+</body>
+</html>

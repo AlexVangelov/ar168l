@@ -1,0 +1,97 @@
+<html>
+<head>
+<style type=text/css>
+td {
+FONT-FAMILY: verdana;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function load_value()
+{
+document.forms[0].upgrade_file.focus();
+document.forms[0].upgrade_type[0].checked = true;
+}
+function submit_confirm()
+{
+if (document.forms[0].upgrade_file.value == "")
+{
+alert("Please give a valid upgrade file name!");
+return false;
+}
+else
+{
+return true;
+}
+}
+</script>
+</head>
+<body bgproperties=fixed leftmargin=0 topmargin=0 OnLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr><td width=800 height=105 align=left valign=top bgcolor="#FFFFFF"><img src=image.jpg></td>
+<td align=left valign=top bgcolor="#FFFFFF"></td></tr>
+</table>
+<table width=780 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=30 valign=top bgcolor=#FFFFFF>&nbsp;</td>
+<td width=120 valign=top bgcolor=#FFFFFF>&nbsp;</td>
+<td width=8 valign=top bgcolor=#FFFFFF>&nbsp;</td>
+<td width=4 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+<form action="/upgrade" enctype="multipart/form-data" method=POST OnSubmit=submit_confirm()>
+<table width="505">
+<tr><td class=THead width=499 style="background-color: #666666">Güncelleme</TD></TR>
+<tr>
+<td>
+<br><br>
+<INPUT name=upgrade_type value=0 TYPE=RADIO>Firmware<BR><br>
+<INPUT name=upgrade_type value=1 TYPE=RADIO>Ayarlar<BR><br>
+<INPUT name=upgrade_type value=2 TYPE=RADIO>Telefon Defteri<BR><br>
+<INPUT name=upgrade_type value=3 TYPE=RADIO>Zil Sesi<BR><br>
+<INPUT name=upgrade_type value=4 TYPE=RADIO>Bekleme Sesi<BR><br>
+</td>
+</tr>
+<tr>
+<td>
+Dosya:&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=upgrade_file type=file size=30>
+</td>
+</tr>
+<tr>
+<td><br>
+<INPUT name=upgrade_start type=submit value="   Baþla   "><br><br><br><br>
+</td>
+</tr>
+<TR>
+<TD  class=THead11><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+Uyarý: Güncelleme yarýda býrakýlmamalýdýr!</B><p>Not: Firmware güncellemesi 
+birkaç dakika sürebilir. Lütfen güncelleme sonuna kadar bekleyiniz.</TD>
+</TR>
+</table>
+</form>
+</td>
+</table>
+</body>
+</html>

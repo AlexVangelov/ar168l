@@ -1,0 +1,955 @@
+<html>
+<head>
+<style type=text/css>
+table {
+cellpadding:0;
+cellspacing:0;
+border:0;
+}
+td {
+FONT-FAMILY: verdana, arial, sans-serif;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+a.A2:link {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:visited {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:hover {
+FONT-SIZE: 10pt; COLOR: #cc0000; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+.Bborder {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFFFF; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.jiangbo {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFF00; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+width: 600px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function SetVisible(x)
+{
+document.all.table0.style.display = "";
+document.all.table1.style.display = "none";
+document.all.table2.style.display = "none"; 
+document.all.table3.style.display = "none"; 
+document.all.table4.style.display = "none"; 
+document.all.table5.style.display = "none"; 
+document.all.table6.style.display = "none"; 
+
+if(x==1)
+{
+document.all.table1.style.display = ""; 
+}
+if(x==2)
+{
+document.all.table2.style.display = ""; 
+}
+if(x==3)
+{
+document.all.table3.style.display = ""; 
+}
+if(x==4)
+{
+document.all.table4.style.display = ""; 
+}
+if(x==5)
+{
+document.all.table5.style.display = ""; 
+}
+if(x==6)
+{
+document.all.table0.style.display = "none";
+document.all.table6.style.display = ""; 
+}
+}
+
+function selectitem(item_id)
+{
+
+document.all.haha1.className="Bborder";
+document.all.haha2.className="Bborder";
+document.all.haha3.className="Bborder";
+document.all.haha4.className="Bborder";
+document.all.haha5.className="Bborder";
+document.all.haha6.className="Bborder";
+
+switch(item_id)
+{
+case "haha1":
+document.all.haha1.className="jiangbo";
+break;
+case "haha2":
+document.all.haha2.className="jiangbo";
+break;
+case "haha3":
+document.all.haha3.className="jiangbo";
+break;
+case "haha4":
+document.all.haha4.className="jiangbo";
+break;			  
+case "haha5":
+document.all.haha5.className="jiangbo";
+break;			  
+case "haha6":
+document.all.haha6.className="jiangbo";
+break;			  
+}
+}
+
+function auto_dns()
+{
+document.forms[0].dns_ip.disabled = 1;
+document.forms[0].dns_ip2.disabled = 1;
+}
+
+function manual_dns()
+{
+document.forms[0].dns_ip.disabled = 0;
+document.forms[0].dns_ip2.disabled = 0;
+}
+
+function OnIPType()
+{
+var change_id;
+change_id = document.forms[0].ip_type.value;
+switch(change_id)
+{
+case "0":
+document.forms[0].ip_address.disabled = 0;
+document.forms[0].subnet_mask.disabled = 0;
+document.forms[0].router_ip.disabled = 0;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "1":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "2":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 0;
+document.forms[0].pppoe_pin.disabled = 0;
+break;
+default:
+break;    
+
+}
+}
+
+function OnDtmfType()
+{
+var value1;
+
+value1 = document.forms[0].dtmf_type.value;
+if (value1 == 1)
+{
+document.forms[0].dtmf_payload.disabled = 0;
+}
+else
+{
+document.forms[0].dtmf_payload.disabled = 1;
+}
+}
+
+function OnNatTraversal()
+{
+var value1;
+value1 = document.forms[0].nat_traversal.value;
+
+switch(value1)
+{
+case "0":
+document.forms[0].nat_ip.disabled = 1;
+document.forms[0].stun_server.disabled = 1;
+document.forms[0].stun_port.disabled = 1;
+break;
+case "1":
+document.forms[0].nat_ip.disabled = 1;
+document.forms[0].stun_server.disabled = 0;
+document.forms[0].stun_port.disabled = 0;
+break;
+case "2":
+document.forms[0].nat_ip.disabled = 0;
+document.forms[0].stun_server.disabled = 1;
+document.forms[0].stun_port.disabled = 1;
+break;
+}
+}
+function load_value()
+{
+if (document.forms[0].dns_type[0].checked)
+{
+auto_dns();
+}
+else
+{
+manual_dns();
+}
+
+OnIPType();
+OnDtmfType();
+OnNatTraversal();
+}
+
+var win;
+function popupFeedback(thePage)
+{
+if(window.win && !window.win.closed)
+{   window.win.close();
+}
+the_url=thePage;
+win = window.open(the_url);
+}
+</script>
+</head>
+
+<body bgproperties=fixed leftmargin=0 topmargin=0 onLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr>
+<td width=780 height=105 align=left valign=top><img src=image.jpg></td>
+<td align=left valign=top></td>
+</tr>
+</table>
+
+<table width=850 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=120 valign=top bgcolor=#66CC66>
+<TABLE width=120 border=0 cellPadding=5 cellSpacing=0>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center  id="haha1" onclick=SetVisible(1);selectitem("haha1");>网络设置</TD></TR>
+<TR><TD class=Bborder align=center id="haha2"  onclick=SetVisible(2);selectitem("haha2");>语音设置</TD></TR>
+<TR><TD class=Bborder align=center id="haha3" onclick=SetVisible(3);selectitem("haha3");>SIP协议</TD></TR>
+<TR><TD class=Bborder align=center id="haha4"  onclick=SetVisible(4);selectitem("haha4");>呼叫设置</TD></TR>
+<TR><TD class=Bborder align=center id="haha5"  onclick=SetVisible(5);selectitem("haha5");>系统设置</TD></TR>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center id="haha6"  onclick=SetVisible(6);selectitem("haha6");>技术支持</TD></TR>
+</TABLE>
+</TD>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=50 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+
+
+<form method=POST action="/settings">
+<table id=table1 style="display:''">
+<tr><TD colspan=2 class=THead><B>基本信息</B></TD></TR>
+<tr><td>话机型号： <!PRODUCT_XXXXX></td></tr>
+<tr><td>MAC地址：  <!MAC_ADDRESS_XX></td></tr>
+<tr><td>OEM标识：  <!OEM_FLAG_XXXX></td></tr>
+<tr><td>软件版本： <!VER_></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><TD colspan=2 class=THead><B>网络设置</B></TD></TR>
+<tr>
+<td>连接方式:</td>
+<td>
+<SELECT name=ip_type onChange=OnIPType() size=1>
+<OPTION value=0>静态IP</OPTION>
+<OPTION value=1>DHCP</OPTION>
+<OPTION value=2>PPPoE</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>IP 地址:</td>
+<td>
+<INPUT name=ip_address size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>子网掩码:</td>
+<td>
+<INPUT name=subnet_mask size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>默认网关:</td>
+<td>
+<INPUT name=router_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>PPPoE 用户ID:</td>
+<td>
+<INPUT name=pppoe_id size=16 maxlength=47>
+</td>
+</tr>
+<tr>
+<td>PPPoE 用户密码:</td>
+<td>
+<INPUT name=pppoe_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=1 type=radio OnClick=auto_dns()>自动获得DNS服务器地址</td>
+</tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=0 type=radio OnClick=manual_dns()>使用下面的DNS服务器地址</td>
+</tr>
+<tr>
+<td>首选DNS服务器:</td>
+<td>
+<INPUT name=dns_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>备用DNS服务器:</td>
+<td>
+<INPUT name=dns_ip2 size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>3层 QoS:</td>
+<td>
+<INPUT name=lay3_qos size=5 maxlength=5>(Diff-Serv or Precedence value)
+</td>
+</tr>
+<tr>
+<td>2层 QoS:</td>
+<td>802.1Q VLAN Tag&nbsp;
+<INPUT name=vlan_tag size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>802.1p Priority Value&nbsp;
+<INPUT name=qos_priority size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table2 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>语音设置</B></TD></TR>
+<tr>
+<td>语音编码方式: </td>
+<td>语音编码 1:&nbsp;
+<SELECT name=voice_coder0 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 1:&nbsp;&nbsp;<INPUT name=frame_number0 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;(依据列表顺序)</td>
+<td>语音编码 2:&nbsp;
+<SELECT name=voice_coder1 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 2:&nbsp;&nbsp;<INPUT name=frame_number1 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>语音编码 3:&nbsp;
+<SELECT name=voice_coder2 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 3:&nbsp;&nbsp;<INPUT name=frame_number2 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>语音编码 4:&nbsp;
+<SELECT name=voice_coder3 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 4:&nbsp;&nbsp;<INPUT name=frame_number3 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>语音编码 5:&nbsp;
+<SELECT name=voice_coder4 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 5:&nbsp;&nbsp;<INPUT name=frame_number4 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>语音编码 6:&nbsp;
+<SELECT name=voice_coder5 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 6:&nbsp;&nbsp;<INPUT name=frame_number5 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>语音编码 7:&nbsp;
+<SELECT name=voice_coder6 size=1>
+<OPTION value=0>无</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;语音帧数 7:&nbsp;&nbsp;<INPUT name=frame_number6 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td  colspan=2><font color=#545454>（语音帧数范围: PCMU, PCMA, G.726-32, G.729, 在1 ~ 7之间; GSM 6.10, Speex, iLBC-20ms, 在1 ~ 4之间; iLBC-30ms, 在1 ~ 3之间）</font></td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>iLBC单帧时长:</td>
+<td>
+<INPUT name=ilbcframe value=0 type=radio>20毫秒&nbsp;&nbsp;<INPUT name=ilbcframe value=1 type=radio>30毫秒
+</td>
+</tr>
+<tr>
+<td>Speex 码率:</td>
+<td>
+<SELECT name=speex_rate size=1>
+<OPTION value=0>2.15 kbps</OPTION>
+<OPTION value=1>3.95 kbps</OPTION>
+<OPTION value=2>5.95 kbps</OPTION>
+<OPTION value=3>8 kbps</OPTION>
+<OPTION value=4>11 kbps</OPTION>
+<OPTION value=5>15 kbps</OPTION>
+<OPTION value=6>18.2 kbps</OPTION>
+<OPTION value=7>24.6 kbps</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>活动语音检测 (VAD):</td>
+<td>
+<INPUT name=vad value=0 type=radio>否&nbsp;&nbsp;<INPUT name=vad value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>自动增益控制 (AGC):</td>
+<td>
+<INPUT name=agc value=0 type=radio>否&nbsp;&nbsp;<INPUT name=agc value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>回声抵消 (AEC):</td>
+<td>
+<INPUT name=aec value=0 type=radio>否&nbsp;&nbsp;<INPUT name=aec value=1 type=radio>是
+</td>
+</tr>
+
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table3 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>SIP协议基本设置</B></TD>
+</TR>
+<tr>
+<td>使用登录服务:</td>
+<td>
+<INPUT name=register value=0 type=radio>否&nbsp;&nbsp;<INPUT name=register value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>SIP服务器:</td>
+<td>
+<INPUT name=sip_proxy size=24 maxlength=63>(IP或者URI)
+</td>
+</tr>
+<tr>
+<td>SIP服务器端口:</td>
+<td>
+<INPUT name=sip_port size=5 maxlength=5>(默认值5060)
+</td>
+</tr>
+<tr>
+<td>SIP域名:</td>
+<td>
+<INPUT name=sip_domain size=24 maxlength=63>
+</td>
+</tr>
+<tr>
+<td>Outbound代理服务器:</td>
+<td>
+<INPUT name=outbound_proxy value=0 type=radio>否&nbsp;&nbsp;<INPUT name=outbound_proxy value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>使用DNS SRV:</td>
+<td>
+<INPUT name=dns_srv value=0 type=radio>否&nbsp;&nbsp;<INPUT name=dns_srv value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>SIP 用户ID:</td>
+<td>
+<INPUT name=user_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>SIP 认证ID:</td>
+<td>
+<INPUT name=auth_id size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>SIP 认证密码:</td>
+<td>
+<INPUT name=auth_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr>
+<td>用户名称:</td>
+<td>
+<INPUT name=user_name size=16 maxlength=31>(可选项, 例如: Woody Allen)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<TR>
+<TD colspan=2 class=THead><B>SIP协议高级设置</B></TD>
+</TR>
+<tr>
+<td>本地SIP端口:</td>
+<td>
+<INPUT name=local_port size=5 maxlength=5>(默认值5060)
+</td>
+</tr>
+<tr>
+<td>本地RTP端口:</td>
+<td>
+<INPUT name=rtp_port size=5 maxlength=5>(在1024 ~ 65535之间, 默认值6000)
+</td>
+</tr>
+<tr>
+<td>注册刷新间隔:</td>
+<td>
+<INPUT name=register_ttl size=5 maxlength=5>(以秒为单位, 默认值60秒)
+</td>
+</tr>
+<tr>
+<td>NAT生存周期:</td>
+<td>
+<INPUT name=keep_alive size=5 maxlength=5>(以秒为单位, 默认值20秒)
+</td>
+</tr>
+<tr>
+<td>DTMF发送方式:</td>
+<td>
+<SELECT name=dtmf_type size="1" onChange=OnDtmfType()> 
+<OPTION value=0>语音带内</option>
+<OPTION value=1>RFC2833</option>
+<OPTION value=2>SIP Info</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>DTMF净荷类型:</td>
+<td>
+<INPUT name=dtmf_payload size=5 maxlength=5>(在96 ~ 127之间, 默认值101)
+</td>
+</tr>
+<tr>
+<td>G.726-32 净荷类型:</td>
+<td>
+<INPUT name=adpcm32_payload type="text" SIZE=5>(在96 ~ 127之间, 默认值111)
+</td>
+</tr>
+<tr>
+<td>iLBC净荷类型:</td>
+<td>
+<INPUT name=ilbcpayload type="text" SIZE=5>(在96 ~ 127之间, 默认值98)
+</td>
+</tr>
+<tr>
+<td>Speex净荷类型:</td>
+<td>
+<INPUT name=speex_payload type="text" SIZE=5>(在96 ~ 127之间, 默认值110)
+</td>
+</tr>
+<tr>
+<td>信息查询号码:</td>
+<td>
+<INPUT name=message_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>支持SIP PRACK(100rel, RFC3262):</td>
+<td>
+<INPUT name=prack value=0 type=radio>否&nbsp;&nbsp;<INPUT name=prack value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>Subscribe for MWI:</td>
+<td>
+<INPUT name=subscribe_mwi value=0 type=radio>否&nbsp;&nbsp;<INPUT name=subscribe_mwi value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>Proxy Require:</td>
+<td>
+<INPUT name=proxy_require size=32 maxlength=63>
+</td>
+</tr>
+<tr>
+<td>NAT穿透方式:</td>
+<td>
+<SELECT name=nat_traversal size="1" OnChange=OnNatTraversal()> 
+<OPTION value=0>不使用</option>
+<OPTION value=1>使用STUN Server</option>
+<OPTION value=2>使用NAT IP</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>NAT IP地址:</td>
+<td>
+<INPUT name=nat_ip SIZE=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>STUN服务器:</td>
+<td>
+<INPUT name=stun_server SIZE=24 maxlength=63>(IP或者URI)
+</td>
+</tr>
+<tr>
+<td>STUN服务器端口:</td>
+<td>
+<INPUT name=stun_port SIZE=5 maxlength=5>(默认值3478)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table4 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>呼叫规则设置</B></TD>
+</TR>
+<tr>
+<td>呼叫转移号码:</td>
+<td>
+<INPUT name=fwd_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>无条件呼叫转移:</td>
+<td>
+<INPUT name=fwd_always value=0 type=radio>否&nbsp;&nbsp;<INPUT name=fwd_always value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>遇忙呼叫转移:</td>
+<td>
+<INPUT name=fwd_busy value=0 type=radio>否&nbsp;&nbsp;<INPUT name=fwd_busy value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>无应答呼叫转移:</td>
+<td>
+<INPUT name=fwd_noanswer value=0 type=radio>否&nbsp;&nbsp;<INPUT name=fwd_noanswer value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>无应答振铃时长:</td>
+<td>
+<INPUT name=noanswer_timeout size=5 maxlength=5>(以秒为单位, 默认值60秒)
+</td>
+</tr>
+<tr>
+<td>自动应答:</td>
+<td>
+<INPUT name=auto_answer value=0 type=radio>否&nbsp;&nbsp;<INPUT name=auto_answer value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>呼叫等待:</td>
+<td>
+<INPUT name=call_waiting value=0 type=radio>否&nbsp;&nbsp;<INPUT name=call_waiting value=1 type=radio>是
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>呼叫前缀:</td>
+<td>
+<INPUT name=dial_prefix size=16 maxlength=15>(将呼叫前缀添加到呼叫号码的前面)
+</td>
+</tr>
+<tr>
+<td>热线号码:</td>
+<td>
+<INPUT name=hotline_number size=16 maxlength=31>(提起话筒直接呼出的号码)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>使用呼叫规则:</td>
+<td>
+<INPUT name=use_digitmap value=0 type=radio>否&nbsp;&nbsp;<INPUT name=use_digitmap value=1 type=radio>是
+</td>
+</tr>
+<tr>
+<td>呼出等待时长:</td>
+<td>
+<INPUT name=digitmap_timeout size=5 maxlength=5>(以秒为单位, 默认值5秒)
+</td>
+</tr>
+<tr>
+<td>使用'#'键呼出:</td>
+<td>
+<INPUT name=pound_call value=0 type=radio>否&nbsp;&nbsp;<INPUT name=pound_call value=1 type=radio>是
+</td>
+</tr>
+</table>
+
+<table id=table5 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>系统设置</B></TD></TR>
+<tr>
+<td>话机管理密码:</td>
+<td>
+<INPUT name=admin_pin type=password size=16 maxlength=31>(进入WEB页面输入此密码)
+</td>
+</tr>
+<tr>
+<td>Syslog IP 地址:</td>
+<td>
+<INPUT name=syslog_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>听筒输入音量 (0-7):</td>
+<td>
+<INPUT name=vol_input size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>听筒输出音量 (0-31):</td>
+<td>
+<INPUT name=vol_output size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>免提输出音量 (0-31):</td>
+<td>
+<INPUT name=speaker_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>振铃音量 (10-31):</td>
+<td>
+<INPUT name=ring_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>自动升级服务器:</td>
+<td>
+<INPUT name=provision_server size=24 maxlength=63>(IP或者URI)
+</td>
+</tr>
+<tr>
+<td>自动升级端口:</td>
+<td>
+<INPUT name=provision_port size=5 maxlength=5>(默认值80)
+</td>
+</tr>
+<tr>
+<td>自动升级间隔:</td>
+<td>
+<INPUT name=provision_ttl size=5 maxlength=5>(以分钟为单位, 最大值为65535分钟)
+</td>
+</tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>SNTP服务器:</td>
+<td>
+<INPUT name=sntp_dns size=24 maxlength=63>(IP或者URI, 例如time.windows.com)
+</td>
+</tr>
+<tr>
+<td>时区:</td>
+<td>
+<SELECT name=time_zone size=1>
+<OPTION value=0>(GMT-12:00)日界线西						</OPTION>
+<OPTION value=1>(GMT-11:00)中途岛,萨摩亚群岛					</OPTION>
+<OPTION value=2>(GMT-10:00)夏威夷						</OPTION>
+<OPTION value=3>(GMT-09:00)阿拉斯加						</OPTION>
+<OPTION value=4>(GMT-08:00)太平洋时间(美国和加拿大);蒂华纳			</OPTION>
+<OPTION value=5>(GMT-07:00)山地时间(美国和加拿大)				</OPTION>
+<OPTION value=6>(GMT-07:00)亚利桑那						</OPTION>
+<OPTION value=7>(GMT-07:00)奇瓦瓦,拉巴斯,马扎特兰				</OPTION>
+<OPTION value=8>(GMT-06:00)萨斯喀彻温						</OPTION>
+<OPTION value=9>(GMT-06:00)中部时间(美国和加拿大)				</OPTION>
+<OPTION value=10>(GMT-06:00)中美洲						</OPTION>
+<OPTION value=11>(GMT-06:00)瓜达拉哈拉,墨西哥城,蒙特雷			</OPTION>
+<OPTION value=12>(GMT-05:00)波哥大,利马,基多					</OPTION>
+<OPTION value=13>(GMT-05:00)东部时间(美国和加拿大)				</OPTION>
+<OPTION value=14>(GMT-05:00)印地安那州(东部)					</OPTION>
+<OPTION value=15>(GMT-04:30)加拉加斯						</OPTION>
+<OPTION value=16>(GMT-04:00)大西洋时间(加拿大)					</OPTION>
+<OPTION value=17>(GMT-04:00)拉巴斯						</OPTION>
+<OPTION value=18>(GMT-04:00)圣地亚哥						</OPTION>
+<OPTION value=19>(GMT-03:30)纽芬兰						</OPTION>
+<OPTION value=20>(GMT-03:00)巴西利亚						</OPTION>
+<OPTION value=21>(GMT-03:00)布宜诺斯艾利斯,乔治敦				</OPTION>
+<OPTION value=22>(GMT-03:00)格陵兰						</OPTION>
+<OPTION value=23>(GMT-02:00)中大西洋						</OPTION>
+<OPTION value=24>(GMT-01:00)佛得角群岛					</OPTION>
+<OPTION value=25>(GMT-01:00)亚速尔群岛					</OPTION>
+<OPTION value=26>(GMT)格林威治标准时间: 都柏林,爱丁堡,伦敦,里斯本		</OPTION>
+<OPTION value=27>(GMT)卡萨布兰卡,蒙罗维亚					</OPTION>
+<OPTION value=28>(GMT+01:00)阿姆斯特丹,柏林,伯尔尼,罗马,斯德哥尔摩 		</OPTION>
+<OPTION value=29>(GMT+01:00)贝尔格莱德,布拉迪斯拉发,布达佩斯,卢布尔雅那	</OPTION>
+<OPTION value=30>(GMT+01:00)布鲁塞尔,哥本哈根,马德里,巴黎			</OPTION>
+<OPTION value=31>(GMT+01:00)萨拉热窝,斯科普里,华沙,萨格勒布			</OPTION>
+<OPTION value=32>(GMT+01:00)中非西部						</OPTION>
+<OPTION value=33>(GMT+02:00)布加勒斯特					</OPTION>
+<OPTION value=34>(GMT+02:00)哈拉雷,比勒陀利亚					</OPTION>
+<OPTION value=35>(GMT+02:00)赫尔辛基,基辅,里加,索非亚,塔林,维尔纽斯		</OPTION>
+<OPTION value=36>(GMT+02:00)开罗						</OPTION>
+<OPTION value=37>(GMT+02:00)雅典,贝鲁特,伊斯坦布尔,明斯克			</OPTION>
+<OPTION value=38>(GMT+02:00)耶路撒冷						</OPTION>
+<OPTION value=39>(GMT+03:00)巴格达						</OPTION>
+<OPTION value=40>(GMT+03:00)科威特,利雅得					</OPTION>
+<OPTION value=41>(GMT+03:00)莫斯科,圣彼得堡,伏尔加格勒			</OPTION>
+<OPTION value=42>(GMT+03:00)内罗毕						</OPTION>
+<OPTION value=43>(GMT+03:30)德黑兰						</OPTION>
+<OPTION value=44>(GMT+04:00)阿布扎比,马斯喀特					</OPTION>
+<OPTION value=45>(GMT+04:00)巴库						</OPTION>
+<OPTION value=46>(GMT+04:30)喀布尔						</OPTION>
+<OPTION value=47>(GMT+05:00)叶卡捷琳堡					</OPTION>
+<OPTION value=48>(GMT+05:00)伊斯兰堡,卡拉奇,塔什干				</OPTION>
+<OPTION value=49>(GMT+05:30)马德拉斯,加尔各答,孟买,新德里			</OPTION>
+<OPTION value=50>(GMT+05:45)加德满都						</OPTION>
+<OPTION value=51>(GMT+06:00)阿拉木图,新西伯利亚				</OPTION>
+<OPTION value=52>(GMT+06:00)达卡					</OPTION>
+<OPTION value=53>(GMT+06:00)斯里哈亚华登尼普拉				</OPTION>
+<OPTION value=54>(GMT+06:30)仰光						</OPTION>
+<OPTION value=55>(GMT+07:00)克拉斯诺亚尔斯克					</OPTION>
+<OPTION value=56>(GMT+07:00)曼谷,雅加达,河内					</OPTION>
+<OPTION value=57>(GMT+08:00)北京,重庆,香港特别行政区,乌鲁木齐			</OPTION>
+<OPTION value=58>(GMT+08:00)吉隆坡,新加坡					</OPTION>
+<OPTION value=59>(GMT+08:00)珀斯						</OPTION>
+<OPTION value=60>(GMT+08:00)台北						</OPTION>
+<OPTION value=61>(GMT+08:00)伊尔库茨克,乌兰巴图				</OPTION>
+<OPTION value=62>(GMT+09:00)东京,大阪,札幌					</OPTION>
+<OPTION value=63>(GMT+09:00)汉城						</OPTION>
+<OPTION value=64>(GMT+09:00)雅库茨克						</OPTION>
+<OPTION value=65>(GMT+09:30)阿德莱德						</OPTION>
+<OPTION value=66>(GMT+09:30)达尔文						</OPTION>
+<OPTION value=67>(GMT+10:00)布里斯班						</OPTION>
+<OPTION value=68>(GMT+10:00)符拉迪沃斯托克					</OPTION>
+<OPTION value=69>(GMT+10:00)关岛,莫尔兹比港					</OPTION>
+<OPTION value=70>(GMT+10:00)霍巴特						</OPTION>
+<OPTION value=71>(GMT+10:00)堪培拉,墨尔本,悉尼				</OPTION>
+<OPTION value=72>(GMT+11:00)马加丹,索罗门群岛,新喀里多尼亚			</OPTION>
+<OPTION value=73>(GMT+12:00)惠灵顿,奥克兰					</OPTION>
+<OPTION value=74>(GMT+12:00)斐济,堪察加半岛,马绍尔群岛			</OPTION>
+<OPTION value=75>(GMT+13:00)努库阿洛法					</OPTION>
+</SELECT
+</td>
+</tr>
+<tr>
+<td>根据夏时制自动调节时钟:</td>
+<td>
+<INPUT name=day_light value=0 type=radio>否&nbsp;&nbsp;<INPUT name=day_light value=1 type=radio>是
+</td>
+</tr>
+
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table6 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>技术支持</B></TD>
+</TR>
+<TR><TD colspan=2>
+<br><br>PalmMicro公司为您提供高质量的网络电话。如果您需要咨询或寻求帮助，请直接联系我们，或者登录我公司网站。 
+<p align=center><A class=A2 HREF="http://www.palmmicro.com">欢迎进入PalmMicro公司网站</A>
+</p>
+<br><br>
+</TD></TR>
+</td>
+</table>
+
+<table id=table0 style="display:''">
+<tr><TD class=THead width=550></TD></TR>
+<tr><td ><br><INPUT name=update type="submit" value="  保  存  ">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=reset type=reset value="  取  消  "></td></tr>
+</table>
+</form>
+
+</td>
+</table>
+</body>
+</html>

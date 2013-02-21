@@ -1,0 +1,15 @@
+*.class
+*.merge-left*
+*.merge-right*
+*.mine
+*.orig
+*.prej
+*.pyc
+*.pyo
+*.rej
+*.working
+.hg
+.svn
+.project
+_svn
+svn-commit*.tmp

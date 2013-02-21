@@ -1,0 +1,93 @@
+--
+-m
+-j
+-x
+-i main
+-b _CODE0 = 0x0040
+-b _DATA = 0x2000
+-b _CODEF = 0x4000
+-b _CODE1= 0x8000
+-b _CODE2 = 0x8000
+-b _CODE3 = 0x8000
+-b _CODE4 = 0x8000
+-b _CODE5 = 0x8000
+-b _CODE6 = 0x8000
+-b _CODE7 = 0x8000
+-b _CODE = 0xe000
+main.rel
+ce3.rel
+datatype.rel
+..\lib\chip_plus\dsp.rel
+..\lib\chip_plus\flash.rel
+..\lib\isr.rel
+isr_gpio.rel
+ksz8842.rel
+lcd.rel
+math.rel
+ne2000.rel
+..\lib\network.rel
+..\lib\network2.rel
+font.rel
+adc_key.rel
+ar168r.rel
+..\lib\bootflag.rel
+..\lib\chip_plus\chip.rel
+..\lib\chip_plus\codec.rel
+..\lib\dsp_bank1.rel
+dtmf.rel
+function.rel
+gpio_key.rel
+hook.rel
+ivr.rel
+key.rel
+led.rel
+serial.rel
+..\lib\sys.rel
+time.rel
+..\lib\uart.rel
+..\lib\arp.rel
+dhcp.rel
+dns.rel
+..\lib\icmp.rel
+..\lib\ip.rel
+net.rel
+pppoe.rel
+ppp.rel
+sntp.rel
+stun.rel
+tftp.rel
+udprun.rel
+http.rel
+httpc.rel
+ap_innom.rel
+..\lib\tcp.rel
+call_log.rel
+menu.rel
+settings.rel
+ui_str.rel
+iax2.rel
+protocol.rel
+rtps.rel
+sips.rel
+auth.rel
+md5.rel
+rc4.rel
+sha1.rel
+hmac_sha1.rel
+pbkdf2_sha1.rel
+digitmap.rel
+rtpr.rel
+sipr.rel
+buf.rel
+data.rel
+heap.rel
+line.rel
+misc.rel
+options.rel
+rand.rel
+sipc.rel
+syslog.rel
+..\lib\udp.rel
+udpdebug.rel
+
+-e

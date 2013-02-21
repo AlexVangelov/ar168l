@@ -1,0 +1,27 @@
+call stack
+call+parameter+local
+2+0+1 Ne2000Run()
+2+0+2 _ReadPacket()
+2+2+4 _IPReceive()
+2+2+4 UdpRun()
+2+10+11 TaskUdpRunData()
+2+6+1 (point)Iax2Run()
+2+4+8 iax2_recv_packet()
+68
+2+2+4 iax2_send_ack()
+2+4+2 UdpSend()
+2+6+6 IpSendData()
+98
+2+4+0 Ne2000Send()
+2+6+3 fixed_output()
+115
+
+      main
+2+0+0 UI_Run()
+2+0+1 ADC_KeyRun()
+2+1+0 UI_HandleKeys()
+2+1+1 _DigitKeys()
+2+3+1 TaskHandleEvent()
+2+3+3 SipHandleEvent()
+2+2+128 SipCall()
+2+2+272 SipCallStep1()

@@ -1,0 +1,953 @@
+<html>
+<head>
+<style type=text/css>
+table {
+cellpadding:0;
+cellspacing:0;
+border:0;
+}
+td {
+FONT-FAMILY: verdana, arial, sans-serif;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+a.A2:link {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:visited {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:hover {
+FONT-SIZE: 10pt; COLOR: #cc0000; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+.Bborder {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFFFF; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.jiangbo {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFF00; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+width: 650px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function SetVisible(x)
+{
+document.all.table0.style.display = "";
+document.all.table1.style.display = "none";
+document.all.table2.style.display = "none"; 
+document.all.table3.style.display = "none"; 
+document.all.table4.style.display = "none"; 
+document.all.table5.style.display = "none"; 
+document.all.table6.style.display = "none"; 
+
+if(x==1)
+{
+document.all.table1.style.display = ""; 
+}
+if(x==2)
+{
+document.all.table2.style.display = ""; 
+}
+if(x==3)
+{
+document.all.table3.style.display = ""; 
+}
+if(x==4)
+{
+document.all.table4.style.display = ""; 
+}
+if(x==5)
+{
+document.all.table5.style.display = ""; 
+}
+if(x==6)
+{
+document.all.table0.style.display = "none";
+document.all.table6.style.display = ""; 
+}
+}
+
+function selectitem(item_id)
+{
+
+document.all.haha1.className="Bborder";
+document.all.haha2.className="Bborder";
+document.all.haha3.className="Bborder";
+document.all.haha4.className="Bborder";
+document.all.haha5.className="Bborder";
+document.all.haha6.className="Bborder";
+
+switch(item_id)
+{
+case "haha1":
+document.all.haha1.className="jiangbo";
+break;
+case "haha2":
+document.all.haha2.className="jiangbo";
+break;
+case "haha3":
+document.all.haha3.className="jiangbo";
+break;
+case "haha4":
+document.all.haha4.className="jiangbo";
+break;			  
+case "haha5":
+document.all.haha5.className="jiangbo";
+break;			  
+case "haha6":
+document.all.haha6.className="jiangbo";
+break;			  
+}
+}
+
+function auto_dns()
+{
+document.forms[0].dns_ip.disabled = 1;
+document.forms[0].dns_ip2.disabled = 1;
+}
+
+function manual_dns()
+{
+document.forms[0].dns_ip.disabled = 0;
+document.forms[0].dns_ip2.disabled = 0;
+}
+
+function OnIPType()
+{
+var change_id;
+change_id = document.forms[0].ip_type.value;
+switch(change_id)
+{
+case "0":
+document.forms[0].ip_address.disabled = 0;
+document.forms[0].subnet_mask.disabled = 0;
+document.forms[0].router_ip.disabled = 0;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "1":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "2":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 0;
+document.forms[0].pppoe_pin.disabled = 0;
+break;
+default:
+break;    
+}
+}
+
+function OnDtmfType()
+{
+var value1;
+
+value1 = document.forms[0].dtmf_type.value;
+if (value1 == 1)
+{
+document.forms[0].dtmf_payload.disabled = 0;
+}
+else
+{
+document.forms[0].dtmf_payload.disabled = 1;
+}
+}
+
+function OnNatTraversal()
+{
+var value1;
+value1 = document.forms[0].nat_traversal.value;
+
+switch(value1)
+{
+case "0":
+document.forms[0].nat_ip.disabled = 1;
+document.forms[0].stun_server.disabled = 1;
+document.forms[0].stun_port.disabled = 1;
+break;
+case "1":
+document.forms[0].nat_ip.disabled = 1;
+document.forms[0].stun_server.disabled = 0;
+document.forms[0].stun_port.disabled = 0;
+break;
+case "2":
+document.forms[0].nat_ip.disabled = 0;
+document.forms[0].stun_server.disabled = 1;
+document.forms[0].stun_port.disabled = 1;
+break;
+}
+}
+function load_value()
+{
+if (document.forms[0].dns_type[0].checked)
+{
+auto_dns();
+}
+else
+{
+manual_dns();
+}
+
+OnIPType();
+OnDtmfType();
+OnNatTraversal();
+}
+
+var win;
+function popupFeedback(thePage)
+{
+if(window.win && !window.win.closed)
+{   window.win.close();
+}
+the_url=thePage;
+win = window.open(the_url);
+}
+</script>
+</head>
+
+<body bgproperties=fixed leftmargin=0 topmargin=0 onLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr>
+<td width=780 height=105 align=left valign=top><img src=image.jpg></td>
+<td align=left valign=top></td>
+</tr>
+</table>
+
+<table width=850 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=120 valign=top bgcolor=#66CC66>
+<TABLE width=120 border=0 cellPadding=5 cellSpacing=0>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center  id="haha1" onclick=SetVisible(1);selectitem("haha1");>Network</TD></TR>
+<TR><TD class=Bborder align=center id="haha2"  onclick=SetVisible(2);selectitem("haha2");>Voice</TD></TR>
+<TR><TD class=Bborder align=center id="haha3" onclick=SetVisible(3);selectitem("haha3");>SIP Proxy</TD></TR>
+<TR><TD class=Bborder align=center id="haha4"  onclick=SetVisible(4);selectitem("haha4");>Dial Plan</TD></TR>
+<TR><TD class=Bborder align=center id="haha5"  onclick=SetVisible(5);selectitem("haha5");>System</TD></TR>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center id="haha6"  onclick=SetVisible(6);selectitem("haha6");>Technical Support</TD></TR>
+</TABLE>
+</TD>
+<td width=30 valign=top bgcolor=#66CC66>&nbsp;</td>
+<td width=50 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+
+
+<form method=POST action="/settings">
+<table id=table1 style="display:''">
+<tr><TD colspan=2 class=THead><B>Basic Information</B></TD></TR>
+<tr><td>Phone Model: <!PRODUCT_XXXXX></td></tr>
+<tr><td>MAC Address: <!MAC_ADDRESS_XX></td></tr>
+<tr><td>OEM Tag:     <!OEM_FLAG_XXXX></td></tr>
+<tr><td>Version No.: <!VER_></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><TD colspan=2 class=THead><B>Network Settings</B></TD></TR>
+<tr>
+<td>Connection Type:</td>
+<td>
+<SELECT name=ip_type onChange=OnIPType() size=1>
+<OPTION value=0>Static IP</OPTION>
+<OPTION value=1>DHCP</OPTION>
+<OPTION value=2>PPPoE</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>IP Address:</td>
+<td>
+<INPUT name=ip_address size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Subnet Mask:</td>
+<td>
+<INPUT name=subnet_mask size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Default Gateway:</td>
+<td>
+<INPUT name=router_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>PPPoE User ID:</td>
+<td>
+<INPUT name=pppoe_id size=16 maxlength=47>
+</td>
+</tr>
+<tr>
+<td>PPPoE User PIN:</td>
+<td>
+<INPUT name=pppoe_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=1 type=radio OnClick=auto_dns()>Automatically get DNS server IP</td>
+</tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=0 type=radio OnClick=manual_dns()>Use following DNS server IP</td>
+</tr>
+<tr>
+<td>Primary DNS:</td>
+<td>
+<INPUT name=dns_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Secondary DNS:</td>
+<td>
+<INPUT name=dns_ip2 size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Layer 3 QoS:</td>
+<td>
+<INPUT name=lay3_qos size=5 maxlength=5>(Diff-Serv or Precedence value)
+</td>
+</tr>
+<tr>
+<td>Layer 2 QoS:</td>
+<td>802.1Q VLAN Tag&nbsp;
+<INPUT name=vlan_tag size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>802.1p Priority Value&nbsp;
+<INPUT name=qos_priority size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table2 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>Voice Codec Settings</B></TD></TR>
+<tr>
+<td>Preferred Voice Codec: </td>
+<td>Codec 1:&nbsp;
+<SELECT name=voice_coder0 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 1:&nbsp;&nbsp;<INPUT name=frame_number0 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;(In listed order)</td>
+<td>Codec 2:&nbsp;
+<SELECT name=voice_coder1 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 2:&nbsp;&nbsp;<INPUT name=frame_number1 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Codec 3:&nbsp;
+<SELECT name=voice_coder2 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 3:&nbsp;&nbsp;<INPUT name=frame_number2 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Codec 4:&nbsp;
+<SELECT name=voice_coder3 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 4:&nbsp;&nbsp;<INPUT name=frame_number3 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Codec 5:&nbsp;
+<SELECT name=voice_coder4 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 5:&nbsp;&nbsp;<INPUT name=frame_number4 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Codec 6:&nbsp;
+<SELECT name=voice_coder5 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 6:&nbsp;&nbsp;<INPUT name=frame_number5 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Codec 7:&nbsp;
+<SELECT name=voice_coder6 size=1>
+<OPTION value=0>None</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 7:&nbsp;&nbsp;<INPUT name=frame_number6 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td  colspan=2><font color=#545454>( Frames Per TX Range: PCMU, PCMA, iLBC and Speex between 1 and 3; G.726-32, GSM 6.10 and G.729 between 1 and 6 )</font></td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>iLBC Frame Size:</td>
+<td>
+<INPUT name=ilbcframe value=0 type=radio>20ms&nbsp;&nbsp;<INPUT name=ilbcframe value=1 type=radio>30ms
+</td>
+</tr>
+<tr>
+<td>Speex Rate:</td>
+<td>
+<SELECT name=speex_rate size=1>
+<OPTION value=0>2.15 kbps</OPTION>
+<OPTION value=1>3.95 kbps</OPTION>
+<OPTION value=2>5.95 kbps</OPTION>
+<OPTION value=3>8 kbps</OPTION>
+<OPTION value=4>11 kbps</OPTION>
+<OPTION value=5>15 kbps</OPTION>
+<OPTION value=6>18.2 kbps</OPTION>
+<OPTION value=7>24.6 kbps</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>Voice Activity Detection (VAD):</td>
+<td>
+<INPUT name=vad value=0 type=radio>No&nbsp;&nbsp;<INPUT name=vad value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Automatic Gain Control (AGC):</td>
+<td>
+<INPUT name=agc value=0 type=radio>No&nbsp;&nbsp;<INPUT name=agc value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Acoustic Echo Cancellation (AEC):</td>
+<td>
+<INPUT name=aec value=0 type=radio>No&nbsp;&nbsp;<INPUT name=aec value=1 type=radio>Yes
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table3 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Basic SIP Proxy Settings</B></TD>
+</TR>
+<tr>
+<td>SIP Registration:</td>
+<td>
+<INPUT name=register value=0 type=radio>No&nbsp;&nbsp;<INPUT name=register value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>SIP Server:</td>
+<td>
+<INPUT name=sip_proxy size=24 maxlength=63>(IP or URI)
+</td>
+</tr>
+<tr>
+<td>SIP Server Port:</td>
+<td>
+<INPUT name=sip_port size=5 maxlength=5>(Default 5060)
+</td>
+</tr>
+<tr>
+<td>SIP Domain:</td>
+<td>
+<INPUT name=sip_domain size=24 maxlength=63>
+</td>
+</tr>
+<tr>
+<td>SIP Server As Outbound Proxy:</td>
+<td>
+<INPUT name=outbound_proxy value=0 type=radio>No&nbsp;&nbsp;<INPUT name=outbound_proxy value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Use DNS SRV:</td>
+<td>
+<INPUT name=dns_srv value=0 type=radio>No&nbsp;&nbsp;<INPUT name=dns_srv value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>SIP User ID:</td>
+<td>
+<INPUT name=user_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>SIP Authentication ID:</td>
+<td>
+<INPUT name=auth_id size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>SIP Authentication PIN:</td>
+<td>
+<INPUT name=auth_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr>
+<td>User Name:</td>
+<td>
+<INPUT name=user_name size=16 maxlength=31>(Optional, e.g., Woody Allen)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<TR>
+<TD colspan=2 class=THead><B>Advanced SIP Proxy Settings</B></TD>
+</TR>
+<tr>
+<td>Local SIP Port:</td>
+<td>
+<INPUT name=local_port size=5 maxlength=5>(Default 5060)
+</td>
+</tr>
+<tr>
+<td>Local RTP Port:</td>
+<td>
+<INPUT name=rtp_port size=5 maxlength=5>(Between 1024 and 65535, default 6000)
+</td>
+</tr>
+<tr>
+<td>Register Expiration:</td>
+<td>
+<INPUT name=register_ttl size=5 maxlength=5>(In seconds, default 60s)
+</td>
+</tr>
+<tr>
+<td>Keep Alive Interval:</td>
+<td>
+<INPUT name=keep_alive size=5 maxlength=5>(In seconds, default 20s)
+</td>
+</tr>
+<tr>
+<td>Send DTMF:</td>
+<td>
+<SELECT name=dtmf_type size="1" onChange=OnDtmfType()> 
+<OPTION value=0>Inband Audio  </option>
+<OPTION value=1>RFC2833</option>
+<OPTION value=2>SIP Info</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>DTMF Payload Type:</td>
+<td>
+<INPUT name=dtmf_payload size=5 maxlength=5>(Between 96 and 127, default 101)
+</td>
+</tr>
+<tr>
+<td>G.726-32 Payload Type:</td>
+<td>
+<INPUT name=adpcm32_payload type="text" SIZE=5>(Between 96 and 127, default 111)
+</td>
+</tr>
+<tr>
+<td>iLBC Payload Type:</td>
+<td>
+<INPUT name=ilbcpayload type="text" SIZE=5>(Between 96 and 127, default 98)
+</td>
+</tr>
+<tr>
+<td>Speex Payload Type:</td>
+<td>
+<INPUT name=speex_payload type="text" SIZE=5>(Between 96 and 127, default 110)
+</td>
+</tr>
+<tr>
+<td>Message Service Number:</td>
+<td>
+<INPUT name=message_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>Support PRACK(100rel, RFC3262):</td>
+<td>
+<INPUT name=prack value=0 type=radio>No&nbsp;&nbsp;<INPUT name=prack value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Subscribe for MWI:</td>
+<td>
+<INPUT name=subscribe_mwi value=0 type=radio>No&nbsp;&nbsp;<INPUT name=subscribe_mwi value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Proxy Require:</td>
+<td>
+<INPUT name=proxy_require size=32 maxlength=63>
+</td>
+</tr>
+<tr>
+<td>NAT Traversal:</td>
+<td>
+<SELECT name=nat_traversal size="1" OnChange=OnNatTraversal()> 
+<OPTION value=0>Disabled</option>
+<OPTION value=1>Use STUN Server</option>
+<OPTION value=2>Use NAT IP</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>NAT IP:</td>
+<td>
+<INPUT name=nat_ip SIZE=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>STUN Server:</td>
+<td>
+<INPUT name=stun_server SIZE=24 maxlength=63>(IP or URI)
+</td>
+</tr>
+<tr>
+<td>STUN Server Port:</td>
+<td>
+<INPUT name=stun_port SIZE=5 maxlength=5>(Default 3478)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table4 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Dial Plan Settings</B></TD>
+</TR>
+<tr>
+<td>Forward-to Number:</td>
+<td>
+<INPUT name=fwd_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>Forward Unconditionally:</td>
+<td>
+<INPUT name=fwd_always value=0 type=radio>No&nbsp;&nbsp;<INPUT name=fwd_always value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Forward When Busy:</td>
+<td>
+<INPUT name=fwd_busy value=0 type=radio>No&nbsp;&nbsp;<INPUT name=fwd_busy value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Forward When No Answer:</td>
+<td>
+<INPUT name=fwd_noanswer value=0 type=radio>No&nbsp;&nbsp;<INPUT name=fwd_noanswer value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>No Answer Timeout:</td>
+<td>
+<INPUT name=noanswer_timeout size=5 maxlength=5>(In seconds, default 60s)
+</td>
+</tr>
+<tr>
+<td>Auto Answer:</td>
+<td>
+<INPUT name=auto_answer value=0 type=radio>No&nbsp;&nbsp;<INPUT name=auto_answer value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Call Waiting:</td>
+<td>
+<INPUT name=call_waiting value=0 type=radio>No&nbsp;&nbsp;<INPUT name=call_waiting value=1 type=radio>Yes
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Dial Prefix:</td>
+<td>
+<INPUT name=dial_prefix size=16 maxlength=15>(It's added to each dialed number)
+</td>
+</tr>
+<tr>
+<td>Hot Line Number:</td>
+<td>
+<INPUT name=hotline_number size=16 maxlength=31>(Number dialed when handset up)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Use Digit Maps:</td>
+<td>
+<INPUT name=use_digitmap value=0 type=radio>No&nbsp;&nbsp;<INPUT name=use_digitmap value=1 type=radio>Yes
+</td>
+</tr>
+<tr>
+<td>Digit Maps Timeout:</td>
+<td>
+<INPUT name=digitmap_timeout size=5 maxlength=5>(In seconds, default 5s)
+</td>
+</tr>
+<tr>
+<td>Use "#" To Call:</td>
+<td>
+<INPUT name=pound_call value=0 type=radio>No&nbsp;&nbsp;<INPUT name=pound_call value=1 type=radio>Yes
+</td>
+</tr>
+</table>
+
+<table id=table5 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>System Settings</B></TD></TR>
+<tr>
+<td>Administration Password:</td>
+<td>
+<INPUT name=admin_pin type=password size=16 maxlength=31>(Password to enter this web)
+</td>
+</tr>
+<tr>
+<td>Syslog IP:</td>
+<td>
+<INPUT name=syslog_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Handset Input (0-7):</td>
+<td>
+<INPUT name=vol_input size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>Handset Output (0-31):</td>
+<td>
+<INPUT name=vol_output size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>Speaker Output (0-31):</td>
+<td>
+<INPUT name=speaker_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>Ring Volume (10-31):</td>
+<td>
+<INPUT name=ring_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Auto Provisioning Server:</td>
+<td>
+<INPUT name=provision_server size=24 maxlength=63>(IP or URI)
+</td>
+</tr>
+<tr>
+<td>Auto Provisioning Port:</td>
+<td>
+<INPUT name=provision_port size=5 maxlength=5>(Default 80)
+</td>
+</tr>
+<tr>
+<td>Auto Provisioning Interval:</td>
+<td>
+<INPUT name=provision_ttl size=5 maxlength=5>(In minutes, maximum 65535 minutes)
+</td>
+</tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>SNTP Server:</td>
+<td>
+<INPUT name=sntp_dns size=24 maxlength=63>(IP or URI, e.g, time.windows.com)
+</td>
+</tr>
+<tr>
+<td>Time Zone:</td>
+<td>
+<SELECT name=time_zone size=1>
+<OPTION value=0>(GMT-12:00)West International Date Line			</OPTION>
+<OPTION value=1>(GMT-11:00)Midway Island,Samoa				</OPTION>
+<OPTION value=2>(GMT-10:00)Hawaii						</OPTION>
+<OPTION value=3>(GMT-09:00)Alaska						</OPTION>
+<OPTION value=4>(GMT-08:00)Pacific Time(U.S. & Canada),Tijuana		</OPTION>
+<OPTION value=5>(GMT-07:00)Mountain Time(U.S. & Canada)			</OPTION>
+<OPTION value=6>(GMT-07:00)Arizona						</OPTION>
+<OPTION value=7>(GMT-07:00)Chihuahua,La Paz,Mazatlan				</OPTION>
+<OPTION value=8>(GMT-06:00)Saskatchewan					</OPTION>
+<OPTION value=9>(GMT-06:00)Central Time(U.S. & Canada)			</OPTION>
+<OPTION value=10>(GMT-06:00)Central America					</OPTION>
+<OPTION value=11>(GMT-06:00)Guadalajara,Mexico City,Monterrey			</OPTION>
+<OPTION value=12>(GMT-05:00)Bogota,Lima,Quito					</OPTION>
+<OPTION value=13>(GMT-05:00)Eastern Time(U.S. & Canada)			</OPTION>
+<OPTION value=14>(GMT-05:00)Indiana(East)					</OPTION>
+<OPTION value=15>(GMT-04:30)Caracas						</OPTION>
+<OPTION value=16>(GMT-04:00)Atlantic Time(Canada)				</OPTION>
+<OPTION value=17>(GMT-04:00)La Paz						</OPTION>
+<OPTION value=18>(GMT-04:00)Santiago						</OPTION>
+<OPTION value=19>(GMT-03:30)Newfoundland					</OPTION>
+<OPTION value=20>(GMT-03:00)Brasilia						</OPTION>
+<OPTION value=21>(GMT-03:00)Buenos Aires,Georgetown				</OPTION>
+<OPTION value=22>(GMT-03:00)Greenland						</OPTION>
+<OPTION value=23>(GMT-02:00)Mid-Atlantic					</OPTION>
+<OPTION value=24>(GMT-01:00)Cape Verde Is.					</OPTION>
+<OPTION value=25>(GMT-01:00)Azores						</OPTION>
+<OPTION value=26>(GMT)Greenwich mean time:Dublin,Edinburgh,London,Lisbon	</OPTION>
+<OPTION value=27>(GMT)Casablanca,Monrovia					</OPTION>
+<OPTION value=28>(GMT+01:00)Amsterdam,Berlin,Berne,Rome,Stockholm		</OPTION>
+<OPTION value=29>(GMT+01:00)Belgrade,Bratislava,Budapest,Ljubljana		</OPTION>
+<OPTION value=30>(GMT+01:00)Brussels,Copenhagen,Madrid,Paris			</OPTION>
+<OPTION value=31>(GMT+01:00)Sarajevo,Skopje,Warsaw,Zagreb			</OPTION>
+<OPTION value=32>(GMT+01:00)West Central Africa				</OPTION>
+<OPTION value=33>(GMT+02:00)Bucharest,Chisinau					</OPTION>
+<OPTION value=34>(GMT+02:00)Harare,Pretoria					</OPTION>
+<OPTION value=35>(GMT+02:00)Helsinki,Kyiv,Riga,Sofia,Tallinn,Vilnius		</OPTION>
+<OPTION value=36>(GMT+02:00)Cairo,Beirut					</OPTION>
+<OPTION value=37>(GMT+02:00)Athens,Istanbul,Minsk				</OPTION>
+<OPTION value=38>(GMT+02:00)Jerusalem						</OPTION>
+<OPTION value=39>(GMT+03:00)Baghdad						</OPTION>
+<OPTION value=40>(GMT+03:00)Kuwait,Riyadh					</OPTION>
+<OPTION value=41>(GMT+03:00)Moscow,St.Petersburg,Volgograd			</OPTION>
+<OPTION value=42>(GMT+03:00)Nairobi						</OPTION>
+<OPTION value=43>(GMT+03:30)Teheran						</OPTION>
+<OPTION value=44>(GMT+04:00)Abu Dhabi,Muscat					</OPTION>
+<OPTION value=45>(GMT+04:00)Baku,Tbilisi,Yerevan				</OPTION>
+<OPTION value=46>(GMT+04:30)Kabul						</OPTION>
+<OPTION value=47>(GMT+05:00)Ekaterinburg					</OPTION>
+<OPTION value=48>(GMT+05:00)Islamabad,Karachi,Tashkent			</OPTION>
+<OPTION value=49>(GMT+05:30)Madras,Calcutta,Bombay,New Delhi			</OPTION>
+<OPTION value=50>(GMT+05:45)Katmandu						</OPTION>
+<OPTION value=51>(GMT+06:00)Almaty,Novosibirsk				</OPTION>
+<OPTION value=52>(GMT+06:00)Dacca					</OPTION>
+<OPTION value=53>(GMT+06:00)Sri Jayawardenepura				</OPTION>
+<OPTION value=54>(GMT+06:30)Rangoon						</OPTION>
+<OPTION value=55>(GMT+07:00)Krasnoyarsk					</OPTION>
+<OPTION value=56>(GMT+07:00)Bangkok,Jakarta,Hanoi				</OPTION>
+<OPTION value=57>(GMT+08:00)Beijing,Chongqing,Hong Kong,Urumqi		</OPTION>
+<OPTION value=58>(GMT+08:00)Kuala Lumpur,Singapore				</OPTION>
+<OPTION value=59>(GMT+08:00)Perth						</OPTION>
+<OPTION value=60>(GMT+08:00)Taipei						</OPTION>
+<OPTION value=61>(GMT+08:00)Irkutsk,Ulan Bator				</OPTION>
+<OPTION value=62>(GMT+09:00)Tokyo,Osaka,Sapporo				</OPTION>
+<OPTION value=63>(GMT+09:00)Seoul						</OPTION>
+<OPTION value=64>(GMT+09:00)Yakutsk						</OPTION>
+<OPTION value=65>(GMT+09:30)Adelaide						</OPTION>
+<OPTION value=66>(GMT+09:30)Darwin						</OPTION>
+<OPTION value=67>(GMT+10:00)Brisbane						</OPTION>
+<OPTION value=68>(GMT+10:00)Vladivostok					</OPTION>
+<OPTION value=69>(GMT+10:00)Guam,Port Moresby					</OPTION>
+<OPTION value=70>(GMT+10:00)Hobart						</OPTION>
+<OPTION value=71>(GMT+10:00)Canberra,Melbourne,Sydney				</OPTION>
+<OPTION value=72>(GMT+11:00)Magadan,Sol.Is.,New Caledonia			</OPTION>
+<OPTION value=73>(GMT+12:00)Wellington,Auckland				</OPTION>
+<OPTION value=74>(GMT+12:00)Fiji,Kamchatka,Marshall Is.			</OPTION>
+<OPTION value=75>(GMT+13:00)Nuku'alofa					</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>Automatically Adjust Clock for Daylight Saving Changes:</td>
+<td>
+<INPUT name=day_light value=0 type=radio>No&nbsp;&nbsp;<INPUT name=day_light value=1 type=radio>Yes
+</td>
+</tr>
+
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table6 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Technical Support</B></TD>
+</TR>
+<TR><TD colspan=2>
+<br><br>PalmMicro is trying to offer you IP phone  with the highest quality. If you have any inquiries about the product, please contact us or login on our technical support web site for help. 
+<p align=center><A class=A2 HREF="http://www.palmmicro.com.cn/eindex.htm">Go to PalmMicro</A>
+</p>
+<br><br>
+</TD></TR>
+</td>
+</table>
+
+<table id=table0 style="display:''">
+<tr><TD class=THead width=550></TD></TR>
+<tr><td ><br><INPUT name=update type="submit" value="   OK   ">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=reset type=reset value="  Cancel  "></td></tr>
+</table>
+</form>
+
+</td>
+</table>
+</body>
+</html>

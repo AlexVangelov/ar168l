@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-2">
+<style type=text/css>
+td {
+FONT-FAMILY: verdana;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function load_value()
+{
+document.forms[0].upgrade_file.focus();
+document.forms[0].upgrade_type[0].checked = true;
+}
+function submit_confirm()
+{
+if (document.forms[0].upgrade_file.value == "")
+{
+alert("Please give a valid upgrade file name!");
+return false;
+}
+else
+{
+return true;
+}
+}
+</script>
+</head>
+<body bgproperties=fixed leftmargin=0 topmargin=0 OnLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr><td width=780 height=105 align=left valign=top><img src=image.jpg></td>
+<td align=left valign=top></td></tr>
+</table>
+<table width=780 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=10 valign=top bgcolor=#049ACC>&nbsp;</td>
+<td width=120 valign=top bgcolor=#049ACC>&nbsp;</td>
+<td width=10 valign=top bgcolor=#049ACC>&nbsp;</td>
+<td width=20 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+<form action="/upgrade" enctype="multipart/form-data" method=POST OnSubmit=submit_confirm()>
+<table>
+<tr><td class=THead width=620><B>Bine aţi venit pe pagina de actualizare a Firmware-ului</B></TD></TR>
+<tr>
+<td>
+<br><br>
+<INPUT name=upgrade_type value=0 TYPE=RADIO>Firmware<BR><br>
+<INPUT name=upgrade_type value=1 TYPE=RADIO>Setări<BR><br>
+<INPUT name=upgrade_type value=2 TYPE=RADIO>Contacte<BR><br>
+<INPUT name=upgrade_type value=3 TYPE=RADIO>Sunet de Apel (Ton de Apel)<BR><br>
+<INPUT name=upgrade_type value=4 TYPE=RADIO>Sunet de Apel în Aşteptare (Ton de Apel)<BR><br>
+</td>
+</tr>
+<tr>
+<td>
+Fişier:&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=upgrade_file type=file size=30>
+</td>
+</tr>
+<tr>
+<td><br>
+<INPUT name=upgrade_start type=submit value="   Start   "><br><br><br><br>
+</td>
+</tr>
+<TR>
+<TD  class=THead11><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Atenţie : Procesul NU trebuie să fie întrerupt ! <BR>
+
+Notă: Procesul de actualizare a firmware-ului poate dura câteva minute, vă rugăm să nu deconectaţi telefonul.</B></TD>
+</TR>
+</table>
+</form>
+</td>
+</table>
+</body>
+</html>

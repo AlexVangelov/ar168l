@@ -1,0 +1,803 @@
+<html>
+<head>
+<style type=text/css>
+table {
+cellpadding:0;
+cellspacing:0;
+border:0px none;
+}
+td {
+FONT-FAMILY: verdana, arial, sans-serif;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard
+}
+a.A2:link {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:visited {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:hover {
+FONT-SIZE: 10pt; COLOR: #cc0000; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+.Bborder {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFFFF; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.jiangbo {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFF00; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+width: 620px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function SetVisible(x)
+{
+document.all.table0.style.display = "";
+document.all.table1.style.display = "none";
+document.all.table2.style.display = "none"; 
+document.all.table3.style.display = "none"; 
+document.all.table4.style.display = "none"; 
+document.all.table5.style.display = "none"; 
+document.all.table6.style.display = "none"; 
+
+if(x==1)
+{
+document.all.table1.style.display = ""; 
+}
+if(x==2)
+{
+document.all.table2.style.display = ""; 
+}
+if(x==3)
+{
+document.all.table3.style.display = ""; 
+}
+if(x==4)
+{
+document.all.table4.style.display = ""; 
+}
+if(x==5)
+{
+document.all.table5.style.display = ""; 
+}
+if(x==6)
+{
+document.all.table0.style.display = "none";
+document.all.table6.style.display = ""; 
+}
+}
+
+function selectitem(item_id)
+{
+
+document.all.haha1.className="Bborder";
+document.all.haha2.className="Bborder";
+document.all.haha3.className="Bborder";
+document.all.haha4.className="Bborder";
+document.all.haha5.className="Bborder";
+document.all.haha6.className="Bborder";
+
+switch(item_id)
+{
+case "haha1":
+document.all.haha1.className="jiangbo";
+break;
+case "haha2":
+document.all.haha2.className="jiangbo";
+break;
+case "haha3":
+document.all.haha3.className="jiangbo";
+break;
+case "haha4":
+document.all.haha4.className="jiangbo";
+break;			  
+case "haha5":
+document.all.haha5.className="jiangbo";
+break;			  
+case "haha6":
+document.all.haha6.className="jiangbo";
+break;			  
+}
+}
+
+function auto_dns()
+{
+document.forms[0].dns_ip.disabled = 1;
+document.forms[0].dns_ip2.disabled = 1;
+}
+
+function manual_dns()
+{
+document.forms[0].dns_ip.disabled = 0;
+document.forms[0].dns_ip2.disabled = 0;
+}
+
+function OnIPType()
+{
+var change_id;
+change_id = document.forms[0].ip_type.value;
+switch(change_id)
+{
+case "0":
+document.forms[0].ip_address.disabled = 0;
+document.forms[0].subnet_mask.disabled = 0;
+document.forms[0].router_ip.disabled = 0;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "1":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "2":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 0;
+document.forms[0].pppoe_pin.disabled = 0;
+break;
+default:
+break;    
+
+}
+}
+
+function load_value()
+{
+if (document.forms[0].dns_type[0].checked)
+{
+auto_dns();
+}
+else
+{
+manual_dns();
+}
+
+OnIPType();
+}
+
+var win;
+function popupFeedback(thePage)
+{
+if(window.win && !window.win.closed)
+{   window.win.close();
+}
+the_url=thePage;
+win = window.open(the_url);
+}
+</script>
+</head>
+
+<body bgproperties=fixed leftmargin=0 topmargin=0 onLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr>
+<td width="100%" height="100%" align=left valign=top bgcolor="#04A8EC">
+<img src=image.jpg width="800" height="105"></td>
+<td align=left valign=top></td>
+</tr>
+</table>
+
+<table width=818 height=1096 border=0 cellpadding=0 cellspacing=0>
+<td width=20 valign=top bgcolor=#FFFFFF height="1368" rowspan="3">&nbsp;</td>
+<td width=4 valign=top bgcolor=#000000 height="342">&nbsp;</td>
+<td width=2 valign=top bgcolor=#C0C0C0 height="342" background="image_5.jpg">&nbsp;</td>
+<td width=126 valign=top bgcolor=#FFFFFF rowspan="2" height="1096" background="back_1.jpg">
+&nbsp;<TABLE width=120 border=0 cellPadding=5 cellSpacing=0>
+<TR><TD class=Bborder align=center  id="haha1" onclick=SetVisible(1);selectitem("haha1");>
+<font color="#000000" size="3">Baðlantý</font></TD></TR>
+<TR><TD class=Bborder align=center id="haha2"  onclick=SetVisible(2);selectitem("haha2");>
+<font color="#000000" size="3">Ses</font></TD></TR>
+<TR><TD class=Bborder align=center id="haha3" onclick=SetVisible(3);selectitem("haha3");>
+<font color="#000000" size="3">IAX2 Protokol</font></TD></TR>
+<TR><TD class=Bborder align=center id="haha4"  onclick=SetVisible(4);selectitem("haha4");>
+<font color="#000000" size="3">Arama Ayarlarý</font></TD></TR>
+<TR><TD class=Bborder align=center id="haha5"  onclick=SetVisible(5);selectitem("haha5");>
+<font color="#000000" size="3">Sistem</font></TD></TR>
+<TR>
+<TD style="font-family: verdana, arial, sans-serif; font-size: 12px; text-align: left; font-weight: normal; noboard:''; nowrap:''">&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center id="haha6"  onclick=SetVisible(6);selectitem("haha6");>
+<font color="#000000" size="3">Teknik Destek</font></TD></TR>
+</TABLE>
+</TD>
+<td width=4 valign=top bgcolor=#ffffff rowspan="2" height="1096">&nbsp;</td>
+<td valign=top rowspan="2" height="1096" width="656">
+
+
+<form method=POST action="/settings">
+<table id=table1 style="display:''" width="651">
+<tr><TD colspan=2 class=THead style="background-color: #04A9E6" width="645">Baðlantý Ayarlarý</TD></TR>
+<tr>
+<td width="218">Baðlantý Tipi:</td>
+<td width="423">
+<SELECT name=ip_type onChange=OnIPType() size=1>
+<OPTION value=0>Statik IP</OPTION>
+<OPTION value=1>DHCP</OPTION>
+<OPTION value=2>PPPoE</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td width="218">IP Adres:</td>
+<td width="423">
+<INPUT name=ip_address size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td width="218">Altað Örtüsü:</td>
+<td width="423">
+<INPUT name=subnet_mask size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td width="218">Varsayýlan Að Geçidi:</td>
+<td width="423">
+<INPUT name=router_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td width="218">PPPoE User ID:</td>
+<td width="423">
+<INPUT name=pppoe_id size=16 maxlength=47>
+</td>
+</tr>
+<tr>
+<td width="218">PPPoE User PIN:</td>
+<td width="423">
+<INPUT name=pppoe_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr><td width="218">&nbsp;</td><td width="423">&nbsp;</td></tr>
+<tr>
+<td colspan=2 width="645"><INPUT name=dns_type value=1 type=radio OnClick=auto_dns()>Otomatik 
+DNS sunucu IP</td>
+</tr>
+<tr>
+<td colspan=2 width="645"><INPUT name=dns_type value=0 type=radio OnClick=manual_dns()>Tanýmlý 
+DNS sunucu IP</td>
+</tr>
+<tr>
+<td width="218">1. DNS:</td>
+<td width="423">
+<INPUT name=dns_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td width="218">2. DNS:</td>
+<td width="423">
+<INPUT name=dns_ip2 size=16 maxlength=15>
+</td>
+</tr>
+<tr><td width="218">&nbsp;</td><td width="423">&nbsp;</td></tr>
+<tr>
+<td width="218">Layer 3 QoS:</td>
+<td width="423">
+<INPUT name=lay3_qos size=5 maxlength=5>(Diff-Sunucu veya Öncelik Deðeri)
+</td>
+</tr>
+<tr>
+<td width="218">Layer 2 QoS:</td>
+<td width="423">802.1Q VLAN Etiket&nbsp;
+<INPUT name=vlan_tag size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td width="218">&nbsp;</td>
+<td width="423">802.1p Öncelik Deðer&nbsp;
+<INPUT name=qos_priority size=5 maxlength=5>
+</td>
+</tr>
+<tr><td width="218">&nbsp;</td><td width="423">&nbsp;</td></tr>
+</table>
+
+<table id=table2 style="display:'none'" width="650">
+<TR><TD colspan=2 class=THead style="background-color: #02A9EC" width="619">Ses Kodek Ayarlarý</TD></TR>
+<tr>
+<td width=261>Tercih Edilen: </td>
+<td width=379>Kodek 1:&nbsp;
+<SELECT name=voice_coder0 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 1:&nbsp;&nbsp;<INPUT name=frame_number0 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;&nbsp;(Sýralý Düzende...)</td>
+<td width="379">Kodek 2:&nbsp;
+<SELECT name=voice_coder1 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 2:&nbsp;&nbsp;<INPUT name=frame_number1 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;</td>
+<td width="379">Kodek 3:&nbsp;
+<SELECT name=voice_coder2 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 3:&nbsp;&nbsp;<INPUT name=frame_number2 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;</td>
+<td width="379">Kodek 4:&nbsp;
+<SELECT name=voice_coder3 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 4:&nbsp;&nbsp;<INPUT name=frame_number3 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;</td>
+<td width="379">Kodek 5:&nbsp;
+<SELECT name=voice_coder4 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 5:&nbsp;&nbsp;<INPUT name=frame_number4 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;</td>
+<td width="379">Kodek 6:&nbsp;
+<SELECT name=voice_coder5 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 6:&nbsp;&nbsp;<INPUT name=frame_number5 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td width="261">&nbsp;</td>
+<td width="379">Kodek 7:&nbsp;
+<SELECT name=voice_coder6 size=1>
+<OPTION value=0>Yok</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame/TX 7:&nbsp;&nbsp;<INPUT name=frame_number6 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td  colspan=2><font color=#545454>( Frames Per TX Range: PCMU, PCMA, G.726-32, G.729, between 1 and 7; GSM 6.10, Speex, iLBC-20ms, between 1 and 4;
+iLBC-30ms, between 1 and 3 )</font></td>
+</tr>
+<tr><td width="261">&nbsp;</td><td width="379">&nbsp;</td></tr>
+<tr>
+<td width="261">iLBC Frame Boyutu:</td>
+<td bgcolor="#FFFFFF" width="379">
+<INPUT name=ilbcframe value=0 type=radio>20ms&nbsp;&nbsp;<INPUT name=ilbcframe value=1 type=radio>30ms
+</td>
+</tr>
+<tr>
+<td width="261">Speex Oraný:</td>
+<td width="379">
+<SELECT name=speex_rate size=1>
+<OPTION value=0>2.15 kbps</OPTION>
+<OPTION value=1>3.95 kbps</OPTION>
+<OPTION value=2>5.95 kbps</OPTION>
+<OPTION value=3>8 kbps</OPTION>
+<OPTION value=4>11 kbps</OPTION>
+<OPTION value=5>15 kbps</OPTION>
+<OPTION value=6>18.2 kbps</OPTION>
+<OPTION value=7>24.6 kbps</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td width="261">Ses Activite Algýlayýcýsý(VAD):</td>
+<td width="379">
+<INPUT name=vad value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=vad value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="261">Otomatik Artýþ Kontrolü (AGC):</td>
+<td width="379">
+<INPUT name=agc value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=agc value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="261">Akustik Eko Giderici (AEC):</td>
+<td width="379">
+<INPUT name=aec value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=aec value=1 type=radio>Evet
+</td>
+</tr>
+<tr><td width="261">&nbsp;</td><td width="379">&nbsp;</td></tr>
+</table>
+
+<table id=table3 style="display:'none'" width="649">
+<TR>
+<TD colspan=2 class=THead style="background-color: #02A9EC" width="643"><B>IAX2 Protokol Ayarlarý</B></TD>
+</TR>
+<tr>
+<td width="245">IAX2 Kayýt:</td>
+<td width="394">
+<INPUT name=register value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=register value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="245">IAX2 Sunucu:</td>
+<td width="394">
+<INPUT name=iax2_server size=24 maxlength=63>(IP veya URI)
+</td>
+</tr>
+<tr>
+<td width="245">IAX2 Sunucu Port:</td>
+<td width="394">
+<INPUT name=iax2_port size=5 maxlength=5>(Varsayýlan 4569)
+</td>
+</tr>
+<tr>
+<td width="245">IAX2 Kullanýcý ID:</td>
+<td width="394">
+<INPUT name=user_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td width="245">IAX2 Servis ID:</td>
+<td width="394">
+<INPUT name=auth_id size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td width="245">IAX2 Servis PIN:</td>
+<td width="394">
+<INPUT name=auth_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr>
+<td width="245">Kullanýcý Adý:</td>
+<td width="394">
+<INPUT name=user_name size=16 maxlength=31>(Opsiyonel, örnek: Ferhat OLGUN)
+</td>
+</tr>
+<tr><td width="245">&nbsp;</td><td width="394">&nbsp;</td></tr>
+<tr>
+<td width="245">Yerel IAX2 Port:</td>
+<td width="394">
+<INPUT name=local_port size=5 maxlength=5>(Varsayýlan 4569)
+</td>
+</tr>
+<tr>
+<td width="245">Kayýt Sonu:</td>
+<td width="394">
+<INPUT name=register_ttl size=5 maxlength=5>(s, varsayýlan 60s)
+</td>
+</tr>
+<tr>
+<td width="245">Mesaj Servis Numarasý:</td>
+<td width="394">
+<INPUT name=message_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td width="245">Sunucu Arama Ayarlarýný Kullan:</td>
+<td width="394">
+<INPUT name=digit_dialing value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=digit_dialing value=1 type=radio>Evet
+</td>
+</tr>
+<tr><td width="245">&nbsp;</td><td width="394">&nbsp;</td></tr>
+</table>
+
+<table id=table4 style="display:'none'" width="650">
+<TR>
+<TD colspan=2 class=THead style="background-color: #02A9EC" width="621">Arama<B> Ayarlarý</B></TD>
+</TR>
+<tr>
+<td width="223">Yönlendirme Numarasý :</td>
+<td width="417">
+<INPUT name=fwd_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td width="223">Tüm Aramalarý Yönlendir:</td>
+<td width="417">
+<INPUT name=fwd_always value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=fwd_always value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="223">Meþgulda Yönlendir:</td>
+<td width="417">
+<INPUT name=fwd_busy value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=fwd_busy value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="223">Cevapsýz Aramalarý Yönlendir</td>
+<td width="417">
+<INPUT name=fwd_noanswer value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=fwd_noanswer value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="223">Cevapsýz Bekleme Süresi:</td>
+<td width="417">
+<INPUT name=noanswer_timeout size=5 maxlength=5>(s, varsayýlan 60s)
+</td>
+</tr>
+<tr>
+<td width="223">Otomatik Cevaplama:</td>
+<td width="417">
+<INPUT name=auto_answer value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=auto_answer value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="223">Arama Bekletme:</td>
+<td width="417">
+<INPUT name=call_waiting value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=call_waiting value=1 type=radio>Evet
+</td>
+</tr>
+<tr><td width="223">&nbsp;</td><td width="417">&nbsp;</td></tr>
+<tr>
+<td width="223">Ön Numara:</td>
+<td width="417">
+<INPUT name=dial_prefix size=16 maxlength=15>(aranan her numaraya eklenir)
+</td>
+</tr>
+<tr>
+<td width="223">Hot Line Numarasý:</td>
+<td width="417">
+<INPUT name=hotline_number size=16 maxlength=31>(ahize kaldýrýldýðýnda aranan 
+numara)
+</td>
+</tr>
+<tr><td width="223">&nbsp;</td><td width="417">&nbsp;</td></tr>
+<tr>
+<td width="223">Digit Map Aktivasyon:</td>
+<td width="417">
+<INPUT name=use_digitmap value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=use_digitmap value=1 type=radio>Evet
+</td>
+</tr>
+<tr>
+<td width="223">Digit Map Bekleme Süresi:</td>
+<td width="417">
+<INPUT name=digitmap_timeout size=5 maxlength=5>(s, varsayýlan 5s)
+</td>
+</tr>
+<tr>
+<td width="223">Use "#" To Call:</td>
+<td width="417">
+<INPUT name=pound_call value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=pound_call value=1 type=radio>Evet
+</td>
+</tr>
+</table>
+
+<table id=table5 style="display:'none'" width="650">
+<TR><TD colspan=2 class=THead style="background-color: #02A9EC" width="644">Sistem Ayarlarý</TD></TR>
+<tr>
+<td width="205">Yönetici Þifresi:</td>
+<td width="435">
+<INPUT name=admin_pin type=password size=16 maxlength=32>
+</td>
+</tr>
+<tr><td width="205">&nbsp;</td><td width="435">&nbsp;</td></tr>
+<tr>
+<td width="205">Ahize Açýk (0-7):</td>
+<td width="435">
+<INPUT name=vol_input size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td width="205">Ahize Kapalý (0-31):</td>
+<td width="435">
+<INPUT name=vol_output size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td width="205">Hoparlör Çýkýþý (0-31):</td>
+<td width="435">
+<INPUT name=speaker_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr><td width="205">&nbsp;</td><td width="435">&nbsp;</td></tr>
+<tr>
+<td width="205">Otomatik Provizyon Sunucu:</td>
+<td width="435">
+<INPUT name=provision_server size=24 maxlength=63>(IP veya URI)
+</td>
+</tr>
+<tr>
+<td width="205">Otomatik Provizyon Port:</td>
+<td width="435">
+<INPUT name=provision_port size=5 maxlength=5>(varsayýlan 80)
+</td>
+</tr>
+<tr>
+<td width="205">Otomatik Provizyon Aralýðý:</td>
+<td width="435">
+<INPUT name=provision_ttl size=5 maxlength=5>(dk, max 65535 dk)
+</td>
+</tr><tr><td width="205">&nbsp;</td><td width="435">&nbsp;</td></tr>
+<tr>
+<td width="205">SNTP Sunucu:</td>
+<td width="435">
+<INPUT name=sntp_dns size=24 maxlength=63>
+</td>
+</tr>
+<tr>
+<td width="205">Zaman Dilimi:</td>
+<td width="435">
+<SELECT name=time_zone size=1>
+<OPTION value=0>(GMT-12:00)West International Date Line			</OPTION>
+<OPTION value=1>(GMT-11:00)Midway Island,Samoa				</OPTION>
+<OPTION value=2>(GMT-10:00)Hawaii						</OPTION>
+<OPTION value=3>(GMT-09:00)Alaska						</OPTION>
+<OPTION value=4>(GMT-08:00)Pacific Time(U.S. & Canada),Tijuana		</OPTION>
+<OPTION value=5>(GMT-07:00)Mountain Time(U.S. & Canada)			</OPTION>
+<OPTION value=6>(GMT-07:00)Arizona						</OPTION>
+<OPTION value=7>(GMT-07:00)Chihuahua,La Paz,Mazatlan				</OPTION>
+<OPTION value=8>(GMT-06:00)Saskatchewan					</OPTION>
+<OPTION value=9>(GMT-06:00)Central Time(U.S. & Canada)			</OPTION>
+<OPTION value=10>(GMT-06:00)Central America					</OPTION>
+<OPTION value=11>(GMT-06:00)Guadalajara,Mexico City,Monterrey			</OPTION>
+<OPTION value=12>(GMT-05:00)Bogota,Lima,Quito					</OPTION>
+<OPTION value=13>(GMT-05:00)Eastern Time(U.S. & Canada)			</OPTION>
+<OPTION value=14>(GMT-05:00)Indiana(East)					</OPTION>
+<OPTION value=15>(GMT-04:30)Caracas						</OPTION>
+<OPTION value=16>(GMT-04:00)Atlantic Time(Canada)				</OPTION>
+<OPTION value=17>(GMT-04:00)La Paz						</OPTION>
+<OPTION value=18>(GMT-04:00)Santiago						</OPTION>
+<OPTION value=19>(GMT-03:30)Newfoundland					</OPTION>
+<OPTION value=20>(GMT-03:00)Brasilia						</OPTION>
+<OPTION value=21>(GMT-03:00)Buenos Aires,Georgetown				</OPTION>
+<OPTION value=22>(GMT-03:00)Greenland						</OPTION>
+<OPTION value=23>(GMT-02:00)Mid-Atlantic					</OPTION>
+<OPTION value=24>(GMT-01:00)Cape Verde Is.					</OPTION>
+<OPTION value=25>(GMT-01:00)Azores						</OPTION>
+<OPTION value=26>(GMT)Greenwich mean time:Dublin,Edinburgh,London,Lisbon	</OPTION>
+<OPTION value=27>(GMT)Casablanca,Monrovia					</OPTION>
+<OPTION value=28>(GMT+01:00)Amsterdam,Berlin,Berne,Rome,Stockholm		</OPTION>
+<OPTION value=29>(GMT+01:00)Belgrade,Bratislava,Budapest,Ljubljana		</OPTION>
+<OPTION value=30>(GMT+01:00)Brussels,Copenhagen,Madrid,Paris			</OPTION>
+<OPTION value=31>(GMT+01:00)Sarajevo,Skopje,Warsaw,Zagreb			</OPTION>
+<OPTION value=32>(GMT+01:00)West Central Africa				</OPTION>
+<OPTION value=33>(GMT+02:00)Bucharest,Chisinau					</OPTION>
+<OPTION value=34>(GMT+02:00)Harare,Pretoria					</OPTION>
+<OPTION value=35>(GMT+02:00)Helsinki,Kyiv,Riga,Sofia,Tallinn,Vilnius		</OPTION>
+<OPTION value=36>(GMT+02:00)Cairo,Beirut					</OPTION>
+<OPTION value=37>(GMT+02:00)Athens,Istanbul,Minsk				</OPTION>
+<OPTION value=38>(GMT+02:00)Jerusalem						</OPTION>
+<OPTION value=39>(GMT+03:00)Baghdad						</OPTION>
+<OPTION value=40>(GMT+03:00)Kuwait,Riyadh					</OPTION>
+<OPTION value=41>(GMT+03:00)Moscow,St.Petersburg,Volgograd			</OPTION>
+<OPTION value=42>(GMT+03:00)Nairobi						</OPTION>
+<OPTION value=43>(GMT+03:30)Teheran						</OPTION>
+<OPTION value=44>(GMT+04:00)Abu Dhabi,Muscat					</OPTION>
+<OPTION value=45>(GMT+04:00)Baku,Tbilisi,Yerevan				</OPTION>
+<OPTION value=46>(GMT+04:30)Kabul						</OPTION>
+<OPTION value=47>(GMT+05:00)Ekaterinburg					</OPTION>
+<OPTION value=48>(GMT+05:00)Islamabad,Karachi,Tashkent			</OPTION>
+<OPTION value=49>(GMT+05:30)Madras,Calcutta,Bombay,New Delhi			</OPTION>
+<OPTION value=50>(GMT+05:45)Katmandu						</OPTION>
+<OPTION value=51>(GMT+06:00)Almaty,Novosibirsk				</OPTION>
+<OPTION value=52>(GMT+06:00)Dacca					</OPTION>
+<OPTION value=53>(GMT+06:00)Sri Jayawardenepura				</OPTION>
+<OPTION value=54>(GMT+06:30)Rangoon						</OPTION>
+<OPTION value=55>(GMT+07:00)Krasnoyarsk					</OPTION>
+<OPTION value=56>(GMT+07:00)Bangkok,Jakarta,Hanoi				</OPTION>
+<OPTION value=57>(GMT+08:00)Beijing,Chongqing,Hong Kong,Urumqi		</OPTION>
+<OPTION value=58>(GMT+08:00)Kuala Lumpur,Singapore				</OPTION>
+<OPTION value=59>(GMT+08:00)Perth						</OPTION>
+<OPTION value=60>(GMT+08:00)Taipei						</OPTION>
+<OPTION value=61>(GMT+08:00)Irkutsk,Ulan Bator				</OPTION>
+<OPTION value=62>(GMT+09:00)Tokyo,Osaka,Sapporo				</OPTION>
+<OPTION value=63>(GMT+09:00)Seoul						</OPTION>
+<OPTION value=64>(GMT+09:00)Yakutsk						</OPTION>
+<OPTION value=65>(GMT+09:30)Adelaide						</OPTION>
+<OPTION value=66>(GMT+09:30)Darwin						</OPTION>
+<OPTION value=67>(GMT+10:00)Brisbane						</OPTION>
+<OPTION value=68>(GMT+10:00)Vladivostok					</OPTION>
+<OPTION value=69>(GMT+10:00)Guam,Port Moresby					</OPTION>
+<OPTION value=70>(GMT+10:00)Hobart						</OPTION>
+<OPTION value=71>(GMT+10:00)Canberra,Melbourne,Sydney				</OPTION>
+<OPTION value=72>(GMT+11:00)Magadan,Sol.Is.,New Caledonia			</OPTION>
+<OPTION value=73>(GMT+12:00)Wellington,Auckland				</OPTION>
+<OPTION value=74>(GMT+12:00)Fiji,Kamchatka,Marshall Is.			</OPTION>
+<OPTION value=75>(GMT+13:00)Nuku'alofa					</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td width="205">Yaz Saati:</td>
+<td width="435">
+<INPUT name=day_light value=0 type=radio>Hayýr&nbsp;&nbsp;<INPUT name=day_light value=1 type=radio>Evet
+</td>
+</tr>
+
+<tr><td width="205">&nbsp;</td><td width="435">&nbsp;</td></tr>
+</table>
+
+<table id=table6 style="display:'none'" width="650">
+<TR>
+<TD colspan=2 class=THead style="background-color: #02A9EC" width="644"><B>Teknik Destek</B></TD>
+</TR>
+<TR><TD colspan=2 width="644">
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a class="A2" href="http://www.karel.com.tr/">Karel Anasayfa </a>
+<p>
+<br><br>
+</TD></TR>
+</td>
+</table>
+
+<table id=table0 style="display:''" width="650">
+<tr><TD class=THead width=644 style="background-color: #02A9EC"></TD></TR>
+<tr><td width="644" ><br><INPUT name=update type="submit" value="   OK   ">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=reset type=reset value="  Sil "></td></tr>
+</table>
+</form>
+
+</td>
+<tr>
+<td width=4 valign=top bgcolor=#FFFFFF height="342">&nbsp;</td>
+<td width=4 valign=top bgcolor=#FFFFFF height="342">&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

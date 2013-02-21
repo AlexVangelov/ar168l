@@ -1,0 +1,280 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Manager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Manager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANAGER_DIALOG DIALOGEX 0, 0, 475, 286
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Palmmicro AR1688管理器"
+FONT 10, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "退出",IDCANCEL,362,256,66,21
+    CONTROL         "List2",IDC_LIST_PHONE,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,0,0,348,278
+    PUSHBUTTON      "升级程序",IDC_UPDATE_PROGRAM,363,2,66,21
+    PUSHBUTTON      "读取设置",IDC_GET_OPTIONS,363,27,66,21
+    PUSHBUTTON      "导入设置",IDC_SET_OPTIONS,363,52,66,21
+    PUSHBUTTON      "开始调试",IDC_START_DEBUG,362,224,66,21
+    PUSHBUTTON      "读取电话本",IDC_GET_PHONEBOOK,363,77,66,21
+    PUSHBUTTON      "导入电话本",IDC_SET_PHONEBOOK,363,102,66,21
+    GROUPBOX        "调试选项",IDC_STATIC,358,130,101,121
+    CONTROL         "只显示选中的IP",IDC_CHECK_SELECTEDIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,177,63,10
+    CONTROL         "不显示信息类型",IDC_SYSLOG_TYPE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,145,63,10
+    CONTROL         "不显示信息时间",IDC_SYSLOG_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,160,63,10
+    CONTROL         "IPAddress1",IDC_PEER_IP,"SysIPAddress32",WS_TABSTOP,362,208,95,15
+    LTEXT           "输入IP地址：",IDC_STATIC,362,193,48,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANAGER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 468
+        BOTTOMMARGIN, 284
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_START_DEBUG         "开始调试"
+    IDS_STOP_DEBUG          "停止调试"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AR1688 Manager"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "AR1688 Manager Version 0.55",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006-2011 Palmmicro",IDC_STATIC,40,25,120,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_MANAGER_DIALOG DIALOGEX 0, 0, 467, 289
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Palmmicro AR1688 Manager"
+FONT 10, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Exit",IDCANCEL,363,259,66,21
+    CONTROL         "List2",IDC_LIST_PHONE,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,0,0,348,281
+    PUSHBUTTON      "Update Program",IDC_UPDATE_PROGRAM,363,2,66,21
+    PUSHBUTTON      "Get Options",IDC_GET_OPTIONS,363,27,66,21
+    PUSHBUTTON      "Set Options",IDC_SET_OPTIONS,363,52,66,21
+    PUSHBUTTON      "Start Debug",IDC_START_DEBUG,360,226,66,21
+    PUSHBUTTON      "Get Phonebook",IDC_GET_PHONEBOOK,363,77,66,21
+    PUSHBUTTON      "Set Phonebook",IDC_SET_PHONEBOOK,363,102,66,21
+    GROUPBOX        "Debug Options",IDC_STATIC,357,130,102,122
+    CONTROL         "Debug IP Only",IDC_CHECK_SELECTEDIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,360,174,70,10
+    CONTROL         "No Data Type",IDC_SYSLOG_TYPE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,360,144,77,10
+    CONTROL         "No Data Time",IDC_SYSLOG_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,360,159,77,10
+    CONTROL         "IPAddress1",IDC_PEER_IP,"SysIPAddress32",WS_TABSTOP,360,206,95,15
+    LTEXT           "Input IP Address:",IDC_STATIC,360,191,76,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_MANAGER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 465
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,5,5,0
+ PRODUCTVERSION 0,5,6,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "Palmmicro AR1688 Manager"
+            VALUE "FileVersion", "0, 5, 5, 0"
+            VALUE "InternalName", "Manager"
+            VALUE "LegalCopyright", "Copyright (C) 2006 - 2011 Palmmicro. All rights reserved."
+            VALUE "OriginalFilename", "Manager.EXE"
+            VALUE "ProductName", "AR1688 Manager Application"
+            VALUE "ProductVersion", "0, 5, 6, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About Manager..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+    IDS_START_DEBUG         "Start Debug"
+    IDS_STOP_DEBUG          "Stop Debug"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\Manager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

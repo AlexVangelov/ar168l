@@ -1,0 +1,802 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<style type=text/css>
+table {
+cellpadding:0;
+cellspacing:0;
+border:0;
+}
+td {
+FONT-FAMILY: verdana, arial, sans-serif;
+FONT-SIZE: 12px;
+TEXT-ALIGN: left;
+font-weight: normal;
+noboard;
+nowrap;
+}
+a.A2:link {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:visited {
+FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+a.A2:hover {
+FONT-SIZE: 10pt; COLOR: #cc0000; FONT-FAMILY: Verdana; TEXT-ALIGN: left; TEXT-DECORATION: Underline;
+}
+.Bborder {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFFFF; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.jiangbo {
+BORDER-BOTTOM: #ffffff 1px dashed FONT-SIZE: 10pt; FONT-WEIGHT: bold; COLOR: #FFFF00; FONT-FAMILY: Verdana; cursor:hand; 
+}
+.THead {
+COLOR: #ffffff;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #9EA2A5;
+height: 24px;
+width: 770px;
+vertical-align: middle;
+}
+.THead11 {
+COLOR: #CC0000;
+FONT-FAMILY: verdana,arial,sans-serif;
+FONT-SIZE: 14px;
+FONT-WEIGHT: bold;
+TEXT-ALIGN: left;
+background-color: #FFFFFF;
+height: 24px;
+vertical-align: middle;
+}
+</style>
+<script type="text/javascript">
+function SetVisible(x)
+{
+document.all.table0.style.display = "";
+document.all.table1.style.display = "none";
+document.all.table2.style.display = "none"; 
+document.all.table3.style.display = "none"; 
+document.all.table4.style.display = "none"; 
+document.all.table5.style.display = "none"; 
+document.all.table6.style.display = "none"; 
+
+if(x==1)
+{
+document.all.table1.style.display = ""; 
+}
+if(x==2)
+{
+document.all.table2.style.display = ""; 
+}
+if(x==3)
+{
+document.all.table3.style.display = ""; 
+}
+if(x==4)
+{
+document.all.table4.style.display = ""; 
+}
+if(x==5)
+{
+document.all.table5.style.display = ""; 
+}
+if(x==6)
+{
+document.all.table0.style.display = "none";
+document.all.table6.style.display = ""; 
+}
+}
+
+function selectitem(item_id)
+{
+
+document.all.haha1.className="Bborder";
+document.all.haha2.className="Bborder";
+document.all.haha3.className="Bborder";
+document.all.haha4.className="Bborder";
+document.all.haha5.className="Bborder";
+document.all.haha6.className="Bborder";
+
+switch(item_id)
+{
+case "haha1":
+document.all.haha1.className="jiangbo";
+break;
+case "haha2":
+document.all.haha2.className="jiangbo";
+break;
+case "haha3":
+document.all.haha3.className="jiangbo";
+break;
+case "haha4":
+document.all.haha4.className="jiangbo";
+break;			  
+case "haha5":
+document.all.haha5.className="jiangbo";
+break;			  
+case "haha6":
+document.all.haha6.className="jiangbo";
+break;			  
+}
+}
+
+function auto_dns()
+{
+document.forms[0].dns_ip.disabled = 1;
+document.forms[0].dns_ip2.disabled = 1;
+}
+
+function manual_dns()
+{
+document.forms[0].dns_ip.disabled = 0;
+document.forms[0].dns_ip2.disabled = 0;
+}
+
+function OnIPType()
+{
+var change_id;
+change_id = document.forms[0].ip_type.value;
+switch(change_id)
+{
+case "0":
+document.forms[0].ip_address.disabled = 0;
+document.forms[0].subnet_mask.disabled = 0;
+document.forms[0].router_ip.disabled = 0;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "1":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 1;
+document.forms[0].pppoe_pin.disabled = 1;
+break;
+case "2":
+document.forms[0].ip_address.disabled = 1;
+document.forms[0].subnet_mask.disabled = 1;
+document.forms[0].router_ip.disabled = 1;
+document.forms[0].pppoe_id.disabled = 0;
+document.forms[0].pppoe_pin.disabled = 0;
+break;
+default:
+break;    
+
+}
+}
+
+function load_value()
+{
+if (document.forms[0].dns_type[0].checked)
+{
+auto_dns();
+}
+else
+{
+manual_dns();
+}
+
+OnIPType();
+}
+
+var win;
+function popupFeedback(thePage)
+{
+if(window.win && !window.win.closed)
+{   window.win.close();
+}
+the_url=thePage;
+win = window.open(the_url);
+}
+</script>
+</head>
+
+<body bgproperties=fixed leftmargin=0 topmargin=0 onLoad=load_value()>
+<table width=100% height=105 order=0 cellpadding=0 cellspacing=0 bgcolor=#049ACC>
+<tr>
+<td width=780 height=105 align=left valign=top><img src=image.jpg></td>
+<td align=left valign=top></td>
+</tr>
+</table>
+
+<table width=780 height=100% border=0 cellpadding=0 cellspacing=0>
+<td width=10 valign=top bgcolor=#049ACC>&nbsp;</td>
+<td width=120 valign=top bgcolor=#049ACC>
+<TABLE width=120 border=0 cellPadding=5 cellSpacing=0>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center  id="haha1" onclick=SetVisible(1);selectitem("haha1");>TCP/IP сеть</TD></TR>
+<TR><TD class=Bborder align=center id="haha2"  onclick=SetVisible(2);selectitem("haha2");>Голос</TD></TR>
+<TR><TD class=Bborder align=center id="haha3" onclick=SetVisible(3);selectitem("haha3");>IAX2 протокол</TD></TR>
+<TR><TD class=Bborder align=center id="haha4"  onclick=SetVisible(4);selectitem("haha4");>План набора</TD></TR>
+<TR><TD class=Bborder align=center id="haha5"  onclick=SetVisible(5);selectitem("haha5");>Система</TD></TR>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD class=Bborder align=center id="haha6"  onclick=SetVisible(6);selectitem("haha6");>Тех. поддержка</TD></TR>
+</TABLE>
+</TD>
+<td width=10 valign=top bgcolor=#049ACC>&nbsp;</td>
+<td width=20 valign=top bgcolor=#ffffff>&nbsp;</td>
+<td valign=top>
+
+
+<form method=POST action="/settings">
+<table id=table1 style="display:''">
+<tr><TD colspan=2 class=THead><B>Информация</B></TD></TR>
+<tr><td>Модель телефона: <!PRODUCT_XXXXX></td></tr>
+<tr><td>MAC адрес: <!MAC_ADDRESS_XX></td></tr>
+<tr><td>OEM:       <!OEM_FLAG_XXXX></td></tr>
+<tr><td>Номер версии: <!VER_></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><TD colspan=2 class=THead><B>Настройки TCP/IP</B></TD></TR>
+<tr>
+<td width=270>Тип соединения:</td>
+<td width=350>
+<SELECT name=ip_type onChange=OnIPType() size=1>
+<OPTION value=0>Постоянный IP</OPTION>
+<OPTION value=1>DHCP</OPTION>
+<OPTION value=2>PPPoE</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>IP-адрес:</td>
+<td>
+<INPUT name=ip_address size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Адрес сети:</td>
+<td>
+<INPUT name=subnet_mask size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Шлюз:</td>
+<td>
+<INPUT name=router_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>PPPoE User ID:</td>
+<td>
+<INPUT name=pppoe_id size=16 maxlength=47>
+</td>
+</tr>
+<tr>
+<td>PPPoE User PIN:</td>
+<td>
+<INPUT name=pppoe_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=1 type=radio OnClick=auto_dns()>Автоматически получать ip-адрес DNS</td>
+</tr>
+<tr>
+<td colspan=2><INPUT name=dns_type value=0 type=radio OnClick=manual_dns()>Использовать следующие ip-адреса DNS</td>
+</tr>
+<tr>
+<td>Первый DNS:</td>
+<td>
+<INPUT name=dns_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr>
+<td>Второй DNS:</td>
+<td>
+<INPUT name=dns_ip2 size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Layer 3 QoS:</td>
+<td>
+<INPUT name=lay3_qos size=5 maxlength=5>(Diff-Serv или значение Precedence)
+</td>
+</tr>
+<tr>
+<td>Layer 2 QoS:</td>
+<td>802.1Q VLAN метка&nbsp;
+<INPUT name=vlan_tag size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>802.1p значение приоритета&nbsp;
+<INPUT name=qos_priority size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table2 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>Настройки голосовых кодеков</B></TD></TR>
+<tr>
+<td>Предпочтительные голосовые кодеки: </td>
+<td width=500>Кодек 1:&nbsp;
+<SELECT name=voice_coder0 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 1:&nbsp;&nbsp;<INPUT name=frame_number0 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;(в указанном порядке)</td>
+<td>Кодек 2:&nbsp;
+<SELECT name=voice_coder1 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 2:&nbsp;&nbsp;<INPUT name=frame_number1 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Кодек 3:&nbsp;
+<SELECT name=voice_coder2 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 3:&nbsp;&nbsp;<INPUT name=frame_number2 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Кодек 4:&nbsp;
+<SELECT name=voice_coder3 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 4:&nbsp;&nbsp;<INPUT name=frame_number3 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Кодек 5:&nbsp;
+<SELECT name=voice_coder4 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 5:&nbsp;&nbsp;<INPUT name=frame_number4 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Кодек 6:&nbsp;
+<SELECT name=voice_coder5 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 6:&nbsp;&nbsp;<INPUT name=frame_number5 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Кодек 7:&nbsp;
+<SELECT name=voice_coder6 size=1>
+<OPTION value=0>Нет</OPTION>
+<OPTION value=1>PCMU</OPTION>
+<OPTION value=2>PCMA</OPTION>
+<OPTION value=3>G.726-32</OPTION>
+<OPTION value=4>GSM 6.10</OPTION>
+<OPTION value=5>iLBC</OPTION>
+<OPTION value=6>Speex</OPTION>
+<OPTION value=7>G.729</OPTION>
+</SELECT>
+&nbsp;&nbsp;&nbsp;&nbsp;Frames per TX 7:&nbsp;&nbsp;<INPUT name=frame_number6 size=5 maxlength=2>
+</td>
+</tr>
+<tr>
+<td  colspan=2><font color=#545454>( Frames Per TX Range: PCMU, PCMA, G.726-32, G.729, between 1 and 7; GSM 6.10, Speex, iLBC-20ms, between 1 and 4;
+iLBC-30ms, between 1 and 3 )</font></td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Размер iLBC фрейма:</td>
+<td>
+<INPUT name=ilbcframe value=0 type=radio>20ms&nbsp;&nbsp;<INPUT name=ilbcframe value=1 type=radio>30ms
+</td>
+</tr>
+<tr>
+<td>Speex битрейт:</td>
+<td>
+<SELECT name=speex_rate size=1>
+<OPTION value=0>2.15 kbps</OPTION>
+<OPTION value=1>3.95 kbps</OPTION>
+<OPTION value=2>5.95 kbps</OPTION>
+<OPTION value=3>8 kbps</OPTION>
+<OPTION value=4>11 kbps</OPTION>
+<OPTION value=5>15 kbps</OPTION>
+<OPTION value=6>18.2 kbps</OPTION>
+<OPTION value=7>24.6 kbps</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>Детектор речевой активности (VAD):</td>
+<td>
+<INPUT name=vad value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=vad value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Авто-регулировка громкости (AGC):</td>
+<td>
+<INPUT name=agc value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=agc value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Эхо-подавление (AEC):</td>
+<td>
+<INPUT name=aec value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=aec value=1 type=radio>Да
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table3 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Настройки IAX2 протокола</B></TD>
+</TR>
+<tr>
+<td width=270>IAX2 регистрация:</td>
+<td width=350>
+<INPUT name=register value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=register value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>IAX2 сервер:</td>
+<td>
+<INPUT name=iax2_server size=24 maxlength=63>(ip-адрес или URI)
+</td>
+</tr>
+<tr>
+<td>Порт IAX2 сервера:</td>
+<td>
+<INPUT name=iax2_port size=5 maxlength=5>(по-умолчанию 4569)
+</td>
+</tr>
+<tr>
+<td>IAX2 User ID:</td>
+<td>
+<INPUT name=user_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>IAX2 логин:</td>
+<td>
+<INPUT name=auth_id size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>IAX2 пароль:</td>
+<td>
+<INPUT name=auth_pin size=16 maxlength=31 type=password>
+</td>
+</tr>
+<tr>
+<td>Имя:</td>
+<td>
+<INPUT name=user_name size=16 maxlength=31><br>(необязательно, например, Ivan Petrov)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Локальный IAX2 порт:</td>
+<td>
+<INPUT name=local_port size=5 maxlength=5>(по-умолчанию 4569)
+</td>
+</tr>
+<tr>
+<td>Время регистрации:</td>
+<td>
+<INPUT name=register_ttl size=5 maxlength=5>(в секундах, по-умолчанию 60с)
+</td>
+</tr>
+<tr>
+<td>Номер Голосовой почты:</td>
+<td>
+<INPUT name=message_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>Использовать План нумерации сервера:</td>
+<td>
+<INPUT name=digit_dialing value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=digit_dialing value=1 type=radio>Да
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table4 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Настройки плана набора</B></TD>
+</TR>
+<tr>
+<td width=270>Переадресация на номер:</td>
+<td width=350>
+<INPUT name=fwd_number size=16 maxlength=31>
+</td>
+</tr>
+<tr>
+<td>Безусловная переадресация:</td>
+<td>
+<INPUT name=fwd_always value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=fwd_always value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Переадресация когда занято:</td>
+<td>
+<INPUT name=fwd_busy value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=fwd_busy value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Переадресация когда нет ответа:</td>
+<td>
+<INPUT name=fwd_noanswer value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=fwd_noanswer value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Время не ответа:</td>
+<td>
+<INPUT name=noanswer_timeout size=5 maxlength=5>(в секундах, по-умолчанию 60с)
+</td>
+</tr>
+<tr>
+<td>Авто-ответ:</td>
+<td>
+<INPUT name=auto_answer value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=auto_answer value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Удержание вызова:</td>
+<td>
+<INPUT name=call_waiting value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=call_waiting value=1 type=radio>Да
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Префикс набора номера:</td>
+<td>
+<INPUT name=dial_prefix size=16 maxlength=15><br>(Всегда добавляется к набранному номеру)
+</td>
+</tr>
+<tr>
+<td>Номер Hot Line:</td>
+<td>
+<INPUT name=hotline_number size=16 maxlength=31><br>(Номер, который автоматически набирается при поднятии трубки)
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Использовать план нумерации:</td>
+<td>
+<INPUT name=use_digitmap value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=use_digitmap value=1 type=radio>Да
+</td>
+</tr>
+<tr>
+<td>Тайм-аут плана нумерации:</td>
+<td>
+<INPUT name=digitmap_timeout size=5 maxlength=5>(в секундах, по-умолчанию 5с)
+</td>
+</tr>
+<tr>
+<td>Use "#" To Call:</td>
+<td>
+<INPUT name=pound_call value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=pound_call value=1 type=radio>Да
+</td>
+</tr>
+</table>
+
+<table id=table5 style="display:'none'">
+<TR><TD colspan=2 class=THead><B>Системные настройки</B></TD></TR>
+<tr>
+<td width=270>Системный пароль:</td>
+<td width=350>
+<INPUT name=admin_pin type=password size=16 maxlength=32><br>(Пароль для доступа к телефону через web)
+</td>
+</tr>
+<tr>
+<td>IP-адрес Syslog сервера:</td>
+<td>
+<INPUT name=syslog_ip size=16 maxlength=15>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Уровень громкости микрофона (0-7):</td>
+<td>
+<INPUT name=vol_input size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>Уровень громкости динамика (0-31):</td>
+<td>
+<INPUT name=vol_output size=5 maxlength=5>
+</td>
+</tr>
+<tr>
+<td>Уровень громкости спикер-фона (0-31):</td>
+<td>
+<INPUT name=speaker_vol size=5 maxlength=5>
+</td>
+</tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>Сервер авто-настройки:</td>
+<td>
+<INPUT name=provision_server size=24 maxlength=63>(ip-адрес или URI)
+</td>
+</tr>
+<tr>
+<td>Порт сервера авто-настройки:</td>
+<td>
+<INPUT name=provision_port size=5 maxlength=5>(по-умолчанию 80)
+</td>
+</tr>
+<tr>
+<td>Интервал запросов к серверу авто-настройки:</td>
+<td>
+<INPUT name=provision_ttl size=5 maxlength=5>(В минутах, максимум 65535 минут)
+</td>
+</tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td>SNTP сервер:</td>
+<td>
+<INPUT name=sntp_dns size=24 maxlength=63><br>(ip-адрес или URI, например, pool.ntp.org)
+</td>
+</tr>
+<tr>
+<td>Временная зона:</td>
+<td>
+<SELECT name=time_zone size=1>
+<OPTION value=0>(GMT-12)Линия перемены дат				</OPTION>
+<OPTION value=1>(GMT-11)Острова Мидуэй,Самоа				</OPTION>
+<OPTION value=2>(GMT-10)Гавайи						</OPTION>
+<OPTION value=3>(GMT-09)Аляска						</OPTION>
+<OPTION value=4>(GMT-08)Тихоокеанское время (США и Канада),Тихуана  	</OPTION>
+<OPTION value=5>(GMT-07)Горное время (США и Канада)			</OPTION>
+<OPTION value=6>(GMT-07)Аризона						</OPTION>
+<OPTION value=7>(GMT-07)Мексика (Чиуауа,Ла-Пас,Мацатлан)		</OPTION>
+<OPTION value=8>(GMT-06)Саскачеван (Канада)				</OPTION>
+<OPTION value=9>(GMT-06)Центральное время (США и Канада)		</OPTION>
+<OPTION value=10>(GMT-06)Центральноамериканское время			</OPTION>
+<OPTION value=11>(GMT-06)Мексика (Гвадалахара,Мехико,Монтеррей)		</OPTION>
+<OPTION value=12>(GMT-05)Тихоокеанское время (Богота,Лима,Кито)		</OPTION>
+<OPTION value=13>(GMT-05)Восточное время (США и Канада)			</OPTION>
+<OPTION value=14>(GMT-05)Индиана (Восточное время)			</OPTION>
+<OPTION value=15>(GMT-04:30)Каракас					</OPTION>
+<OPTION value=16>(GMT-04)Атлантическое время (Канада)			</OPTION>
+<OPTION value=17>(GMT-04)Ла-Пас						</OPTION>
+<OPTION value=18>(GMT-04)Сантьяго					</OPTION>
+<OPTION value=19>(GMT-03:30)Ньюфаундленд				</OPTION>
+<OPTION value=20>(GMT-03)Бразилиа					</OPTION>
+<OPTION value=21>(GMT-03)Буэнос-Айрес,Джорджтау				</OPTION>
+<OPTION value=22>(GMT-03)Гренландия					</OPTION>
+<OPTION value=23>(GMT-02)Среднеатлантическое время			</OPTION>
+<OPTION value=24>(GMT-01)Кабо-Верде					</OPTION>
+<OPTION value=25>(GMT-01)Азорские острова				</OPTION>
+<OPTION value=26>(GMT)Дублин,Эдинбург,Лиссабон,Лондон)			</OPTION>
+<OPTION value=27>(GMT)Касабланка,Монровия				</OPTION>
+<OPTION value=28>(GMT+01)Амстердам,Берлин,Берн,Рим,Стокгольм		</OPTION>
+<OPTION value=29>(GMT+01)Белград,Братислава,Будапешт,Любляна		</OPTION>
+<OPTION value=30>(GMT+01)Брюссель,Копенгаген,Мадрид,Париж		</OPTION>
+<OPTION value=31>(GMT+01)Сараево,Скопье,Варшава,Загреб			</OPTION>
+<OPTION value=32>(GMT+01)Западное центральноафриканское время		</OPTION>
+<OPTION value=33>(GMT+02)Бухарест,Кишинев				</OPTION>
+<OPTION value=34>(GMT+02)Harare,Претория				</OPTION>
+<OPTION value=35>(GMT+02)Хельсинки,Киев,Рига,София,Таллин,Вильнюс	</OPTION>
+<OPTION value=36>(GMT+02)Каир,Бейрут					</OPTION>
+<OPTION value=37>(GMT+02)Афины,Стамбул,Анкара,Минск,Калининград		</OPTION>
+<OPTION value=38>(GMT+02)Иерусалим					</OPTION>
+<OPTION value=39>(GMT+03)Багдад						</OPTION>
+<OPTION value=40>(GMT+03)Кувейт,Эр-Рияд					</OPTION>
+<OPTION value=41>(GMT+03)Московское время,Санкт-Петербург,Волгоград	</OPTION>
+<OPTION value=42>(GMT+03)Найроби					</OPTION>
+<OPTION value=43>(GMT+03:30)Тегеран					</OPTION>
+<OPTION value=44>(GMT+04)Абу-Даби,Маскат				</OPTION>
+<OPTION value=45>(GMT+04)Самарское время,Баку,Тбилиси,Ереван		</OPTION>
+<OPTION value=46>(GMT+04:30)Кабул					</OPTION>
+<OPTION value=47>(GMT+05)Екатеринбургское время				</OPTION>
+<OPTION value=48>(GMT+05)Исламабад, Карачи, Ташкент			</OPTION>
+<OPTION value=49>(GMT+05:30)Индия (Ченнаи,Калькутта,Мумбаи,Нью-Дели)	</OPTION>
+<OPTION value=50>(GMT+05:45)Катманду					</OPTION>
+<OPTION value=51>(GMT+06)Новосибирск,Омское время,Алматы,Астана		</OPTION>
+<OPTION value=52>(GMT+06)Дакка						</OPTION>
+<OPTION value=53>(GMT+06)Sri Jayawardenepura				</OPTION>
+<OPTION value=54>(GMT+06:30)Янгон					</OPTION>
+<OPTION value=55>(GMT+07)Красноярское время				</OPTION>
+<OPTION value=56>(GMT+07)Бангкок,Джакарта,Ханой				</OPTION>
+<OPTION value=57>(GMT+08)Пекин,Чунцин,Гонконг,Урумчи			</OPTION>
+<OPTION value=58>(GMT+08)Куала-Лумпур,Сингапур				</OPTION>
+<OPTION value=59>(GMT+08)Западноавстралийское время (Перт)		</OPTION>
+<OPTION value=60>(GMT+08)Тайбэй						</OPTION>
+<OPTION value=61>(GMT+08)Иркутское время,Улан-Батор			</OPTION>
+<OPTION value=62>(GMT+09)Япония (Токио,Иокогама,Осака,Саппоро)		</OPTION>
+<OPTION value=63>(GMT+09)Сеул						</OPTION>
+<OPTION value=64>(GMT+09)Якутское время					</OPTION>
+<OPTION value=65>(GMT+09:30)Аделаида					</OPTION>
+<OPTION value=66>(GMT+09:30)Дарвин					</OPTION>
+<OPTION value=67>(GMT+10)Брисбен					</OPTION>
+<OPTION value=68>(GMT+10)Владивостокское время				</OPTION>
+<OPTION value=69>(GMT+10)Западно-тихоокеанское время (Гуам,Порт-Морсби)	</OPTION>
+<OPTION value=70>(GMT+10)Хобарт						</OPTION>
+<OPTION value=71>(GMT+10)Канберра,Мельбурн,Сидней			</OPTION>
+<OPTION value=72>(GMT+11)Магадан,Соломоновы острова,Новая Каледония	</OPTION>
+<OPTION value=73>(GMT+12)Новая Зеландия (Веллингтон,Окленд)		</OPTION>
+<OPTION value=74>(GMT+12)Камчатское время,Фиджи,Маршалловы острова	</OPTION>
+<OPTION value=75>(GMT+13)Нукуалофа					</OPTION>
+</SELECT>
+</td>
+</tr>
+<tr>
+<td>Автоматически устанавливать летнее время:</td>
+<td>
+<INPUT name=day_light value=0 type=radio>Нет&nbsp;&nbsp;<INPUT name=day_light value=1 type=radio>Да
+</td>
+</tr>
+
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table id=table6 style="display:'none'">
+<TR>
+<TD colspan=2 class=THead><B>Тех. поддержка</B></TD>
+</TR>
+<TR><TD colspan=2>
+<br><br>PalmMicro представляет Вам IP-телефон самого высокого качества. Если у Вас есть вопросы о нашей продукции, пожалуйста, свяжитесь с нами или посетите раздел технической поддержки на нашем веб-сайте.
+<p align=center><A class=A2 HREF="http://www.palmmicro.com.cn/eindex.htm">Перейти на web-страницу PalmMicro</A>
+</p>
+<br><br>
+</TD></TR>
+</td>
+</table>
+
+<table id=table0 style="display:''">
+<tr><TD class=THead width=550></TD></TR>
+<tr><td ><center><br><INPUT name=update type="submit" value="   ДА   ">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT name=reset type=reset value="  Отмена  "></center></td></tr>
+</table>
+</form>
+
+</td>
+</table>
+</body>
+</html>

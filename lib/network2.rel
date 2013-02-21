@@ -1,0 +1,47 @@
+XL
+H 8 areas 7 global symbols
+M network2
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 0 flags 0 addr 0
+A _OVERLAY size 0 flags 0 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CODE0 size 42 flags 0 addr 0
+S _fixed_input_start Def0000
+S _fixed_output_start Def0021
+S _fixed_input_end Def0021
+S _fixed_output_end Def0042
+S _fixed_input Def0000
+S _fixed_output Def0021
+A _CABS size 0 flags 0 addr 0
+T 00 00
+R 00 00 06 00
+T 00 00
+R 00 00 06 00
+T 00 00 DD E5 DD 21 00 00 DD 39 DD 5E 04 DD 56 05
+R 00 00 06 00
+T 0E 00 DD 4E 06 DD 46 07 21 10 80
+R 00 00 06 00
+T 17 00
+R 00 00 06 00
+T 17 00 ED A0 2B 78 B1 20 F9 DD E1 C9
+R 00 00 06 00
+T 21 00
+R 00 00 06 00
+T 21 00
+R 00 00 06 00
+T 21 00
+R 00 00 06 00
+T 21 00 DD E5 DD 21 00 00 DD 39 DD 6E 04 DD 66 05
+R 00 00 06 00
+T 2F 00 DD 4E 06 DD 46 07 11 10 80
+R 00 00 06 00
+T 38 00
+R 00 00 06 00
+T 38 00 ED A0 1B 78 B1 20 F9 DD E1 C9
+R 00 00 06 00
+T 42 00
+R 00 00 06 00
