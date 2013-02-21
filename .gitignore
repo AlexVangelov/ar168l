@@ -11,5 +11,6 @@
 .hg
 .svn
 .project
+.cproject
 _svn
 svn-commit*.tmp
