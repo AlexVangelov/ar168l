@@ -8,10 +8,10 @@
 //#define VER_GP1266			// Digitmat extended GPIO key version with PoE support
 //#define VER_BT2008			// BitCall extended GPIO key version with PoE support, 2x16 LCD
 //#define VER_AR168J			// Hardware version 6.00
-#define VER_AR168K			// Hardware version 7.00, 2x16 LCD, 5x6 key
+//#define VER_AR168K			// Hardware version 7.00, 2x16 LCD, 5x6 key
 //#define VER_AR168KM			// 2x16 LCD, 5x6 key, Micrel KSZ8842, SST39VF1681
 //#define VER_GP2266			// Digitmat AR168K with dot matrix display 
-//#define VER_AR168M			// AR1688 VoIP Module
+#define VER_AR168M			// AR1688 VoIP Module
 //#define VER_AR168MK			// AR1688 VoIP Module with SST39VF1681, Micrel KSZ8842
 //#define VER_AR168MS			// AR1688 VoIP Module with SST39VF1681
 //#define VER_AR168MT			// AR1688 VoIP Module with Micrel KSZ8842
@@ -36,7 +36,7 @@
 //#define RES_BR	// Brazil (Portuguese)
 //#define RES_CA	// Canada
 //#define RES_CL	// Chile
-#define RES_CN		// China (Mandarin) ***
+//#define RES_CN		// China (Mandarin) ***
 //#define RES_CZ	// Czech Republic
 //#define RES_DE	// Germany
 //#define RES_EG	// Egypt
@@ -63,7 +63,7 @@
 //#define RES_SK	// Slovakia
 //#define RES_TR	// Turkey
 //#define RES_TW	// China Taiwan, use Traditional Chinese.
-//#define RES_US	// United States (English) ***
+#define RES_US	// United States (English) ***
 //#define RES_VN	// Vietnam
 //#define RES_ZA	// South Africa
 
@@ -84,7 +84,7 @@
 //#define OEM_MAC
 //#define OEM_REMOTA
 //#define OEM_ROIP
-//#define OEM_UART
+#define OEM_UART
 //#define OEM_VLAN
 //#define OEM_WEBNEED
 
@@ -413,3 +413,4 @@
 #define ENG_BUILD_HIGH		0
 #define ENG_BUILD_MID		0
 #define ENG_BUILD_LOW		2
+

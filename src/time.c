@@ -80,30 +80,30 @@
 
 
 #ifdef RES_BR // Brasil
-#include "res\\br\\time.h"
+#include "res/br/time.h"
 #elif defined RES_CN && defined DISPLAY_DOT
 #elif defined RES_ES // Español
-#include "res\\es\\time.h"
+#include "res/es/time.h"
 #elif defined RES_FR // French
-#include "res\\fr\\time.h"
+#include "res/fr/time.h"
 #elif defined RES_IT // Italy
-#include "res\\it\\time.h"
+#include "res/it/time.h"
 #elif defined RES_KR && defined DISPLAY_DOT // Korean
-#include "res\\kr\\time.h"
+#include "res/kr/time.h"
 #elif defined RES_RO // Romanian
-#include "res\\ro\\time.h"
+#include "res/ro/time.h"
 #elif defined RES_RU && defined DISPLAY_DOT // Russian
-#include "res\\ru\\time.h"
+#include "res/ru/time.h"
 #elif defined RES_TR // Turkish
 #ifdef OEM_IP20
-#include "res\\ip20\\tr\\time.h"
+#include "res/ip20/tr/time.h"
 #else
-#include "res\\tr\\time.h"
+#include "res/tr/time.h"
 #endif
 #elif defined RES_VN // Vietnam
-#include "res\\vn\\time.h"
+#include "res/vn/time.h"
 #else // Default = REG_US
-#include "res\\us\\time.h"
+#include "res/us/time.h"
 #endif
 
 const UCHAR _cMonthDay[MONTHS_PER_YEAR] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

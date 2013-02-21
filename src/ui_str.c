@@ -45,39 +45,39 @@
 
 #ifdef OEM_BT2008
 #if defined RES_CN && defined DISPLAY_DOT
-#include "res\\bt2008\\cn\\menu.h"
+#include "res/bt2008/cn/menu.h"
 #else // Default = REG_US
-#include "res\\bt2008\\us\\menu.h"
+#include "res/bt2008/us/menu.h"
 #endif
 #elif defined OEM_INNOMEDIA
-#include "res\\innomedia\\us\\menu.h"
+#include "res/innomedia/us/menu.h"
 #else
 #ifdef RES_BR // Brasil
-#include "res\\br\\menu.h"
+#include "res/br/menu.h"
 #elif defined RES_CN && defined DISPLAY_DOT
-#include "res\\cn\\menu.h"
+#include "res/cn/menu.h"
 #elif defined RES_ES // Español
-#include "res\\es\\menu.h"
+#include "res/es/menu.h"
 #elif defined RES_FR // French
-#include "res\\fr\\menu.h"
+#include "res/fr/menu.h"
 #elif defined RES_IT // Italy
-#include "res\\it\\menu.h"
+#include "res/it/menu.h"
 #elif defined RES_KR && defined DISPLAY_DOT // Korean
-#include "res\\kr\\menu.h"
+#include "res/kr/menu.h"
 #elif defined RES_RO // Romanian
-#include "res\\ro\\menu.h"
+#include "res/ro/menu.h"
 #elif defined RES_RU && defined DISPLAY_DOT // Russian
-#include "res\\ru\\menu.h"
+#include "res/ru/menu.h"
 #elif defined RES_TR // Turkish
 #ifdef OEM_IP20
-#include "res\\ip20\\tr\\menu.h"
+#include "res/ip20/tr/menu.h"
 #else
-#include "res\\tr\\menu.h"
+#include "res/tr/menu.h"
 #endif
 #elif defined RES_VN // Vietnam
-#include "res\\vn\\menu.h"
+#include "res/vn/menu.h"
 #else // Default = REG_US
-#include "res\\us\\menu.h"
+#include "res/us/menu.h"
 #endif
 #endif
 
@@ -85,39 +85,39 @@ const UCHAR _cIDS[][DISPLAY_MAX_CHAR+1] = {
 {'V', 'e', 'r', ':', ' ', SOFT_VER_HIGH+'0', '.', SOFT_VER_LOW+'0', SOFT_VER_BUILD+'0', '.', ENG_BUILD_HIGH+'0', ENG_BUILD_MID+'0', ENG_BUILD_LOW+'0', 0},
 #ifdef OEM_BT2008
 #if defined RES_CN && defined DISPLAY_DOT
-#include "res\\bt2008\\cn\\str.h"
+#include "res/bt2008/cn/str.h"
 #else // Default = REG_US
-#include "res\\bt2008\\us\\str.h"
+#include "res/bt2008/us/str.h"
 #endif
 #elif defined OEM_INNOMEDIA
-#include "res\\innomedia\\us\\str.h"
+#include "res/innomedia/us/str.h"
 #else
 #ifdef RES_BR // Brasil
-#include "res\\br\\str.h"
+#include "res/br/str.h"
 #elif defined RES_CN && defined DISPLAY_DOT
-#include "res\\cn\\str.h"
+#include "res/cn/str.h"
 #elif defined RES_ES // Español
-#include "res\\es\\str.h"
+#include "res/es/str.h"
 #elif defined RES_FR // French
-#include "res\\fr\\str.h"
+#include "res/fr/str.h"
 #elif defined RES_IT // Italy
-#include "res\\it\\str.h"
+#include "res/it/str.h"
 #elif defined RES_KR && defined DISPLAY_DOT // Korean
-#include "res\\kr\\str.h"
+#include "res/kr/str.h"
 #elif defined RES_RO // Romanian
-#include "res\\ro\\str.h"
+#include "res/ro/str.h"
 #elif defined RES_RU && defined DISPLAY_DOT // Russian
-#include "res\\ru\\str.h"
+#include "res/ru/str.h"
 #elif defined RES_TR // Turkish
 #ifdef OEM_IP20
-#include "res\\ip20\\tr\\str.h"
+#include "res/ip20/tr/str.h"
 #else
-#include "res\\tr\\str.h"
+#include "res/tr/str.h"
 #endif
 #elif defined RES_VN // Vietnam
-#include "res\\vn\\str.h"
+#include "res/vn/str.h"
 #else // Default = REG_US
-#include "res\\us\\str.h"
+#include "res/us/str.h"
 #endif
 #endif
 };

@@ -1301,15 +1301,15 @@ void CallLogAddToPb()
  *******************************************************************
 */
 #if defined RES_RO
-#include "res\\ro\\inputmap.h"
+#include "res/ro/inputmap.h"
 #elif defined RES_RU
-#include "res\\ru\\inputmap.h"
+#include "res/ru/inputmap.h"
 #elif defined RES_TR && defined OEM_IP20
-#include "res\\ip20\\tr\\inputmap.h"
+#include "res/ip20/tr/inputmap.h"
 #elif defined RES_VN
-#include "res\\vn\\inputmap.h"
+#include "res/vn/inputmap.h"
 #else // RES_US and others
-#include "res\\us\\inputmap.h"
+#include "res/us/inputmap.h"
 #endif
 
 void InputNext()

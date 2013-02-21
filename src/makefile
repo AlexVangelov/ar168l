@@ -1,3 +1,4 @@
+ifdef SystemRoot
 PATH_SDCC=C:\SDCC
 
 RM = del
@@ -10,7 +11,21 @@ CZ80_OPT=-mz80 -c --std-c99 --codeseg CODE
 AZ80_OPT=-plosgff
 
 VERSION_FILE = $(PATH_SDCC)\include\version.h
+LINKMAIN = linkmain
+else
+RM = rm
+AZ80 = sdasz80
+CZ80 = sdcc
+LZ80 = sdld
+HEX2BIN = ../bin/hex2bin
+INC = -I../include
 
+CZ80_OPT=-mz80 $(INC) -c --std-c99 --codeseg CODE
+AZ80_OPT=-plosgff
+
+VERSION_FILE = ../include/version.h
+LINKMAIN = linkmain_unix
+endif
 %.rel:	%.c
 	$(CZ80) $*.c $(CZ80_OPT)
 
@@ -182,10 +197,10 @@ sipr.rel: sipr.c $(VERSION_FILE)
 	$(CZ80) sipr.c $(CZ80_OPT)7
 
 main.ihx: $(SRAM_OBJS) $(FONT_OBJS) $(FLASH0_OBJS) $(FLASH1_OBJS) $(FLASH2_OBJS) $(FLASH3_OBJS) $(FLASH4_OBJS) $(FLASH5_OBJS) $(FLASH6_OBJS) $(FLASH7_OBJS)
-	$(LZ80) -n -f linkmain
+	$(LZ80) -n -f $(LINKMAIN)
 
 main.bin: main.ihx
 	$(HEX2BIN) main.bin -f0 -a0 -x6 -b32768 -e57344 main.ihx
 	
 clean:
-	$(RM) *.bak *.lst *.rel *.ihx *.sym *.asm *.map *.lnk *.~*
+	$(RM) *.lst *.rel *.ihx *.sym *.asm *.map *.bin *.noi linkmain_unix.lnk
