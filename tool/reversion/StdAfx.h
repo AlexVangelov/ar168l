@@ -6,6 +6,8 @@
 #if !defined(AFX_STDAFX_H__7B115433_523B_48A4_BB03_9769F39B7FAB__INCLUDED_)
 #define AFX_STDAFX_H__7B115433_523B_48A4_BB03_9769F39B7FAB__INCLUDED_
 
+#ifndef __GNUC__
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -29,8 +31,15 @@
 #include <iostream>
 
 // TODO: reference additional headers your program requires here
+#include "..\\common\\common.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
+#else // __GNUC__
+#include "../common/mfc2std.h"
+#include "../common/common.h"
+#endif
+
 #endif // !defined(AFX_STDAFX_H__7B115433_523B_48A4_BB03_9769F39B7FAB__INCLUDED_)
+

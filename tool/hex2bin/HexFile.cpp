@@ -1,10 +1,8 @@
 // HexFile.cpp : implementation file
 //
-#ifndef __GNUC__
-#include "stdafx.h"
-#else
-#include "../common/mfc2std.h"
-#endif
+
+#include "StdAfx.h"
+
 #include "HexFile.h"
 
 #ifdef _DEBUG

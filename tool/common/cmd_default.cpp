@@ -1,8 +1,6 @@
-#ifndef __GNUC__
-#include <stdafx.h>
-#else
-#include "../common/mfc2std.h"
-#endif
+
+#include <StdAfx.h>
+
 
 void CommandLineDefault1(int argc, TCHAR* argv[], CString & strVer, CString & strCall, CString & strRes, CString & strOem)
 {

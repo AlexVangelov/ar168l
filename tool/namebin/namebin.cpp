@@ -1,17 +1,7 @@
 // namebin.cpp : Defines the entry point for the console application.
 //
 
-#ifndef __GNUC__
-#include "stdafx.h"
-#include "..\\..\\include\\ar168.h"
-
-#include "..\\common\\common.h"
-#else
-#include <sys/stat.h>
-#include "../common/mfc2std.h"
-#include "../../include/ar168.h"
-#include "../common/common.h"
-#endif
+#include "StdAfx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

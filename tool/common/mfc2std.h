@@ -29,6 +29,7 @@
 #include <list>
 #include <stdarg.h>
 #include <algorithm>
+#include <unistd.h>
 
 typedef unsigned char BYTE;
 typedef bool BOOLEAN;

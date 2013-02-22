@@ -84,7 +84,7 @@
 //#define OEM_MAC
 //#define OEM_REMOTA
 //#define OEM_ROIP
-#define OEM_UART
+//#define OEM_UART
 //#define OEM_VLAN
 //#define OEM_WEBNEED
 
@@ -413,4 +413,5 @@
 #define ENG_BUILD_HIGH		0
 #define ENG_BUILD_MID		0
 #define ENG_BUILD_LOW		2
+
 

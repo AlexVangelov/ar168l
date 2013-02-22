@@ -6,6 +6,8 @@
 #if !defined(AFX_STDAFX_H__8692AECA_5BC3_4136_9B64_74A4DC55AE75__INCLUDED_)
 #define AFX_STDAFX_H__8692AECA_5BC3_4136_9B64_74A4DC55AE75__INCLUDED_
 
+#ifndef __GNUC__
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -30,7 +32,17 @@
 
 // TODO: reference additional headers your program requires here
 
+#include "..\\..\\include\\ar168.h"
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+
+#else // __GNUC__
+#include <sys/stat.h>
+#include "../common/mfc2std.h"
+#include "../common/common.h"
+#include "../../include/version.h"
+#include "../../include/ar168.h"
+#endif
 
 #endif // !defined(AFX_STDAFX_H__8692AECA_5BC3_4136_9B64_74A4DC55AE75__INCLUDED_)

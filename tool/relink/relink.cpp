@@ -1,15 +1,7 @@
 // relink.cpp : Defines the entry point for the console application.
 //
 
-#ifndef __GNUC__
-#include "stdafx.h"
-#include "..\\common\\common.h"
-#include "..\\..\\include\\version.h"
-#else
-#include "../common/mfc2std.h"
-#include "../common/common.h"
-#include "../../include/version.h"
-#endif
+#include "StdAfx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -1,14 +1,9 @@
 // hex2bin.cpp : Defines the entry point for the console application.
 //
-#ifndef __GNUC__
-#include "stdafx.h"
-#else
-#include "../common/mfc2std.h"
-#endif
+
+#include "StdAfx.h"
 
 #include "HexFile.h"
-
-#include "../../include/ar168.h"
 
 void MainProcess(int argc, TCHAR* argv[]);
 
