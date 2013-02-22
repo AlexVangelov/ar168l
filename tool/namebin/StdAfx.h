@@ -32,6 +32,7 @@
 
 // TODO: reference additional headers your program requires here
 
+#include "..\\common\\common.h"
 #include "..\\..\\include\\ar168.h"
 
 //{{AFX_INSERT_LOCATION}}

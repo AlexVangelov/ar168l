@@ -1,9 +1,5 @@
-#ifndef __GNUC__
+
 #include <stdafx.h>
-#else
-#include <sys/stat.h>
-#include "../common/mfc2std.h"
-#endif
 
 BOOL PromptOverwriteFile(CString strFileName, BOOL bForce)
 {
