@@ -6,6 +6,8 @@
 #if !defined(AFX_STDAFX_H__5A277580_8CB5_46D9_B466_531059D431FA__INCLUDED_)
 #define AFX_STDAFX_H__5A277580_8CB5_46D9_B466_531059D431FA__INCLUDED_
 
+#ifndef __GNUC__
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -33,5 +35,9 @@
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+
+#else // __GNUC__
+#include "../common/mfc2std.h"
+#endif
 
 #endif // !defined(AFX_STDAFX_H__5A277580_8CB5_46D9_B466_531059D431FA__INCLUDED_)

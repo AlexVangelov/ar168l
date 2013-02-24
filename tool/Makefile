@@ -1,4 +1,4 @@
-DIRS = reversion relink hex2bin namebin
+DIRS = reversion relink hex2bin namebin font convert
 
 all clean:
 	@for dir in $(DIRS); do \
@@ -14,3 +14,8 @@ install:
 		echo "*** Copy $$dir to bin"; \
 		cp -RLf $$dir/$$dir ../bin/; \
 	done
+
+uninstall:
+	@for dir in $(DIRS); do \
+                rm -R ../bin/$$dir; \
+        done

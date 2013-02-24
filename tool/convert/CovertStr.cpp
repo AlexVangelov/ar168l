@@ -1,11 +1,6 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "CovertStr.h"
-#include "..//..//include//type.h"
-#define CALL_SIP
-#define CALL_IAX2
-#include "..//..//include//gdiconst.h"
-#include "..//..//include//ar168.h"
 
 CString _OutputStr(char *pVal, CString strName, BOOL bQuote)
 {
@@ -456,7 +451,6 @@ void AR168ConvertCfg_IM(char * pSettings, CString& strwrite)
 void DisplayError(CString strName)
 {
 	CString cError;
-	
 	if (strName.Find(_T('=')) != -1)
 	{
 		strName.Replace(_T('=') , _T(' '));
@@ -570,7 +564,11 @@ BOOL _SetString(char * p, CString strName, CString strVal, char *pLabel, int iMa
 		if (iLen <	iMaxlen)
 		{
 //			memcpy((char *)p, strVal, iLen);
+#ifndef __GNUC__
 			WideCharToMultiByte(CP_ACP, 0, strVal, -1, p, iMaxlen, NULL, NULL); 
+#else
+			memcpy((char *)p, strVal, iLen);
+#endif
 			return TRUE;
 		}
 		else
@@ -827,7 +825,11 @@ BOOL _SetDigitmap(char * p, CString strName, CString strVal, char *pLabel)
 		if (iLen && iLen < DIGITMAP_ENTRY_LEN)
 		{
 //			memcpy(p, strTemp, iLen);
+#ifndef __GNUC__
 			WideCharToMultiByte(CP_ACP, 0, strTemp, -1, p, iLen, NULL, NULL); 
+#else
+			strncpy(p, strTemp, iLen);
+#endif
 			p += DIGITMAP_ENTRY_LEN;
 		}
 
@@ -899,7 +901,11 @@ void _SetPB(char * p, CString strName, CString strVal, int iMaxLen)
 	if (iLen < iMaxLen)
 	{
 //		memcpy((char *)p, strVal, iLen);
+#ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, strVal, -1, p, iMaxLen, NULL, NULL); 
+#else
+		strncpy((char *)p, strVal, iLen);
+#endif
 		memset((char *)p+iLen, 0, iMaxLen-iLen);
 	}
 	else
@@ -1352,12 +1358,17 @@ BOOL AR168CompareMap(char * pSettings, CString str, int iItem)
 	if (iLen && iLen <	DIGITMAP_ENTRY_LEN)
 	{
 //		memcpy(pCur, str, iLen);
+#ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, str, -1, pCur, iLen, NULL, NULL); 
+#else
+		strncpy(pCur, str, iLen);
+#endif
 		return TRUE;
 	}
 	else
 	{
-		AfxMessageBox(_T("Digitmap entry MUST be less than or equal to 31 characters"));
+		CString msg = _T("Digitmap entry MUST be less than or equal to 31 characters");
+		AfxMessageBox(msg);
 		return FALSE;
 	}
 }

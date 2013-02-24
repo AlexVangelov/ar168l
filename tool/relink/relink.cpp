@@ -239,7 +239,6 @@ void _RewriteLinkFile(CString strFileName, CString strVer, CString strCall, CStr
 #else
    while (!file.eof())
    {
-      CString str = "";
       std::getline(file, str);
       if (*str.rbegin() == '\r') str.erase(str.length() - 1);
 #endif
@@ -252,7 +251,7 @@ void _RewriteLinkFile(CString strFileName, CString strVer, CString strCall, CStr
 #ifndef __GNUC__
 	for (pos = list.GetHeadPosition(); pos != NULL;)
 #else
-   for (pos=list.begin(); pos != list.end(); ++pos)
+  for (pos = list.begin(); pos != list.end(); ++pos)
 #endif
 	{
 		old = pos;

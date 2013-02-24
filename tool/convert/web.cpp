@@ -1,12 +1,5 @@
-#include "stdafx.h"
-#include "Convert.h"
-
-#include "..\\common\\common.h"
-
-#include "..\\..\\include\\type.h"
-#define CALL_SIP
-#define CALL_IAX2
-#include "..\\..\\include\\gdiconst.h"
+#include "StdAfx.h"
+#include "convert.h"
 
 #define ITEM_TYPE_TEXT		0
 #define ITEM_TYPE_CHECKBOX	1
@@ -63,7 +56,11 @@ void WebGetOptionsList(CString strInput, CStringList& strList)
 	{
 		strName = strItem;
 	}
+#ifndef __GNUC__
 	for (pos = strList.GetHeadPosition(); pos != NULL;)
+#else
+  for (pos = strList.begin(); pos != strList.end(); ++pos)
+#endif
 	{
 		strItem = strList.GetNext(pos);
 		if (!strItem.Compare(strName))
@@ -132,7 +129,11 @@ CString WebUpdateInput(CString strInput)
 
 	strOutput = _T("<INPUT");
 	iType = ITEM_TYPE_TEXT;
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		pos2 = pos1;
 		strItem = strList.GetNext(pos1);
@@ -175,8 +176,11 @@ CString WebUpdateInput(CString strInput)
 			strList.RemoveAt(pos2);
 		}
 	}
-
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		pos2 = pos1;
 		strItem = strList.GetNext(pos1);
@@ -197,7 +201,11 @@ CString WebUpdateInput(CString strInput)
 			}
 		}
 	}
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		strOutput += _T(' ');
 		strItem = strList.GetNext(pos1);
@@ -216,7 +224,11 @@ CString WebUpdateSelect(CString strInput)
 	WebGetStringList(strInput, 7, strList);
 
 	strOutput = _T("<SELECT");
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		pos2 = pos1;
 		strItem = strList.GetNext(pos1);
@@ -230,7 +242,11 @@ CString WebUpdateSelect(CString strInput)
 			strList.RemoveAt(pos2);
 		}
 	}
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		strOutput += _T(' ');
 		strItem = strList.GetNext(pos1);
@@ -249,7 +265,11 @@ CString WebUpdateOption(CString strInput)
 	WebGetStringList(strInput, 7, strList);
 
 	strOutput = _T("<OPTION");
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		pos2 = pos1;
 		strItem = strList.GetNext(pos1);
@@ -267,7 +287,11 @@ CString WebUpdateOption(CString strInput)
 			strList.RemoveAt(pos2);
 		}
 	}
+#ifndef __GNUC__
 	for (pos1 = strList.GetHeadPosition(); pos1 != NULL;)
+#else
+  for (pos1 = strList.begin(); pos1 != strList.end(); ++pos1)
+#endif
 	{
 		strOutput += _T(' ');
 		strItem = strList.GetNext(pos1);
@@ -288,20 +312,35 @@ void OnWeb2Web(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
 
 	strInput = _T("");
+#ifndef __GNUC__
 	while (in.ReadString(strItem))
 	{
+#else
+	while (!in.eof())
+	{
+		std::getline(in, strItem);
+		strItem.TrimRight();
+#endif
 		strItem.TrimLeft();
 		strInput += strItem;
 		strInput += _T("\n");
@@ -368,20 +407,35 @@ void OnWeb2Info(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
 
 	strInput = _T("");
+#ifndef __GNUC__
 	while (in.ReadString(strItem))
 	{
+#else
+	while (!in.eof())
+	{
+		std::getline(in, strItem);
+		strItem.TrimRight();
+#endif
 		strItem.TrimLeft();
 		strInput += strItem;
 		strInput += _T("\n");
@@ -423,7 +477,11 @@ void OnWeb2Info(CString strSrcFile, CString strDstFile, BOOL bForce)
 	}
 
 	iStartIndex = 0;
+#ifndef __GNUC__
 	for (pos = listOptions.GetHeadPosition(); pos != NULL;)
+#else
+	for (pos = listOptions.begin(); pos != listOptions.end(); ++pos)
+#endif
 	{
 		strItem = listOptions.GetNext(pos);
 		strItem += _T("=");
@@ -839,8 +897,15 @@ void OnWeb2Info(CString strSrcFile, CString strDstFile, BOOL bForce)
 		strOutput += strNew;
 		iStartIndex ++;
 	}
-
+#ifndef __GNUC__
 	strItem.Format(_T("#define WEB_INFO_NUM	%d\n\nconst unsigned short web_info_code[WEB_INFO_NUM] = {\n"), iStartIndex);
+#else
+	{
+		char buff[511];
+	 	sprintf(buff, _T("#define WEB_INFO_NUM	%d\n\nconst unsigned short web_info_code[WEB_INFO_NUM] = {\n"), iStartIndex);
+		strItem = buff;
+	}
+#endif
 	strOutput = strItem + strOutput;
 	strOutput += _T("\n};\n");
 	out.WriteString(strOutput);

@@ -1,7 +1,7 @@
 // font.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -13,9 +13,9 @@ void MainProcess(int argc, TCHAR* argv[]);
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
-
+#endif
 using namespace std;
 
 void PrintHelp()
@@ -29,6 +29,7 @@ void PrintHelp()
 	printf("-t\t convert text font file to array.txt, (2x16)5-5x8, (dot-matrix)6-5x8, 7-7x14, 8-8x13, 9-18x18\n");
 }
 
+#ifndef __GNUC__
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
 	int nRetCode = 0;
@@ -42,6 +43,12 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	}
 	else
 	{
+#else
+int main(int argc, char *argv[])
+{
+   int nRetCode = 0;
+   {
+#endif
 		if (argc < 2)
 		{
 			PrintHelp();
@@ -275,13 +282,22 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
-
+#ifndef __GNUC__
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
 		printf("Can not create destination file %s", strDstFile);
+#else
+	if (!out.Open(strDstFile,std::fstream::out|std::fstream::trunc))
+	{
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
@@ -298,45 +314,83 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 		iTotal = 0;
 	}
 
+#ifndef __GNUC__
 	while (in.ReadString(strLine))
 	{
+#else
+	while (!in.eof())
+	{
+		std::getline(in, strLine);
+#endif
 		iLength = strLine.GetLength();
 		if (iLength > 9 && strLine.Left(9) == "STARTCHAR")
 		{
 			strChar = strLine.Right(iLength - 10);
-
+#ifndef __GNUC__
 			if (!in.ReadString(strLine))	break;			// "ENCODING "
+#else
+			if (!std::getline(in, strLine)) break;
+#endif
 			strEncoding = strLine.Right(strLine.GetLength() - 9);
-
+#ifndef __GNUC__
 			if (!in.ReadString(strLine))	break;			// "SWIDTH "
 			if (!in.ReadString(strLine))	break;			// "DWIDTH "
 			if (!in.ReadString(strLine))	break;			// "BBX "
 			if (!in.ReadString(strLine))	break;			// "BITMAP"
-	
+#else
+			if (!std::getline(in, strLine)) break;
+			if (!std::getline(in, strLine)) break;
+			if (!std::getline(in, strLine)) break;
+			if (!std::getline(in, strLine)) break;
+#endif	
 			if (iTextFont == '5')	// 5x8 ascii
 			{
 				for (i = 0; i < 8; i ++)
 				{
+#ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+#else
+					if (!std::getline(in, strLine)) break;
+#endif
 					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 					iVal[i] >>= 3;
 				}
-
+#ifndef __GNUC__
 				strLine.Format(_T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
 					iVal[0], iVal[1], iVal[2], iVal[3], iVal[4], iVal[5], iVal[6], iVal[7], strEncoding, strChar);
+#else
+			 {
+				  char buff[1023];
+					sprintf(buff, _T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
+						iVal[0], iVal[1], iVal[2], iVal[3], iVal[4], iVal[5], iVal[6], iVal[7], strEncoding.c_str(), strChar.c_str());
+				  strLine = buff;
+			 }
+#endif
 			}
 			else if (iTextFont == '6')	// 5x8 ascii for dot-matrix display
 			{
 				for (i = 0; i < 8; i ++)
 				{
+#ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+#else
+					if (!std::getline(in, strLine)) break;
+#endif
 					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 //					iVal[i] >>= 3;
 				}
 				ConvertSingle5x8AsciiFont((char *)iVal, (char *)iVal2);
-
+#ifndef __GNUC__
 				strLine.Format(_T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
 					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], strEncoding, strChar);
+#else
+			 {
+				  char buff[1023];
+					sprintf(buff, _T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
+						iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], strEncoding.c_str(), strChar.c_str());
+				  strLine = buff;
+			 }
+#endif
 			}
 			else if (iTextFont == '7')	// 7x14 ascii
 			{
@@ -344,13 +398,25 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				iVal[15] = 0;
 				for (i = 1; i < 15; i ++)
 				{
+#ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+#else
+					if (!std::getline(in, strLine)) break;
+#endif
 					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 				}
 				ConvertSingleAsciiFont((char *)iVal, (char *)iVal2);
-
+#ifndef __GNUC__
 				strLine.Format(_T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
 					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15], strEncoding, strChar);
+#else
+			 {
+				  char buff[1023];
+					sprintf(buff, _T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
+					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15], strEncoding.c_str(), strChar.c_str());
+				  strLine = buff;
+			 }
+#endif
 			}
 			else if (iTextFont == '8')	// 8x13 ascii
 			{
@@ -359,31 +425,64 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				iVal[15] = 0;
 				for (i = 1; i < 14; i ++)
 				{
+#ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+#else
+					if (!std::getline(in, strLine)) break;
+#endif
 					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 				}
 				ConvertSingleAsciiFont((char *)iVal, (char *)iVal2);
-
+#ifndef __GNUC__
 				strLine.Format(_T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
 					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15], strEncoding, strChar);
+#else
+			 {
+				  char buff[1023];
+					sprintf(buff, _T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
+					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15], strEncoding.c_str(), strChar.c_str());
+				  strLine = buff;
+			 }
+#endif
 			}
 			else if (iTextFont == '9')	// 18x18 unicode
 			{
+#ifndef __GNUC__
 				if (!in.ReadString(strLine))	break;			// skip first line
+#else
+				if (!std::getline(in, strLine)) break;
+#endif
 				for (i = 0; i < 16; i ++)
 				{
+#ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+#else
+					if (!std::getline(in, strLine)) break;
+#endif
 					swscanf_s(strLine, _T("%06x"), &iLong);
 					iLong >>= 7;
 					iVal[i * 2] = (unsigned char)(iLong >> 8);
 					iVal[i * 2 + 1] = (unsigned char)iLong;
 				}
+#ifndef __GNUC__
 				if (!in.ReadString(strLine))	break;			// skip last line
+#else
+				if (!std::getline(in, strLine)) break;
+#endif
 				ConvertSingleFont((char *)iVal, (char *)iVal2);
-
+#ifndef __GNUC__
 				strLine.Format(_T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
 					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15],
 					iVal2[16], iVal2[17], iVal2[18], iVal2[19], iVal2[20], iVal2[21], iVal2[22], iVal2[23], iVal2[24], iVal2[25], iVal2[26], iVal2[27], iVal2[28], iVal2[29], iVal2[30], iVal2[31], strEncoding, strChar);
+#else
+			 {
+				  char buff[1023];
+					sprintf(buff, _T("0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, //\t%s\t%s\n"), 
+					iVal2[0], iVal2[1], iVal2[2], iVal2[3], iVal2[4], iVal2[5], iVal2[6], iVal2[7], iVal2[8], iVal2[9], iVal2[10], iVal2[11], iVal2[12], iVal2[13], iVal2[14], iVal2[15],
+					iVal2[16], iVal2[17], iVal2[18], iVal2[19], iVal2[20], iVal2[21], iVal2[22], iVal2[23], iVal2[24], iVal2[25], iVal2[26], iVal2[27], iVal2[28], iVal2[29], iVal2[30], iVal2[31], strEncoding.c_str(), strChar.c_str());
+				  strLine = buff;
+			 }
+#endif
 			}
 			out.WriteString(strLine);
 			if (iTextFont == '9')		// 18x18 unicode
@@ -397,7 +496,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 					iTotal ++;
 				}
 			}
+#ifndef __GNUC__
 			if (!in.ReadString(strLine))	break;			// "ENDCHAR"
+#else
+			if (!std::getline(in, strLine)) break;
+#endif
 		}
 		else
 		{
@@ -428,36 +531,66 @@ void GenerateISO8859File(CString strISO8859, CString strSrcFile, CString strDstF
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
+#ifndef __GNUC__
 	while (in.ReadString(strLine))
 	{
+#else
+   while (!in.eof())
+   {
+      std::getline(in, strLine);
+#endif
 		list.AddTail(strLine);
 	}
 	in.Close();
 
 	if (!in.Open(strISO8859, CFile::modeRead))
 	{
-		printf("Can not open ISO8859 file %s", strISO8859);
+#ifndef __GNUC__
+		printf("Can not open ISO8859 file %s\n", strISO8859);
+#else
+		printf("Can not open ISO8859 file %s\n", strISO8859.c_str());
+#endif
 		return;
 	}
 
+#ifndef __GNUC__
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not create destination file %s", strDstFile);
+		printf("Can not create destination file %s\n", strDstFile);
+#else
+	if (!out.Open(strDstFile,std::fstream::out|std::fstream::trunc))
+	{
+		printf("Can not create destination file %s\n", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
 
+#ifndef __GNUC__
 	while (in.ReadString(strLine))
 	{
+#else
+	while (!in.eof())
+	{
+		std::getline(in, strLine);
+#endif
 		if (strLine.GetAt(0) != '0')	continue;
 
 		swscanf_s(strLine, _T("0x%02x\t0x%04x"), &iIndex, &iPos);
 		if (iIndex < 0xa0)	continue;
 
+#ifndef __GNUC__
 		for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+		for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 		{
 			strLine = list.GetNext(pos);
 			iStart = strLine.Find(_T("//"), 0);
@@ -470,9 +603,15 @@ void GenerateISO8859File(CString strISO8859, CString strSrcFile, CString strDstF
 			}
 		}
 
+#ifndef __GNUC__
 		if (pos == NULL)
 		{
 			for (pos = list.GetHeadPosition(); pos != NULL;)
+#else
+		if (pos == list.end())
+		{
+			for (pos=list.begin(); pos != list.end(); ++pos)
+#endif
 			{
 				strLine = list.GetNext(pos);
 				iStart = strLine.Find(_T("//"), 0);
@@ -594,8 +733,15 @@ void MainProcess(int argc, TCHAR* argv[])
 				}
 				printf("\n");
 			}
-		
+#ifndef __GNUC__		
 			gets((char *)(LPCTSTR)strInput);
+#else
+			{
+				char buff[1023];
+      	fgets( buff, sizeof(buff), stdin );
+				strInput = buff;
+			}
+#endif
 			if (strInput == "q")	break;
 			else if (strInput == "n")
 			{

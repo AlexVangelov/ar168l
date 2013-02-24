@@ -1,7 +1,7 @@
 // convert.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "convert.h"
 
 void PrintHelp();
@@ -15,8 +15,9 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
-
+#ifndef __GNUC__
 CWinApp theApp;
+#endif
 
 using namespace std;
 
@@ -48,6 +49,7 @@ void PrintHelp()
 	printf("%s\n", "dstFile\t\t\tSpecifies the destination file");
 }
 
+#ifndef __GNUC__
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
 	int nRetCode = 0;
@@ -61,6 +63,12 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	}
 	else
 	{
+#else
+int main(int argc, char *argv[])
+{
+	int nRetCode = 0;
+	{
+#endif
 		// TODO: code your application's behavior here.
 		MainProcess(argc, argv);
 	}
@@ -101,7 +109,11 @@ void MainProcess(int argc, TCHAR* argv[])
 	for (i = 1; i < argc; i ++)
 	{
 //		pArg = argv[i];
+#ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, argv[i], -1, pArg, 128, NULL, NULL); 
+#else
+		strncpy((char *)pArg, argv[i], 128);
+#endif
 		if (pArg[0] == '-')
 		{
 			if (!strcmp(pArg, "-c") || !strcmp(pArg, "--cfg2bin"))
@@ -207,6 +219,10 @@ void MainProcess(int argc, TCHAR* argv[])
 	strDstFile = strDstDir + strFileList.GetTail();
 //	printf("src file: %s\n", strSrcFile);
 //	printf("dst file: %s\n", strDstFile);
+#ifdef __GNUC__
+	printf("src file: %s\n", strSrcFile.c_str());
+	printf("dst file: %s\n", strDstFile.c_str());
+#endif
 	switch (iFunction)
 	{
 	case FUNTCION_CFG2BIN:

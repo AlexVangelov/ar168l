@@ -1,8 +1,6 @@
-#include "stdafx.h"
-#include "Convert.h"
+#include "StdAfx.h"
+#include "convert.h"
 #include "CovertStr.h"
-
-#include "..\\common\\common.h"
 
 void OnBin2Cfg(CString strSrcFile, CString strDstFile, BOOL bForce, BOOL bInnomedia) 
 {
@@ -15,18 +13,27 @@ void OnBin2Cfg(CString strSrcFile, CString strDstFile, BOOL bForce, BOOL bInnome
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
-
+#ifndef __GNUC__
 	AfxGetApp()->BeginWaitCursor();
+#endif
 	p = (char *)malloc(SETTINGS_FILE_SIZE);
 	in.Read(p, SETTINGS_FILE_SIZE);
 
@@ -40,8 +47,9 @@ void OnBin2Cfg(CString strSrcFile, CString strDstFile, BOOL bForce, BOOL bInnome
 	}
 
 	out.WriteString(cStr);
-
+#ifndef __GNUC__
 	AfxGetApp()->EndWaitCursor();
+#endif
 
 	free(p);
 	in.Close();
@@ -61,24 +69,40 @@ void OnCfg2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
-
+#ifndef __GNUC__
 	AfxGetApp()->BeginWaitCursor();
+#endif
 	p = (char *)malloc(SETTINGS_FILE_SIZE);
 	memset(p, 0, SETTINGS_FILE_SIZE);
 	iItem = 0;
 
+#ifndef __GNUC__
 	while (in.ReadString(strRead))
 	{
+#else
+  while (!in.eof())
+  {
+    std::getline(in, strRead);
+		strRead.TrimRight();
+#endif
 		if (!strRead.GetLength())
 		{
 			continue;
@@ -120,8 +144,9 @@ void OnCfg2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	}
 
 	out.Write(p, SETTINGS_FILE_SIZE);
-
+#ifndef __GNUC__
 	AfxGetApp()->EndWaitCursor();
+#endif
 	free(p);
 	in.Close();
 	out.Close();
@@ -141,13 +166,21 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
@@ -159,14 +192,32 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 	{
 		iConvertLength = iLength;
 	}
-
+#ifndef __GNUC__
 	_wsplitpath(strDstFile, drive, dir, fname, ext);
+#else
+	strcpy(fname,basename(strDstFile));
+#endif
 	strName = fname;
 	strName.MakeUpper();
-
+#ifndef __GNUC__
 	strOut.Format(_T("#define DATA_%s_SIZE\t\t%d\n"), strName, iConvertLength);
+#else
+	{
+		char buff[511];
+		sprintf(buff, _T("#define DATA_%s_SIZE\t\t%d\n"), strName.c_str(), iConvertLength);
+		strOut = buff;
+	}
+#endif
 	out.WriteString(strOut);
+#ifndef __GNUC__
 	strOut.Format(_T("const unsigned char _c_%s[DATA_%s_SIZE] = {\n"), fname, strName);
+#else
+	{
+		char buff[511];
+		sprintf(buff, _T("const unsigned char _c_%s[DATA_%s_SIZE] = {\n"), fname, strName.c_str());
+		strOut = buff;
+	}
+#endif
 	out.WriteString(strOut);
 
 	for (i = iAddressOffset; i < iAddressOffset+iConvertLength; i += FRAME_LEN)
@@ -176,7 +227,15 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 		{
 			if (i+j < iAddressOffset+iConvertLength)
 			{
+#ifndef __GNUC__
 				strItem.Format(_T("0x%02x"), (unsigned char)p[i+j]);
+#else
+				{
+					char buff[511];
+					sprintf(buff, _T("0x%02x"), (unsigned char)p[i+j]);
+					strItem = buff;
+				}
+#endif
 				strOut += strItem;
 			}
 			if (i+j < ((iAddressOffset+iConvertLength) - 1))
@@ -187,8 +246,15 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 		strOut += _T("\n");
 		out.WriteString(strOut);
 	}
-
+#ifndef __GNUC__
 	strOut.Format(_T("};\n"));
+#else
+	{
+		char buff[511];
+		sprintf(buff, _T("};\n"));
+		strOut = buff;
+	}
+#endif
 	out.WriteString(strOut);
 	
 	free(p);
@@ -209,13 +275,21 @@ void OnRing2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
@@ -254,13 +328,21 @@ void OnIvr2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeBinary))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
@@ -309,23 +391,38 @@ void OnPB2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
-
+#ifndef __GNUC__
 	AfxGetApp()->BeginWaitCursor();
+#endif
 	p = (char *)malloc(PHONEBOOK_FILE_SIZE);
 	memset(p, 0, PHONEBOOK_FILE_SIZE);
-
+#ifndef __GNUC__
 	while (in.ReadString(strRead))
 	{
+#else
+	while (!in.eof())
+	{
+		std::getline(in, strRead);
+		strRead.TrimRight();
+#endif
 		if (!strRead.GetLength())
 		{
 			continue;
@@ -337,8 +434,9 @@ void OnPB2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 		AR168ComparePB((char *)p, strRead);
 	}
 	out.Write(p, PHONEBOOK_FILE_SIZE);
-
+#ifndef __GNUC__
 	AfxGetApp()->EndWaitCursor();
+#endif
 	free(p);
 	in.Close();
 	out.Close();
@@ -354,27 +452,36 @@ void OnBin2PB(CString strSrcFile, CString strDstFile, BOOL bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
+#ifndef __GNUC__
 		printf("Can not open source file %s", strSrcFile);
+#else
+		printf("Can not open source file %s", strSrcFile.c_str());
+#endif
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		in.Close();
 		return;
 	}
-
+#ifndef __GNUC__
 	AfxGetApp()->BeginWaitCursor();
+#endif
 	p = (char *)malloc(PHONEBOOK_FILE_SIZE);
 	in.Read(p, PHONEBOOK_FILE_SIZE);
 
 	AR168ConvertPB((char *)p, cStr);
 
 	out.WriteString(cStr);
-
+#ifndef __GNUC__
 	AfxGetApp()->EndWaitCursor();
-
+#endif
 	free(p);
 	in.Close();
 	out.Close();
@@ -385,33 +492,64 @@ void OnDsp2H(CStringList& strFileList, CString strSrcDir, CString strDstDir, BOO
 	CString strSrcFile, strDstFile, strTemp, strVal, strOut;;
 	CStdioFile out;
 	CFileStatus status;
+
 	POSITION pos;
 	int iDot, iOffset, iPage, iLength;
 
 	strDstFile = strDstDir + strFileList.RemoveTail();
 
 	if (!PromptOverwriteFile(strDstFile, bForce))	return;
+#ifndef __GNUC__
 	CFile::GetStatus(strDstFile, status);
+#else
+	stat(strDstFile.c_str(),&status);
+#endif
 
 	iOffset = 0;
 	iPage = 0;
 	strOut = _T("");
+#ifndef __GNUC__
 	for (pos = strFileList.GetHeadPosition(); pos != NULL; )
+#else
+	for (pos = strFileList.begin(); pos != strFileList.end(); ++pos)
+#endif
 	{
 		strTemp = strFileList.GetNext(pos);
 		strSrcFile = strSrcDir + strTemp;
+#ifndef __GNUC__
 		if (!CFile::GetStatus(strSrcFile, status))
 		{
 			printf("Source file %s doesn't exist", strSrcFile);
+#else
+		if (stat(strSrcFile.c_str(),&status))
+		{
+			printf("Source file %s doesn't exist", strSrcFile.c_str());
+#endif
 			return;
 		}
 		iLength = (int)status.m_size;
 		iDot = strTemp.Find(_T('.'));
 		strTemp = strTemp.Left(iDot);
 		strTemp.MakeUpper();
+#ifndef __GNUC__
 		strVal.Format(_T("#define SYSTEM_%s_PAGE\t\t(SYSTEM_DSP_PAGE + %d)\n"), strTemp, iPage);
+#else
+   {
+      char buff[511];
+	    sprintf(buff, _T("#define SYSTEM_%s_PAGE\t\t(SYSTEM_DSP_PAGE + %d)\n"), strTemp.c_str(), iPage);
+      strVal = buff;
+   }
+#endif
 		strOut += strVal;
+#ifndef __GNUC__
 		strVal.Format(_T("#define SYSTEM_%s_OFFSET\t\t0x%x\n"), strTemp, iOffset);
+#else
+   {
+      char buff[511];
+	    sprintf(buff, _T("#define SYSTEM_%s_OFFSET\t\t0x%x\n"), strTemp.c_str(), iOffset);
+      strVal = buff;
+   }
+#endif
 		strOut += strVal;
 		iOffset += iLength;
 		while (iOffset >= FILE_FLAG_PAGE_SIZE)
@@ -428,7 +566,11 @@ void OnDsp2H(CStringList& strFileList, CString strSrcDir, CString strDstDir, BOO
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
+#ifndef __GNUC__
 		printf("Can not create destination file %s", strDstFile);
+#else
+		printf("Can not create destination file %s", strDstFile.c_str());
+#endif
 		return;
 	}
 	out.WriteString(strOut);

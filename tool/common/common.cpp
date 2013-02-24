@@ -1,5 +1,5 @@
 
-#include <stdafx.h>
+#include <StdAfx.h>
 
 BOOL PromptOverwriteFile(CString strFileName, BOOL bForce)
 {
@@ -21,13 +21,15 @@ BOOL PromptOverwriteFile(CString strFileName, BOOL bForce)
 		printf("The destination file exists. Overwrite the file?(Yes/No):");
 #ifndef __GNUC__
 		gets(pAnswer);
-#else
-      fgets( pAnswer, sizeof(pAnswer), stdin );
-#endif
 		strAnswer = pAnswer;
+#else
+		fgets( pAnswer, sizeof(pAnswer), stdin );
+		strAnswer = pAnswer;
+		strAnswer.TrimRight();
+#endif
 		if (!strAnswer.CompareNoCase(_T("no")) || !strAnswer.CompareNoCase(_T("n")))
 		{
-			printf("Exit Convert without writing destination file");
+			printf("Exit Convert without writing destination file\n");
 			return FALSE;
 		}
 		if (!strAnswer.CompareNoCase(_T("yes")) || !strAnswer.CompareNoCase(_T("ye")) || !strAnswer.CompareNoCase(_T("y")))

@@ -1,3 +1,0 @@
-version				tftp upgrade	tftp only		ping 1472 bytes		md5 10x32		change
-AR168E 0.04.002		23s				76785bytes/s	17ms                93ms 
-AR168G 0.04.011		25s				75078bytes/s	18ms	

@@ -20,4 +20,6 @@ demo:
 
 clean:
 	$(MAKE) -C tool clean
+	$(MAKE) -C tool uninstall
 	$(MAKE) -C src clean
+	
