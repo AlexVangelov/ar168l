@@ -349,10 +349,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 #else
 					if (!std::getline(in, strLine)) break;
+					sscanf(strLine, _T("%02hhx"), &iVal[i]);
 #endif
-					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 					iVal[i] >>= 3;
 				}
 #ifndef __GNUC__
@@ -373,10 +374,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 #else
 					if (!std::getline(in, strLine)) break;
+					sscanf(strLine, _T("%02hhx"), &iVal[i]);
 #endif
-					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 //					iVal[i] >>= 3;
 				}
 				ConvertSingle5x8AsciiFont((char *)iVal, (char *)iVal2);
@@ -400,10 +402,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 #else
 					if (!std::getline(in, strLine)) break;
+					sscanf(strLine, _T("%02hhx"), &iVal[i]);
 #endif
-					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 				}
 				ConvertSingleAsciiFont((char *)iVal, (char *)iVal2);
 #ifndef __GNUC__
@@ -427,10 +430,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 #else
 					if (!std::getline(in, strLine)) break;
+					sscanf(strLine, _T("%02hhx"), &iVal[i]);
 #endif
-					swscanf_s(strLine, _T("%02x"), &iVal[i]);
 				}
 				ConvertSingleAsciiFont((char *)iVal, (char *)iVal2);
 #ifndef __GNUC__
@@ -456,10 +460,11 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
+					swscanf_s(strLine, _T("%06x"), &iLong);
 #else
 					if (!std::getline(in, strLine)) break;
+					sscanf(strLine, _T("%06x"), &iLong);
 #endif
-					swscanf_s(strLine, _T("%06x"), &iLong);
 					iLong >>= 7;
 					iVal[i * 2] = (unsigned char)(iLong >> 8);
 					iVal[i * 2 + 1] = (unsigned char)iLong;

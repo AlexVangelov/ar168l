@@ -11,11 +11,10 @@ all clean:
 
 install:
 	@for dir in $(DIRS); do \
-		echo "*** Copy $$dir to bin"; \
-		cp -RLf $$dir/$$dir ../bin/; \
+		ln -rvs $$dir/$$dir ../bin/; \
 	done
 
 uninstall:
 	@for dir in $(DIRS); do \
-                rm -R ../bin/$$dir; \
+                rm -Rf ../bin/$$dir; \
         done

@@ -203,4 +203,4 @@ main.bin: main.ihx
 	$(HEX2BIN) main.bin -f0 -a0 -x6 -b32768 -e57344 main.ihx
 	
 clean:
-	$(RM) *.lst *.rel *.ihx *.sym *.asm *.map *.bin *.noi linkmain_unix.lnk
+	$(RM) -f *.lst *.rel *.ihx *.sym *.asm *.map *.bin *.noi linkmain_unix.lnk
