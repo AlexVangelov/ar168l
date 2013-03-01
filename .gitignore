@@ -8,9 +8,15 @@
 *.pyo
 *.rej
 *.working
+*.o
 .hg
 .svn
 .project
 .cproject
 _svn
 svn-commit*.tmp
+bin/*
+src/*.asm
+src/*.lst
+src/*.sym
+src/*.rel
