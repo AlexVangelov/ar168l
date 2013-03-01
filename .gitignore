@@ -20,3 +20,9 @@ src/*.asm
 src/*.lst
 src/*.sym
 src/*.rel
+font/font
+convert/convert
+hex2bin/hex2bin
+namebin/namebin
+relink/relink
+reversion/reversion
