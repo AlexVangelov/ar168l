@@ -20,7 +20,7 @@ src/*.asm
 src/*.lst
 src/*.sym
 src/*.rel
-font/font
+tool/font/font
 tool/convert/convert
 tool/hex2bin/hex2bin
 tool/namebin/namebin
