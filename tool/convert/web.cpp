@@ -313,7 +313,7 @@ void OnWeb2Web(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -323,7 +323,7 @@ void OnWeb2Web(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -408,7 +408,7 @@ void OnWeb2Info(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -418,7 +418,7 @@ void OnWeb2Info(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif

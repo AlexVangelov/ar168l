@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------
    AR1688 Menu function copy right information
 
-   Copyright (c) 2006-2012. Tang, Li <tangli@palmmicro.com>
+   Copyright (c) 2006-2013. Tang, Li <tangli@palmmicro.com>
                             Lin, Rongrong <woody@palmmicro.com>
 
    All rights reserved.

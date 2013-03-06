@@ -1,6 +1,11 @@
 #define SIP_SERVER_PORT				5060
-//#define SIP_DEFAULT_SESSION_EXPIRE	1800
+
+#ifdef OEM_ROIP
 #define SIP_DEFAULT_SESSION_EXPIRE	127		// 113, 127 are 2 nearest prime number around 120. Asterisk will NOT disconnect call based on this
+#else
+#define SIP_DEFAULT_SESSION_EXPIRE	1800
+#endif
+
 #define SIP_DEFAULT_MIN_SE			90
 
 // Label length

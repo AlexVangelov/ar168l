@@ -553,7 +553,6 @@ BOOL _SetString(char * p, CString strName, CString strVal, char *pLabel, int iMa
 	CString strLabel = pLabel;
 
 	if (strLabel == strName)
-//	if (!strcmp((char *)(LPCTSTR)strName, pLabel))
 	{
 		if (strVal.IsEmpty())
 		{
@@ -563,7 +562,6 @@ BOOL _SetString(char * p, CString strName, CString strVal, char *pLabel, int iMa
 		iLen = strVal.GetLength();
 		if (iLen <	iMaxlen)
 		{
-//			memcpy((char *)p, strVal, iLen);
 #ifndef __GNUC__
 			WideCharToMultiByte(CP_ACP, 0, strVal, -1, p, iMaxlen, NULL, NULL); 
 #else
@@ -799,7 +797,6 @@ BOOL _SetDigitmap(char * p, CString strName, CString strVal, char *pLabel)
 	CString strLabel = pLabel;
 
 	if (strLabel != strName)
-//	if (strcmp((char *)(LPCTSTR)strName, pLabel))
 	{
 		return FALSE;
 	}
@@ -824,7 +821,6 @@ BOOL _SetDigitmap(char * p, CString strName, CString strVal, char *pLabel)
 		iLen = strTemp.GetLength();
 		if (iLen && iLen < DIGITMAP_ENTRY_LEN)
 		{
-//			memcpy(p, strTemp, iLen);
 #ifndef __GNUC__
 			WideCharToMultiByte(CP_ACP, 0, strTemp, -1, p, iLen, NULL, NULL); 
 #else
@@ -900,7 +896,6 @@ void _SetPB(char * p, CString strName, CString strVal, int iMaxLen)
 	iLen = strVal.GetLength();
 	if (iLen < iMaxLen)
 	{
-//		memcpy((char *)p, strVal, iLen);
 #ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, strVal, -1, p, iMaxLen, NULL, NULL); 
 #else
@@ -1357,7 +1352,6 @@ BOOL AR168CompareMap(char * pSettings, CString str, int iItem)
 	memset(pCur, 0, DIGITMAP_ENTRY_LEN);
 	if (iLen && iLen <	DIGITMAP_ENTRY_LEN)
 	{
-//		memcpy(pCur, str, iLen);
 #ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, str, -1, pCur, iLen, NULL, NULL); 
 #else

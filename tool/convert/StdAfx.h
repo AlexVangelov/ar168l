@@ -33,24 +33,20 @@
 
 // TODO: reference additional headers your program requires here
 
-#include "..//..//include//type.h"
-#define CALL_SIP
-#define CALL_IAX2
-#include "..//..//include//gdiconst.h"
-#include "..//..//include//ar168.h"
-#include "..\\common\\common.h"
-
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#else
+#endif //(#__GNUC__)
+
+#include "../../include/version.h"
 #include "../../include/type.h"
-#include "../common/mfc2std.h"
 #define CALL_SIP
 #define CALL_IAX2
 #include "../../include/gdiconst.h"
 #include "../../include/ar168.h"
-#include "../common/common.h"
+#ifdef __GNUC__
+#include "../common/mfc2std.h" // include after type.h to suppress redefinition warnings 
 #endif
+#include "../common/common.h"
 
 #endif // !defined(AFX_STDAFX_H__0266402F_7C39_4285_AB20_0FA6F2CD6688__INCLUDED_)

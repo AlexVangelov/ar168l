@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
    {
 #endif
 		// TODO: code your application's behavior here.
+		printf("Palmmicro AR1688 hex2bin utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		if (argc < 3)
 		{
 			printf("Usage: dst-file, [-f(0-255), -a(0-65535)], srcfile, [srcfile2, srcfile3 ...]\n\t-f -- fill char\n\t-a -- address offset");

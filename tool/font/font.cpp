@@ -20,7 +20,7 @@ using namespace std;
 
 void PrintHelp()
 {
-	printf("(0.55.011)font.exe fontFile [-a] [-c] [-d] [i] [-t5|6|7|8|9]\n");
+	printf("font.exe fontFile [-a] [-c] [-d] [i] [-t5|6|7|8|9]\n");
 	printf("fontFile\tfont file name\n");
 	printf("-a\t indicat the font file is 8x16 ascii (16x16 chinese by default)\n");
 	printf("-c\t convert font file to vertical format\n");
@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
    int nRetCode = 0;
    {
 #endif
+		printf("Palmmicro AR1688 font utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		if (argc < 2)
 		{
 			PrintHelp();
@@ -283,7 +284,7 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -292,7 +293,7 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 #ifndef __GNUC__
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 	if (!out.Open(strDstFile,std::fstream::out|std::fstream::trunc))
 	{
@@ -460,11 +461,10 @@ void ProcessTextFile(CString strSrcFile, CString strDstFile, int iTextFont)
 				{
 #ifndef __GNUC__
 					if (!in.ReadString(strLine))	break;
-					swscanf_s(strLine, _T("%06x"), &iLong);
 #else
 					if (!std::getline(in, strLine)) break;
-					sscanf(strLine, _T("%06x"), &iLong);
 #endif
+					swscanf_s(strLine, _T("%06x"), &iLong);
 					iLong >>= 7;
 					iVal[i * 2] = (unsigned char)(iLong >> 8);
 					iVal[i * 2 + 1] = (unsigned char)iLong;
@@ -537,7 +537,7 @@ void GenerateISO8859File(CString strISO8859, CString strSrcFile, CString strDstF
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -558,7 +558,7 @@ void GenerateISO8859File(CString strISO8859, CString strSrcFile, CString strDstF
 	if (!in.Open(strISO8859, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open ISO8859 file %s\n", strISO8859);
+		wprintf(_T("Can not open ISO8859 file %s\n"), strISO8859);
 #else
 		printf("Can not open ISO8859 file %s\n", strISO8859.c_str());
 #endif
@@ -568,7 +568,7 @@ void GenerateISO8859File(CString strISO8859, CString strSrcFile, CString strDstF
 #ifndef __GNUC__
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not create destination file %s\n", strDstFile);
+		wprintf(_T("Can not create destination file %s\n"), strDstFile);
 #else
 	if (!out.Open(strDstFile,std::fstream::out|std::fstream::trunc))
 	{

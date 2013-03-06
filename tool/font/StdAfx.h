@@ -40,4 +40,6 @@
 #include "../common/mfc2std.h"
 #endif
 
+#include "../../include/version.h"
+
 #endif // !defined(AFX_STDAFX_H__5A277580_8CB5_46D9_B466_531059D431FA__INCLUDED_)

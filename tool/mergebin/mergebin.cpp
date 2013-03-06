@@ -1,7 +1,7 @@
 // mergebin.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,9 +31,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	}
 	else
 	{
+		printf("Palmmicro AR1688 mergebin utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		if (argc < 4)
 		{
-			printf("(0.55.011)Usage: mergebin dst_file, srcfile, srcfile2, [srcfile3 ...]");
+			printf("Usage: mergebin dst_file, srcfile, srcfile2, [srcfile3 ...]");
 		}
 		else
 		{

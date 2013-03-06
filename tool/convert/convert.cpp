@@ -4,6 +4,8 @@
 #include "StdAfx.h"
 #include "convert.h"
 
+//VC9 can handle this kind of file name correctly! C:\sdcc\src/settings/default_sip.txt
+
 void PrintHelp();
 void MainProcess(int argc, TCHAR* argv[]);
 
@@ -23,7 +25,7 @@ using namespace std;
 
 void PrintHelp()
 {
-	printf("%s\n", "Convert files from one format to another: (0.55.011)");
+	printf("%s\n", "Convert files from one format to another:");
 	printf("%s\n", "convert [[-c|--cfg2bin] | [-C|--bin2cfg] [--innomedia]| [-w|--web2web] | [-i|--web2info] |");
 	printf("%s\n", "\t[[-h|--bin2h] [-a<0-65535>] [-l<0-65535>]] | [-r|--ring2bin] |");
 	printf("%s\n", "\t[-v|--ivr2bin][-p|--pb2bin] | [-P|--bin2pb] | [-d|--dsp2h]]");
@@ -70,6 +72,7 @@ int main(int argc, char *argv[])
 	{
 #endif
 		// TODO: code your application's behavior here.
+		printf("Palmmicro AR1688 convert utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		MainProcess(argc, argv);
 	}
 
@@ -96,7 +99,6 @@ void MainProcess(int argc, TCHAR* argv[])
 	BOOL bForce;
 	BOOL bInnomedia;
 	int iAddressOffset = 0, iConvertLength = 0;
-//	char *pArg;
 	char pArg[128];
 
 	iFunction = FUNCTION_NONE;
@@ -108,7 +110,6 @@ void MainProcess(int argc, TCHAR* argv[])
 	strDstDir = "";
 	for (i = 1; i < argc; i ++)
 	{
-//		pArg = argv[i];
 #ifndef __GNUC__
 		WideCharToMultiByte(CP_ACP, 0, argv[i], -1, pArg, 128, NULL, NULL); 
 #else
@@ -217,9 +218,10 @@ void MainProcess(int argc, TCHAR* argv[])
 	}
 	strSrcFile = strSrcDir + strFileList.GetHead();
 	strDstFile = strDstDir + strFileList.GetTail();
-//	printf("src file: %s\n", strSrcFile);
-//	printf("dst file: %s\n", strDstFile);
-#ifdef __GNUC__
+#ifndef __GNUC__
+	wprintf(_T("src file: %s\n"), strSrcFile);
+	wprintf(_T("dst file: %s\n"), strDstFile);
+#else
 	printf("src file: %s\n", strSrcFile.c_str());
 	printf("dst file: %s\n", strDstFile.c_str());
 #endif

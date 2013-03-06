@@ -9,8 +9,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-//BOOL RunProcess(CString strCmdLine);
-
 void ZipBin(CString strDstName);
 void ReportCodeSize();
 CString RenameBinary(CString strFileName, CString strVer, CString strCall, CString strRes, CString strOem);
@@ -55,7 +53,7 @@ int main(int argc, char *argv[])
    int nRetCode = 0;
    {
 #endif
-		printf("Palmmicro AR1688 namebin utility 0.59.028\n");
+		printf("Palmmicro AR1688 namebin utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		if (argc < 2)
 		{
 			PrintHelp();
@@ -104,7 +102,7 @@ CString _GetVersion(CString strCurDir)
 #endif
 	{
 		goto End;
-	} 
+	}
 
 	strVersion = "";
 	bStart = FALSE;
@@ -176,7 +174,6 @@ End:
 
 void _SetFlag(char * p, CString strVal, int iMax)
 {
-//	int i, iLen;
 	int iLen;
 
 	iLen = strVal.GetLength();
@@ -185,12 +182,6 @@ void _SetFlag(char * p, CString strVal, int iMax)
 #else
    memcpy(p, strVal.c_str(), iLen);
 #endif
-//	memcpy(p, strVal, iLen);
-/*	for (i = 0; i < iLen; i ++)
-	{
-		p[i] = strVal.GetAt(i);
-	}
-*/
 	memset((char *)(p + iLen), 0, iMax - iLen);
 }
 
@@ -205,6 +196,7 @@ void _SetStr(char * p, CString strVal, int iMax)
 	memset((char *)p+iLen, 0, iMax-iLen);
 }
 */
+
 void _SetFile(char * p, CString strVer, CString strCall, CString strRes, CString strOem, CString strVersion)
 {
 	int iLen;
@@ -244,6 +236,11 @@ BOOL _WriteHttpPage(char * p, CStringList & listSrcName)
 #endif
 	{
 		strSrcName = listSrcName.GetNext(pos);
+/*
+#ifndef __GNUC__
+		wprintf(_T("Http file: %s\n"), strSrcName);
+#endif
+*/
 		if (!in.Open(strSrcName, CFile::modeRead))
 		{
 			return FALSE;
@@ -329,7 +326,7 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 #ifndef __GNUC__
 		strResDir = strCurDir + _T("res\\");
 #else
-      strResDir = strCurDir + _T("res/");
+		strResDir = strCurDir + _T("res/");
 #endif
 		strTempVer = strVer;
 		strTempVer.MakeLower();
@@ -342,7 +339,7 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 #ifndef __GNUC__
 			strResDir += _T("innomedia\\");
 #else
-         strResDir += _T("innomedia/");
+			strResDir += _T("innomedia/");
 #endif
 		}
 		else if (strOem == _T("ip20"))
@@ -350,18 +347,18 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 #ifndef __GNUC__
 			strResDir += _T("ip20\\");
 #else
-         strResDir += _T("ip20/");
+			strResDir += _T("ip20/");
 #endif
 		}
 		else if (strOem ==  _T("roip"))
 		{
-#ifndef __GNUC__s
+#ifndef __GNUC__
 			strResDir += _T("roip\\");
 #else
 			strResDir += _T("roip/");
 #endif
 		}
-#ifndef __GNUC__s
+#ifndef __GNUC__
 		strResDir += strRes + _T("\\");
 #else
 		strResDir += strRes + _T("/");
@@ -418,9 +415,10 @@ BOOL _MergeFile(CString strCurDir, CString strSrcName, CString strDstName, CStri
 		for (i = 0; i < DSP_FILE_NUM; i ++)
 		{
 #ifndef __GNUC__
-			strFileName = strCurDir + _T("\\res\\") + _cDspFiles[i];
+			strFileName = strCurDir + _T("res\\") + _cDspFiles[i];
+//			wprintf(_T("DSP file: %s\n"), strFileName);
 #else
-			strFileName = strCurDir + _T("/res/") + _cDspFiles[i];
+			strFileName = strCurDir + _T("res/") + _cDspFiles[i];
 #endif
 			if (!in.Open(strFileName, CFile::modeRead))
 			{
@@ -581,9 +579,9 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 
 	// write settings_sip.dat or settings_iax2.dat
 #ifndef __GNUC__
-	strSettingsFile = strCurDir + _T("\\settings\\") + strVer + _T("_") + strCall + _T("_") + strRes;
+	strSettingsFile = strCurDir + _T("settings\\") + strVer + _T("_") + strCall + _T("_") + strRes;
 #else
-	strSettingsFile = strCurDir + _T("/settings/") + strVer + _T("_") + strCall + _T("_") + strRes;
+	strSettingsFile = strCurDir + _T("settings/") + strVer + _T("_") + strCall + _T("_") + strRes;
 #endif
 	if (_IsOem(strOem))
 	{
@@ -593,14 +591,14 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 		strSettingsFile += _T(".txt");
 #ifndef __GNUC__	
 	if (!CFile::GetStatus(strSettingsFile, status))
-   {	// use default settings if speical .txt not found
-		strSettingsFile = strCurDir + _T("\\settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
+	{	// use default settings if speical .txt not found
+		strSettingsFile = strCurDir + _T("settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
 	}
-   strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
+	strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
 #else
    if (stat(strSettingsFile.c_str(),&status))
 	{	// use default settings if speical .txt not found
-		strSettingsFile = strCurDir + _T("/settings/") + _T("default") + _T("_") + strCall + _T(".txt");
+		strSettingsFile = strCurDir + _T("settings/") + _T("default") + _T("_") + strCall + _T(".txt");
 	}
    {
       char buff[511];
@@ -648,10 +646,10 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 
 	// write default settings
 #ifndef __GNUC__
-	strSettingsFile = strCurDir + _T("\\settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
+	strSettingsFile = strCurDir + _T("settings\\") + _T("default") + _T("_") + strCall + _T(".txt");
 	strCmdLine.Format(_T("..\\bin\\convert -c -f %s settings.dat"), strSettingsFile);
 #else
-   strSettingsFile = strCurDir + _T("/settings/") + _T("default") + _T("_") + strCall + _T(".txt");
+   strSettingsFile = strCurDir + _T("settings/") + _T("default") + _T("_") + strCall + _T(".txt");
    {
       char buff[511];
       sprintf(buff, "../bin/convert -c -f %s settings.dat", strSettingsFile.c_str());
@@ -692,9 +690,10 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 
 	// Write phonebook.dat
 #ifndef __GNUC__
-	strPhonebookName = strCurDir + _T("\\res\\") + _T("phonebook.dat");
+	strPhonebookName = strCurDir + _T("res\\") + _T("phonebook.dat");
+//	wprintf(_T("Phone book file: %s\n"), strPhonebookName);
 #else
-	strPhonebookName = strCurDir + _T("/res/") + _T("phonebook.dat");
+	strPhonebookName = strCurDir + _T("res/") + _T("phonebook.dat");
 #endif
 	if (!_WriteFile(out, strPhonebookName, PHONEBOOK_FILE_SIZE))
 	{
@@ -703,9 +702,10 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 
 	// write ringtone.dat
 #ifndef __GNUC__
-	strRingtoneName = strCurDir + _T("\\res\\") + _T("ringtone.dat");
+	strRingtoneName = strCurDir + _T("res\\") + _T("ringtone.dat");
+//	wprintf(_T("Ring tone file: %s\n"), strRingtoneName);
 #else
-	strRingtoneName = strCurDir + _T("/res/") + _T("ringtone.dat");
+	strRingtoneName = strCurDir + _T("res/") + _T("ringtone.dat");
 #endif
 	if (!_WriteFile(out, strRingtoneName, SYSTEM_RINGTONE_PAGE_NUM * FILE_FULL_PAGE_SIZE))
 	{
@@ -714,9 +714,10 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 
 	// write ringtone_hold.dat
 #ifndef __GNUC__
-	strHoldmusicName = strCurDir + _T("\\res\\") + _T("holdmusic.dat");
+	strHoldmusicName = strCurDir + _T("res\\") + _T("holdmusic.dat");
+//	wprintf(_T("Hold music file: %s\n"), strHoldmusicName);
 #else
-	strHoldmusicName = strCurDir + _T("/res/") + _T("holdmusic.dat");
+	strHoldmusicName = strCurDir + _T("res/") + _T("holdmusic.dat");
 #endif
 	if (!_WriteFile(out, strHoldmusicName, SYSTEM_HOLDMUSIC_PAGE_NUM * FILE_FULL_PAGE_SIZE))
 	{
@@ -727,17 +728,19 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	if (strOem == _T("ivr"))
 	{
 #ifndef __GNUC__
-		strFontName = strCurDir + _T("\\res\\") + _T("ivr_") + strRes + _T(".dat");
+		strFontName = strCurDir + _T("res\\") + _T("ivr_") + strRes + _T(".dat");
+//		wprintf(_T("IVR file: %s\n"), strFontName);
 #else
-	   strFontName = strCurDir + _T("/res/") + _T("ivr_") + strRes + _T(".dat");
+	   strFontName = strCurDir + _T("res/") + _T("ivr_") + strRes + _T(".dat");
 #endif
 	}
 	else
 	{
 #ifndef __GNUC__
-		strFontName = strCurDir + _T("\\res\\") + _T("font.dat");
+		strFontName = strCurDir + _T("res\\") + _T("font.dat");
+//		wprintf(_T("Font file: %s\n"), strFontName);
 #else
-		strFontName = strCurDir + _T("/res/") + _T("font.dat");
+		strFontName = strCurDir + _T("res/") + _T("font.dat");
 #endif
 	}
 	if (!_WriteFile(out, strFontName, SYSTEM_FONT_PAGE_NUM * FILE_FULL_PAGE_SIZE))
@@ -755,6 +758,11 @@ CString RenameBinary(CString strFileName, CString strVer, CString strCall, CStri
 	}
 
 	out.Close();
+/*
+#ifndef __GNUC__
+	wprintf(_T("Output files: %s\n%s\n%s\n"), strPage0Name, strDstName, strAllName);
+#endif
+*/
 End:
 	return strDstName;
 
@@ -794,7 +802,7 @@ void ReportCodeSize()
 		{
 			bFound = false;
 #ifndef __GNUC__
-         for (pos = list.GetHeadPosition(); pos != NULL;)
+			for (pos = list.GetHeadPosition(); pos != NULL;)
 #else
          for (pos=list.begin(); pos != list.end(); ++pos)
 #endif

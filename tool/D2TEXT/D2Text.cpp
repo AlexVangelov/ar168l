@@ -59,7 +59,7 @@ void MainProcess(int argc, TCHAR* argv[])
 	datFilename = argv[1];
 	if (!datFile.Open(datFilename,CFile::modeRead|CFile::typeBinary))
 	{
-		printf("Can not open dat file %s\n", datFilename);
+		wprintf(_T("Can not open dat file %s\n"), datFilename);
 		return;
 	}
 
@@ -67,7 +67,7 @@ void MainProcess(int argc, TCHAR* argv[])
 	txtFilename= datFilename.Left(fnlen-4)+".txt";
 	if (!txtFile.Open(txtFilename,CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not open txt file %s\n", txtFilename);
+		wprintf(_T("Can not open txt file %s\n"), txtFilename);
 		datFile.Close();
 		return;
 	}

@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------
    AR1688 UI string copy right information
 
-   Copyright (C) 2006-2010. Lin, Rongrong <woody@palmmicro.com>
+   Copyright (C) 2006-2013. Lin, Rongrong <woody@palmmicro.com>
                             Tang, Li      <tangli@palmmicro.com>
                             Li, Yajing    <liyajing@palmmicro.com>
 

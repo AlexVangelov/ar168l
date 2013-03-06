@@ -33,4 +33,6 @@
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
+#include "../../include/version.h"
+
 #endif // !defined(AFX_STDAFX_H__E8B772FC_BDEE_40DD_8FB3_4523E7A3FD53__INCLUDED_)

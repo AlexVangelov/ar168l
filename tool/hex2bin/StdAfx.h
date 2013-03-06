@@ -32,15 +32,15 @@
 
 // TODO: reference additional headers your program requires here
 
-#include "..\\..\\include\\ar168.h"
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
 #else // __GNUC__
 #include "../common/mfc2std.h"
+#endif
+
 #include "../common/common.h"
 #include "../../include/version.h"
 #include "../../include/ar168.h"
-#endif
 
 #endif // !defined(AFX_STDAFX_H__C09060B0_3E8D_40A1_8AEB_A975643894FA__INCLUDED_)

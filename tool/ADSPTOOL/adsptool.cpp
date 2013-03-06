@@ -467,13 +467,13 @@ void OnExe2Dat(CString strSrcFile, CString strDstFile, bool bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 		in.Close();
 		return;
 	}
@@ -513,13 +513,13 @@ void OnSym2H(CString strSrcFile, CString strDstFile, bool bForce)
 
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 		return;
 	}
 
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 		in.Close();
 		return;
 	}
@@ -670,19 +670,19 @@ int Dm_cov( CString Filenames[])
 
 	if(NULL==temp_file.Open(Filenames[2],CFile::modeWrite|CFile::modeCreate|CFile::typeText))
 		{
-			printf("can't open temp file %s", Filenames[2]);
+			wprintf(_T("can't open temp file %s"), Filenames[2]);
 			exit(1);
 		};
 
 		if (NULL==link_file.Open(Filenames[1], CFile::modeRead|CFile::typeText))
 		{
-			printf("can't open link file %s", Filenames[1]);
+			wprintf(_T("can't open link file %s"), Filenames[1]);
 			exit(1);
 
 		};
 		if(NULL==sym_file.Open(Filenames[0],CFile::modeRead|CFile::typeText))
 		{
-			printf("can't open sym file %s", Filenames[0]);
+			wprintf(_T("can't open sym file %s"), Filenames[0]);
 			exit(1);
 		};
 
@@ -828,19 +828,19 @@ int Exe_Merge(CString Filenames[])
 	
 		if (NULL==exe_file.Open(Filenames[3], CFile::modeRead|CFile::typeText))
 		{
-			printf("can't open exe file %s", Filenames[3]);
+			wprintf(_T("can't open exe file %s"), Filenames[3]);
 			exit(1);
 		}
 
 		if (NULL==temp_file.Open(Filenames[2], CFile::modeRead|CFile::typeText))
 		{
-			printf("can't open temp file %s", Filenames[2]);
+			wprintf(_T("can't open temp file %s"), Filenames[2]);
 			exit(1);
 		}
 		
 		if (NULL==out_file.Open(Filenames[4], CFile::modeWrite|CFile::typeText|CFile::modeCreate))
 		{
-			printf("can't open out file %s", Filenames[4]);
+			wprintf(_T("can't open out file %s"), Filenames[4]);
 			exit(1);
 		}
 

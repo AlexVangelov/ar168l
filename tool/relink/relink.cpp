@@ -33,7 +33,6 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	{
 		CString strFileName, strVer, strCall, strRes, strOem;
 
-//		printf("Palmmicro AR1688 relink utility 0.59.028\n");
 		printf("Palmmicro AR1688 relink utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
 		CommandLineDefault(argc, argv, strFileName, strVer, strCall, strRes, strOem);
 		_RewriteLinkFile(strFileName, strVer, strCall, strRes, strOem);

@@ -411,13 +411,7 @@
 #define SOFT_VER_LOW		6
 #define SOFT_VER_BUILD		1
 #define ENG_BUILD_HIGH		0
-#define ENG_BUILD_MID		0
-#define ENG_BUILD_LOW		2
-
-
-
-
-
-
+#define ENG_BUILD_MID		1
+#define ENG_BUILD_LOW		3
 
 

@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------
    AR1688 Time function copy right information
 
-   Copyright (c) 2006-2012. Lin, Rongrong <woody@palmmicro.com>
+   Copyright (c) 2006-2013. Lin, Rongrong <woody@palmmicro.com>
                             Tang, Li      <tangli@palmmicro.com>
 
    Alex Gradinar <Alex.Gradinar at cartel.md> added Europe Daylight Saving time

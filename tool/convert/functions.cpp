@@ -14,7 +14,7 @@ void OnBin2Cfg(CString strSrcFile, CString strDstFile, BOOL bForce, BOOL bInnome
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -24,7 +24,7 @@ void OnBin2Cfg(CString strSrcFile, CString strDstFile, BOOL bForce, BOOL bInnome
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -70,7 +70,7 @@ void OnCfg2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -80,7 +80,7 @@ void OnCfg2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -167,7 +167,7 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -177,7 +177,7 @@ void OnBin2H(CString strSrcFile, CString strDstFile, BOOL bForce, int iAddressOf
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -276,7 +276,7 @@ void OnRing2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -286,7 +286,7 @@ void OnRing2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -329,7 +329,7 @@ void OnIvr2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -339,7 +339,7 @@ void OnIvr2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeBinary))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -392,7 +392,7 @@ void OnPB2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -402,7 +402,7 @@ void OnPB2Bin(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -453,7 +453,7 @@ void OnBin2PB(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!in.Open(strSrcFile, CFile::modeRead))
 	{
 #ifndef __GNUC__
-		printf("Can not open source file %s", strSrcFile);
+		wprintf(_T("Can not open source file %s"), strSrcFile);
 #else
 		printf("Can not open source file %s", strSrcFile.c_str());
 #endif
@@ -463,7 +463,7 @@ void OnBin2PB(CString strSrcFile, CString strDstFile, BOOL bForce)
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif
@@ -519,7 +519,7 @@ void OnDsp2H(CStringList& strFileList, CString strSrcDir, CString strDstDir, BOO
 #ifndef __GNUC__
 		if (!CFile::GetStatus(strSrcFile, status))
 		{
-			printf("Source file %s doesn't exist", strSrcFile);
+			wprintf(_T("Source file %s doesn't exist"), strSrcFile);
 #else
 		if (stat(strSrcFile.c_str(),&status))
 		{
@@ -567,7 +567,7 @@ void OnDsp2H(CStringList& strFileList, CString strSrcDir, CString strDstDir, BOO
 	if (!out.Open(strDstFile, CFile::modeCreate|CFile::modeWrite|CFile::typeText))
 	{
 #ifndef __GNUC__
-		printf("Can not create destination file %s", strDstFile);
+		wprintf(_T("Can not create destination file %s"), strDstFile);
 #else
 		printf("Can not create destination file %s", strDstFile.c_str());
 #endif

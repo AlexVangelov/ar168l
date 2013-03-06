@@ -33,7 +33,6 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	{
 		CString strFileName, strVer, strCall, strRes, strOem;
 		
-		printf("Palmmicro reversion utility 0.55.011\n");
 		CommandLineDefault(argc, argv, strFileName, strVer, strCall, strRes, strOem);
 		_RewriteVersion(strFileName, strVer, strCall, strRes, strOem);
 	}
@@ -46,8 +45,7 @@ int main(int argc, char *argv[])
 	int nRetCode = 0;
 
 		CString strFileName, strVer, strCall, strRes, strOem;
-		
-		printf("Palmmicro reversion utility 0.55.011\n");
+
 		CommandLineDefault(argc, argv, strFileName, strVer, strCall, strRes, strOem);
 		_RewriteVersion(strFileName, strVer, strCall, strRes, strOem);
 	return nRetCode;
@@ -113,9 +111,12 @@ void _RewriteVersion(CString strFileName, CString strVer, CString strCall, CStri
 	POSITION pos, old;
 	BOOL bChanged;
 
+	printf("Palmmicro AR1688 reversion utility %d.%d%d.%d%d%d\n", SOFT_VER_HIGH, SOFT_VER_LOW, SOFT_VER_BUILD, ENG_BUILD_HIGH, ENG_BUILD_MID, ENG_BUILD_LOW);
+
 	GetCurrentDirectory(128, szCurDir);
 #ifndef __GNUC__
 	strName.Format(_T("%s\\%s"), szCurDir, strFileName);
+//	wprintf(_T("version file: %s\n"), strFileName);
 #else
    {
       char buff[511];

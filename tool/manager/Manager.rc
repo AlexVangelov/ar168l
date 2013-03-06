@@ -148,8 +148,8 @@ CAPTION "About AR1688 Manager"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "AR1688 Manager Version 0.55",IDC_STATIC,40,10,119,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2006-2011 Palmmicro",IDC_STATIC,40,25,120,8
+    LTEXT           "AR1688 Manager Version 0.62",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006-2013 Palmmicro",IDC_STATIC,40,25,120,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
 END
 
