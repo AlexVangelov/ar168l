@@ -14,9 +14,9 @@ VERSION_FILE = $(PATH_SDCC)\include\version.h
 LINKMAIN = linkmain
 else
 RM = rm
-AZ80 = sdasz80
-CZ80 = sdcc
-LZ80 = sdld
+AZ80 = ../bin/sdasz80
+CZ80 = ../bin/sdcc
+LZ80 = ../bin/sdld
 HEX2BIN = ../bin/hex2bin
 INC = -I../include
 
