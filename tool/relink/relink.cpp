@@ -73,7 +73,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 		strNew = _T("..\\lib\\chip.rel");
 		if (strVer == _T("ar168k") || strVer == _T("ar168km") || strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt")
 			|| strVer == _T("gp2266") || strVer == _T("bt2008n") || strVer == _T("fwv2800") || strVer == _T("dxdt") 
-			|| strVer == _T("ar168p") || strVer == _T("ar168r"))
+			|| strVer == _T("ar168p") || strVer == _T("ar168r") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\chip_plus\\chip.rel");
 		}
@@ -85,7 +85,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 		strNew = _T("..\\lib\\codec.rel");
 		if (strVer == _T("ar168k") || strVer == _T("ar168km") || strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt") 
 			|| strVer == _T("gp2266") || strVer == _T("bt2008n") || strVer == _T("fwv2800") || strVer == _T("dxdt") 
-			|| strVer == _T("ar168p") || strVer == _T("ar168r"))
+			|| strVer == _T("ar168p") || strVer == _T("ar168r") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\chip_plus\\codec.rel");
 		}
@@ -105,7 +105,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 		}
 		else if (strVer == _T("ar168k") || strVer == _T("ar168km") || strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt")
 			|| strVer == _T("gp2266") || strVer == _T("bt2008n") || strVer == _T("fwv2800") || strVer == _T("dxdt") 
-			|| strVer == _T("ar168p") || strVer == _T("ar168r"))
+			|| strVer == _T("ar168p") || strVer == _T("ar168r") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\chip_plus\\dsp.rel");
 		}
@@ -115,7 +115,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 	else if (str.Right(9) == _T("flash.rel"))
 	{
 		strNew = _T("..\\lib\\flash.rel");
-		if (strVer == _T("ar168k") || strVer == _T("ar168m") || strVer == _T("ar168mt") || strVer == _T("ar168r"))
+		if (strVer == _T("ar168k") || strVer == _T("ar168m") || strVer == _T("ar168mt") || strVer == _T("ar168r") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\chip_plus\\flash.rel");
 		}
@@ -148,7 +148,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 		{
 			strNew = _T("..\\lib\\isr.rel");
 		}
-		else if (strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt"))
+		else if (strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\uart\\isr.rel");
 		}
@@ -182,7 +182,7 @@ BOOL _ProcessString(CString & str, CString strVer, CString strCall, CString strR
 		if (strOem == _T("roip"))
 		{
 		}
-		else if (strOem == _T("uart") || strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt"))
+		else if (strOem == _T("uart") || strVer == _T("ar168m") || strVer == _T("ar168ms") || strVer == _T("ar168mk") || strVer == _T("ar168mt") || strVer == _T("ar168l"))
 		{
 			strNew = _T("..\\lib\\uart\\uart.rel");
 		}

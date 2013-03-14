@@ -31,3 +31,4 @@ src/*.bin
 src/*.ihx
 src/*.map
 src/*.noi
+sdcc*

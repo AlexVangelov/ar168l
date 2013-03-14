@@ -11,7 +11,7 @@
 //#define VER_AR168K			// Hardware version 7.00, 2x16 LCD, 5x6 key
 //#define VER_AR168KM			// 2x16 LCD, 5x6 key, Micrel KSZ8842, SST39VF1681
 //#define VER_GP2266			// Digitmat AR168K with dot matrix display 
-#define VER_AR168M			// AR1688 VoIP Module
+//#define VER_AR168M			// AR1688 VoIP Module
 //#define VER_AR168MK			// AR1688 VoIP Module with SST39VF1681, Micrel KSZ8842
 //#define VER_AR168MS			// AR1688 VoIP Module with SST39VF1681
 //#define VER_AR168MT			// AR1688 VoIP Module with Micrel KSZ8842
@@ -22,6 +22,7 @@
 //#define VER_AR168P			// GP2266 with KSZ8842
 //#define VER_AR168R			// RoIP (Radio over IP) Module
 //#define VER_AR168W			// Web only
+#define VER_AR168L			// Lincom Engineering Module with ST7565 lcd, 8x4 key, FT232 usb
 
 // Protocols
 #define CALL_SIP
@@ -87,6 +88,7 @@
 //#define OEM_UART
 //#define OEM_VLAN
 //#define OEM_WEBNEED
+//#define OEM_KIOSK
 
 // OEM options used in namebin.exe
 //#define OEM_SIZE		// report total code size
@@ -326,6 +328,20 @@
 #define SYS_CHIP_PLUS
 #endif
 
+#ifdef VER_AR168L
+#define MT28F016S5
+#define RTL8019AS
+#define SYS_CHIP_PLUS
+#define LCD_ST7565
+#define HOOK_GPIO                       // GPIO_C2
+#define KEY_8x4
+#ifdef OEM_KIOSK
+#define SERIAL_CARD_READER
+#else
+#define SERIAL_LOOP
+#endif
+#endif
+
 #ifdef OEM_IVRG729
 #define SYS_IVR_G729
 #endif
@@ -413,5 +429,6 @@
 #define ENG_BUILD_HIGH		0
 #define ENG_BUILD_MID		1
 #define ENG_BUILD_LOW		5
+
 
 
