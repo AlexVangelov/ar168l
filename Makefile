@@ -1,7 +1,7 @@
 SDCC_SVN_IMMEDIATE_DIRS = src sdas sdas/asgb sdas/linksrc sdas/asranlib sdas/asxxsrc doc device device/include device/non-free device/non-free/include support support/librarian support/makebin support/regression support/regression/ports support/regression/ports/host support/valdiag support/scripts support/Util
 SDCC_SVN_INFINITY_DIRS = src/z80 sdas/asz80 support/cpp
 SDCC_REVISION = 6078
-SDCC_BUILD_DIR = sdcc_build
+SDCC_BUILD_DIR = sdcc_$(SDCC_REVISION)
 
 all: tool install demo
 
