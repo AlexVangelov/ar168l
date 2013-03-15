@@ -70,6 +70,14 @@ void KeyInit()
 	rGPIO_B = 0;
 #endif
 
+#ifdef KEY_8x4 // B0. B2, B4, B5 input
+	rKeyScanControl = 0;
+	rGPIO_B_Config = 0;
+	rGPIO_B_Output_Enable = 0;
+	rGPIO_B_Input_Enable = 0x35;	// 00110101B
+	rGPIO_B = 0;
+#endif
+
 #ifdef KEY_8X5	// B0, B2, B4, B5, D4 input
 	rKeyScanControl = 0;
 	rGPIO_B_Config = 0;

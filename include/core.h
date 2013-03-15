@@ -343,6 +343,7 @@ void UART_Isr(UCHAR iVal);
 #define KEY_4X4_SIZE	4
 #define KEY_5X5_SIZE	5
 #define KEY_5X6_SIZE	12
+#define KEY_8X4_SIZE	8
 #define KEY_8X5_SIZE	8
 #define KEY_7X8_SIZE	8
 
@@ -355,6 +356,8 @@ void UART_Isr(UCHAR iVal);
 #elif defined SERIAL_WDCB
 #define SERIAL_BUF_SIZE_TX	32
 #define SERIAL_BUF_SIZE_RX	32 
+#elif defined SERIAL_CARD_READER
+#define SERIAL_BUF_SIZE_RX      32
 #endif
 
 void isr() __interrupt __naked;

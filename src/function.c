@@ -508,6 +508,10 @@ void UI_Start()
 	Key5x6_Start();
 #endif
 
+#ifdef KEY_8x4
+	Key8x4_Start();
+#endif
+
 #ifdef KEY_8X5
 	Key8x5_Start();
 #endif
@@ -826,6 +830,10 @@ void UI_Run()
 
 #ifdef KEY_5X6
 	Key5x6_Run();
+#endif
+
+#ifdef KEY_8x4
+	Key8x4_Run();
 #endif
 
 #ifdef KEY_8X5

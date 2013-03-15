@@ -346,7 +346,7 @@
 #define SYS_IVR_G729
 #endif
 
-#if defined SERIAL_UI || defined SERIAL_LOOP || defined SERIAL_WDCB
+#if defined SERIAL_UI || defined SERIAL_LOOP || defined SERIAL_WDCB || defined SERIAL_CARD_READER
 #define SYS_UART
 #endif
 
@@ -429,6 +429,11 @@
 #define ENG_BUILD_HIGH		0
 #define ENG_BUILD_MID		1
 #define ENG_BUILD_LOW		5
+
+
+
+
+
 
 
 

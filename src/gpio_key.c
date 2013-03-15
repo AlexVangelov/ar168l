@@ -127,7 +127,7 @@ void Key4x4_Run()
 
 #endif
 
-#if defined KEY_5X5 || defined KEY_5X6 || defined KEY_8X5 || defined KEY_7X8 || defined KEY_C2
+#if defined KEY_5X5 || defined KEY_5X6 || defined KEY_8x4 || defined KEY_8X5 || defined KEY_7X8 || defined KEY_C2
 
 UCHAR _iOldKey, _iZeroKey;
 
@@ -332,6 +332,57 @@ void Key5x6_Run()
 	OldKeyRun(iKey);
 }
 
+#endif
+
+#ifdef KEY_8x4
+volatile UCHAR _p8x4_KeyVals[KEY_8X4_SIZE];
+volatile BOOLEAN _b8x4_Key;
+
+void Key8x4_Start()
+{
+	memset(_p8x4_KeyVals, 0, KEY_8X4_SIZE);
+	_b8x4_Key = FALSE;
+	OldKeyStart();
+}
+
+const UCHAR _iKey8x4[6][KEY_8X4_SIZE] = {
+	{'1', '4', '7', '*', 'e', 'e', 'e', 'e'}, 
+	{'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'}, 
+	{'2', '5', '8', '0', 'e', 'e', 'e', 'e'}, 
+	{'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'}, 
+	{'3', '6', '9', '#', 'e', 'e', 'e', 'e'}, 
+	{'h', 'i', 'b', 'e', 'e', 'e', 'e', 'e'}, 
+};
+
+void Key8x4_Run()
+{
+	UCHAR i, j, iKey, iVal;
+	UCHAR pVals[KEY_8X4_SIZE];
+
+	if (!_b8x4_Key)	return;
+	_b8x4_Key = FALSE;
+
+	memcpy(pVals, _p8x4_KeyVals, KEY_8X4_SIZE);
+	memset(_p8x4_KeyVals, 0, KEY_8X4_SIZE);
+
+	iKey = 0;
+	for (i = 0; i < KEY_8X4_SIZE; i ++)
+	{
+		iVal = pVals[i] & 0x35;
+		if (iVal)
+		{
+			for (j = 0; j < 6; j ++) //check from b0 to b5
+			{
+				if (iVal == (0x01 << j))
+				{
+					iKey = _iKey8x4[j][i];
+					break;
+				}
+			}
+		}
+	}
+	OldKeyRun(iKey);
+}
 #endif
 
 #ifdef KEY_8X5

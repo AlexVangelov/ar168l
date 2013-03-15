@@ -56,6 +56,11 @@ extern volatile UCHAR _p7x8_KeyVals[KEY_7X8_SIZE];
 extern volatile BOOLEAN _b7x8_Key;
 #endif
 
+#ifdef KEY_8x4
+extern volatile UCHAR _p8x4_KeyVals[KEY_8X5_SIZE];
+extern volatile BOOLEAN _b8x4_Key;
+#endif
+
 #ifdef KEY_8X5
 extern volatile UCHAR _p8x5_KeyVals[KEY_8X5_SIZE];
 extern volatile BOOLEAN _b8x5_Key;
@@ -276,6 +281,37 @@ void _Check4x4_Keys()
 }
 #endif
 
+#ifdef KEY_8x4
+void _Check8x4_Keys()
+{
+	UCHAR i, iOrgHigh, iOrgLow;
+	PCHAR p;
+
+	_b8x4_Key = TRUE;
+
+	p = (PCHAR)BANK_BASE;
+
+	iOrgHigh = rEM_HighPage;
+	iOrgLow = rEM_LowPage;
+
+	// CE3 and A21 control 74LV164
+	rEM_HighPage = 0x18;		// CE3, 00011000b
+	rEM_LowPage = 0x40;			// A21, 01000000b
+	p[0] = 0;
+	NOP;
+	_p8x4_KeyVals[0] = rGPIO_B;
+	rEM_LowPage = 0x00;
+	for (i = 1; i < KEY_8X4_SIZE; i ++)
+	{
+		p[0] = 0;
+		_p8x4_KeyVals[i] = rGPIO_B;// & 0x35; // mask b0,b2,b4,b5
+	}
+
+	rEM_HighPage = iOrgHigh;
+	rEM_LowPage = iOrgLow;
+}
+#endif
+
 #ifdef KEY_8X5
 void _Check8x5_Keys()
 {
@@ -379,6 +415,10 @@ void _10msCounter()
 
 #ifdef KEY_5X6
 	_Check5x6_Keys();
+#endif
+
+#ifdef KEY_8x4
+	_Check8x4_Keys();
 #endif
 
 #ifdef KEY_8X5

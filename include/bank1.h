@@ -103,6 +103,9 @@ void Key5x5_Run();
 void Key5x6_Start();
 void Key5x6_Run();
 
+void Key8x4_Start();
+void Key8x4_Run();
+
 void Key8x5_Start();
 void Key8x5_Run();
 

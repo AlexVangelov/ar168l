@@ -389,6 +389,56 @@ void SerialRun()
 		}
 	}
 }
+#elif defined SERIAL_CARD_READER
+volatile UCHAR sBuf[32];
+volatile USHORT sLen;
+
+void SerialInit()
+{
+        // ToDo: Insert user specific initiaization here
+        Serial_iRecvHead = 0;
+        Serial_iRecvTail = SERIAL_BUF_SIZE_RX - 1;
+
+	UART_Init(156, FALSE);	//9600 8N1
+	//UART_Init(39, FALSE);	// 38400
+}
+void SerialRun() {
+	UCHAR i, iLen, iTail;
+	UCHAR pBuf[SERIAL_BUF_SIZE_RX];
+
+	iLen = 0;
+
+	// read received data
+	DI;
+	iTail = Serial_iRecvTail + 1;
+	if (iTail == SERIAL_BUF_SIZE_RX) iTail = 0;
+
+	while (iTail != Serial_iRecvHead)
+	{
+		pBuf[iLen] = Serial_pRecv[iTail];
+		iLen ++;
+		Serial_iRecvTail = iTail;
+		iTail ++;
+		if (iTail == SERIAL_BUF_SIZE_RX) iTail = 0;
+	}
+	EI;
+	if (iLen > 0) {
+		pBuf[iLen] = 0;
+		for(i=0;i<iLen;i++) {
+			sBuf[sLen] = pBuf[i];
+			sLen++;
+			if (pBuf[i] == 0x0d || pBuf[i] == 0x0a) {
+				sBuf[sLen-1] = 0;
+				if (sLen>1) {
+					// Card 
+					UdpDebugString(sBuf);
+				}
+				sLen = 0;
+			}
+			if (sLen > 30) sLen=0;
+		}
+	}
+}
 #endif
 #endif	// SYS_UART
 
