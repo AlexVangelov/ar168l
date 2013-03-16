@@ -38,7 +38,8 @@
 
 #include "bank1.h"
 
-#ifdef CALL_NONE
+//#ifdef CALL_NONE
+#if defined CALL_NONE || defined VER_AR168L
 void KeyInit()
 {
 #ifdef KEY_4X4

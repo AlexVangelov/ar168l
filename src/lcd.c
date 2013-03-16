@@ -173,7 +173,8 @@ void LcdLight(UCHAR iRow, UCHAR iData)
 	DisableCEx();
 }
 
-#ifdef CALL_NONE
+//#ifdef CALL_NONE
+#if defined CALL_NONE || defined VER_AR168L
 void _set_start_line(UCHAR iStartLine)
 {
 	iStartLine &= 0x3f;
@@ -201,7 +202,7 @@ void LcdInit()
 #else
 	write_control_byte(0xa0);	// ADC select, 10100000, normal, 10100001, reverse
 #endif
-#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT// || defined VER_BT2008N || defined VER_AR168L
+#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT || defined VER_AR168L // || defined VER_BT2008N
 	write_control_byte(0xc8);	// Common output mode select, 11000***, normal, 11001***, reverse
 #else
 	write_control_byte(0xc0);	// Common output mode select, 11000***, normal, 11001***, reverse

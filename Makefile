@@ -18,7 +18,7 @@ demo:
 	@echo "*** To build another configuration:";
 	@echo "*** look at the full command below ;)";
 	@echo "***************************************";
-	cd src; chmod +x mk; ./mk ar168m sip us
+	cd src; chmod +x mk; ./mk ar168l sip us
 
 sdcc: sdcc_checkout sdcc_build sdcc_install
 

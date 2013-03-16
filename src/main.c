@@ -80,7 +80,11 @@ void main()
 	FlashInit();
 	ChipInit();
 	heap_init();	// call heap_init() right after FlashInit() and ChipInit;
-
+#ifdef VER_AR168L
+	// reinit key and lcd for original bootloader #Alex
+	KeyInit();
+	LcdInit();
+#endif
 #ifdef CALL_NONE
 	KeyInit();		// detect * key for safe mode below, key.c is always in bank1!
 #ifndef SYS_CHIP_PLUS
