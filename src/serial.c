@@ -390,8 +390,8 @@ void SerialRun()
 	}
 }
 #elif defined SERIAL_CARD_READER
-volatile UCHAR sBuf[32];
-volatile USHORT sLen;
+volatile UCHAR cardBuf[32];
+volatile USHORT cardLen;
 
 void SerialInit()
 {
@@ -401,6 +401,9 @@ void SerialInit()
 
 	UART_Init(156, FALSE);	//9600 8N1
 	//UART_Init(39, FALSE);	// 38400
+
+	strcpy(cardBuf,"");
+	cardLen = 0;
 }
 void SerialRun() {
 	UCHAR i, iLen, iTail;
@@ -425,17 +428,17 @@ void SerialRun() {
 	if (iLen > 0) {
 		pBuf[iLen] = 0;
 		for(i=0;i<iLen;i++) {
-			sBuf[sLen] = pBuf[i];
-			sLen++;
+			cardBuf[sLen] = pBuf[i];
+			cardLen++;
 			if (pBuf[i] == 0x0d || pBuf[i] == 0x0a) {
-				sBuf[sLen-1] = 0;
-				if (sLen>1) {
+				cardBuf[sLen-1] = 0;
+				if (cardLen>1) {
 					// Card 
 					UdpDebugString(sBuf);
 				}
-				sLen = 0;
+				cardLen = 0;
 			}
-			if (sLen > 30) sLen=0;
+			if (cardLen >= strlen(cardBuf)) cardLen=0;
 		}
 	}
 }

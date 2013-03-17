@@ -14,7 +14,7 @@ install:
 demo: 	
 	@echo
 	@echo "***************************************";
-	@echo "***      Example build AR168M";
+	@echo "***      Example build AR168L";
 	@echo "*** To build another configuration:";
 	@echo "*** look at the full command below ;)";
 	@echo "***************************************";
