@@ -404,6 +404,10 @@ void UI_Init()
 #endif
 #endif
 
+#ifdef SERIAL_CARD_READER
+	rGPIO_A |= 0x04; //A2 cardreader off
+#endif
+
 #ifdef VER_FWV2800
 	// GPIO_D5 as POWER_DET input
 	rGPIO_D_Input_Enable |= 0x20;	// GPIO_D5 input enable

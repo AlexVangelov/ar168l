@@ -428,13 +428,13 @@ void SerialRun() {
 	if (iLen > 0) {
 		pBuf[iLen] = 0;
 		for(i=0;i<iLen;i++) {
-			cardBuf[sLen] = pBuf[i];
+			cardBuf[cardLen] = pBuf[i];
 			cardLen++;
 			if (pBuf[i] == 0x0d || pBuf[i] == 0x0a) {
-				cardBuf[sLen-1] = 0;
+				cardBuf[cardLen-1] = 0;
 				if (cardLen>1) {
 					// Card 
-					UdpDebugString(sBuf);
+					UdpDebugString(cardBuf);
 				}
 				cardLen = 0;
 			}

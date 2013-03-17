@@ -97,21 +97,41 @@ void _status_polling()
 void write_control_byte(UCHAR ch)
 {
 	PCHAR p;
-
+#ifdef LCD_ST7565_YEXINDA_SPI
+	UCHAR i;
+	p = (PCHAR)BANK_BASE;
+	DI;
+	rGPIO_A &= 0xfd;		// A1 LCD_CS
+	for (i = 0; i < 8; i ++) p[0] = (ch << i);
+	rGPIO_A |= 0x02;
+	EI;
+#else
 	p = (PCHAR)BANK_BASE;
 	_status_polling();
 	p[0] = ch;
+#endif
 }
 
 void write_data_byte(UCHAR ch)
 {
 	PCHAR p;
-
+#ifdef LCD_ST7565_YEXINDA_SPI
+	UCHAR i;
+	p = (PCHAR)BANK_BASE;
+	DI;
+	SetExtPage(0x20);		// 00100000b, A20 high for data
+	rGPIO_A &= 0xfd;		// A1 LCD_CS
+	for (i = 0; i < 8; i ++) p[0] = (ch << i);
+	rGPIO_A |= 0x02;
+	SetExtPage(0x00);		// 00000000b, A20 low for read status
+	EI;
+#else
 	p = (PCHAR)BANK_BASE;
 	_status_polling();
 	SetExtPage(0x20);		// 00100000b, A20 high for data
 	p[0] = ch;
 	SetExtPage(0x00);		// 00000000b, A20 low for read status
+#endif
 }
 
 void _set_page(UCHAR iPage)
@@ -203,7 +223,11 @@ void LcdInit()
 	write_control_byte(0xa0);	// ADC select, 10100000, normal, 10100001, reverse
 #endif
 #if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT || defined VER_AR168L // || defined VER_BT2008N
+#ifndef LCD_ST756_YEXINDA_SPI
+        write_control_byte(0xc0);       // Common output mode select, 11000***, normal, 11001***, reverse
+#else
 	write_control_byte(0xc8);	// Common output mode select, 11000***, normal, 11001***, reverse
+#endif
 #else
 	write_control_byte(0xc0);	// Common output mode select, 11000***, normal, 11001***, reverse
 #endif
@@ -212,8 +236,12 @@ void LcdInit()
 	write_control_byte(0x2e);	// Power control set, 00101xxx
 	write_control_byte(0x2f);	// Power control set, 00101xxx
 
-#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT || defined AR168L
+#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT || defined VER_AR168L
+#ifndef LCD_ST7565_YEXINDA_SPI
 	write_control_byte(0x25);	// V5 voltage regulator internal resistor ratio set, 00100xxx
+#else
+        write_control_byte(0x24);       // V5 voltage regulator internal resistor ratio set, 00100xxx
+#endif
 	write_control_byte(0x81);	// Electronic volume mode set, set the V5 output voltage
 #else
 	write_control_byte(0x24);	// V5 voltage regulator internal resistor ratio set, 00100xxx

@@ -88,7 +88,7 @@
 //#define OEM_UART
 //#define OEM_VLAN
 //#define OEM_WEBNEED
-//#define OEM_KIOSK
+#define OEM_KIOSK
 
 // OEM options used in namebin.exe
 //#define OEM_SIZE		// report total code size
@@ -336,6 +336,7 @@
 #define HOOK_GPIO                       // GPIO_C2
 #define KEY_8x4
 #ifdef OEM_KIOSK
+#define	LCD_ST7565_YEXINDA_SPI
 #define SERIAL_CARD_READER
 #else
 #define SERIAL_LOOP
@@ -429,6 +430,7 @@
 #define ENG_BUILD_HIGH		0
 #define ENG_BUILD_MID		1
 #define ENG_BUILD_LOW		5
+
 
 
 
