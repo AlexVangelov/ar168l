@@ -223,10 +223,10 @@ void LcdInit()
 	write_control_byte(0xa0);	// ADC select, 10100000, normal, 10100001, reverse
 #endif
 #if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_FWV2800 || defined VER_DXDT || defined VER_AR168L // || defined VER_BT2008N
-#ifndef LCD_ST756_YEXINDA_SPI
-        write_control_byte(0xc0);       // Common output mode select, 11000***, normal, 11001***, reverse
+#ifndef LCD_ST7565_YEXINDA_SPI
+	write_control_byte(0xc8);       // Common output mode select, 11000***, normal, 11001***, reverse
 #else
-	write_control_byte(0xc8);	// Common output mode select, 11000***, normal, 11001***, reverse
+	write_control_byte(0xc0);	// Common output mode select, 11000***, normal, 11001***, reverse
 #endif
 #else
 	write_control_byte(0xc0);	// Common output mode select, 11000***, normal, 11001***, reverse
@@ -240,7 +240,7 @@ void LcdInit()
 #ifndef LCD_ST7565_YEXINDA_SPI
 	write_control_byte(0x25);	// V5 voltage regulator internal resistor ratio set, 00100xxx
 #else
-        write_control_byte(0x24);       // V5 voltage regulator internal resistor ratio set, 00100xxx
+	write_control_byte(0x24);       // V5 voltage regulator internal resistor ratio set, 00100xxx
 #endif
 	write_control_byte(0x81);	// Electronic volume mode set, set the V5 output voltage
 #else
@@ -248,7 +248,7 @@ void LcdInit()
 	write_control_byte(0x81);	// Electronic volume mode set, set the V5 output voltage
 #endif
 
-#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_DXDT || defined AR168L
+#if defined VER_AR168P || defined VER_GP1266 || defined VER_GP2266 || defined VER_DXDT || defined VER_AR168L
 	write_control_byte(26);		// Electronic volume register, 00xxxxxx
 #elif defined VER_FWV2800
 	write_control_byte(32);		// Electronic volume register, 00xxxxxx
