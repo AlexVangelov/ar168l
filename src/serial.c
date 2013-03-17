@@ -438,7 +438,7 @@ void SerialRun() {
 				}
 				cardLen = 0;
 			}
-			if (cardLen >= strlen(cardBuf)) cardLen=0;
+			if (cardLen >= sizeof(cardBuf)) cardLen=0;
 		}
 	}
 }
